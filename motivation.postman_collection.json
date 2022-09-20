@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "806c100d-055b-4bf5-9268-41a8b7cdf94e",
+		"name": "motivation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12074833"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Padli Yulian",
+									"type": "text"
+								},
+								{
+									"key": "schedule notif",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "anytime",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "often",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "start",
+									"value": "08:00",
+									"type": "text"
+								},
+								{
+									"key": "end",
+									"value": "23:00",
+									"type": "text"
+								},
+								{
+									"key": "jeda",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "style",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "feel",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ways",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ways[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ways[1]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ways[2]",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "areas",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "areas[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "areas[1]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "areas[2]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "list",
+			"item": [
+				{
+					"name": "style",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/styles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"styles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "feel",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/feels",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"feels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "way",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/ways",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"ways"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "theme",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/themes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"themes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "area",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/areas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"areas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "quote",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|Kg4MuSeyOSyghIArXIhtK3ij84DmVuFYGcUQ2Vhs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quote",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save to my quote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|Kg4MuSeyOSyghIArXIhtK3ij84DmVuFYGcUQ2Vhs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quote",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://motivation.test/api/v1",
+			"type": "string"
+		}
+	]
+}
