@@ -42,42 +42,42 @@ class CreateWaysTable extends Migration
                 "owner_id" => 1,
                 "type" => "way",
                 "name" => "family.svg",
-                "url" => "/asssets/icons/way/family.svg",
+                "url" => "/assets/icons/way/family.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 2,
                 "type" => "way",
                 "name" => "friends.svg",
-                "url" => "/asssets/icons/way/friends.svg",
+                "url" => "/assets/icons/way/friends.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 3,
                 "type" => "way",
                 "name" => "work.svg",
-                "url" => "/asssets/icons/way/work.svg",
+                "url" => "/assets/icons/way/work.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 4,
                 "type" => "way",
                 "name" => "health.svg",
-                "url" => "/asssets/icons/way/health.svg",
+                "url" => "/assets/icons/way/health.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 5,
                 "type" => "way",
                 "name" => "relationship.svg",
-                "url" => "/asssets/icons/way/relationship.svg",
+                "url" => "/assets/icons/way/relationship.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 6,
                 "type" => "way",
                 "name" => "other.svg",
-                "url" => "/asssets/icons/way/other.svg",
+                "url" => "/assets/icons/way/other.svg",
                 "created_at" => now()
             ],
         ]);

@@ -35,42 +35,42 @@ class CreateFeelsTable extends Migration
                 "owner_id" => 1,
                 "type" => "feel",
                 "name" => "awesome.svg",
-                "url" => "/asssets/icons/feel/awesome.svg",
+                "url" => "/assets/icons/feel/awesome.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 2,
                 "type" => "feel",
                 "name" => "good.svg",
-                "url" => "/asssets/icons/feel/good.svg",
+                "url" => "/assets/icons/feel/good.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 3,
                 "type" => "feel",
                 "name" => "ok.svg",
-                "url" => "/asssets/icons/feel/ok.svg",
+                "url" => "/assets/icons/feel/ok.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 4,
                 "type" => "feel",
                 "name" => "bad.svg",
-                "url" => "/asssets/icons/feel/bad.svg",
+                "url" => "/assets/icons/feel/bad.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 5,
                 "type" => "feel",
                 "name" => "terrible.svg",
-                "url" => "/asssets/icons/feel/terrible.svg",
+                "url" => "/assets/icons/feel/terrible.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 6,
                 "type" => "feel",
                 "name" => "other.svg",
-                "url" => "/asssets/icons/feel/other.svg",
+                "url" => "/assets/icons/feel/other.svg",
                 "created_at" => now()
             ],
         ]);

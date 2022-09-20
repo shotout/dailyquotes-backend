@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Way extends Model
 {
     use HasFactory;
+
+    // list status
+    const ACTIVE = 2;
+
+    public function icon()
+    {
+        return $this->hasOne('\App\Models\Media', 'owner_id')->where('type', 'way');
+    }
 }

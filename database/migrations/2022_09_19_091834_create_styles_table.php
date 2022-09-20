@@ -33,28 +33,28 @@ class CreateStylesTable extends Migration
                 "owner_id" => 1,
                 "type" => "style",
                 "name" => "1.svg",
-                "url" => "/asssets/icons/style/1.svg",
+                "url" => "/assets/icons/style/1.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 2,
                 "type" => "style",
                 "name" => "2.svg",
-                "url" => "/asssets/icons/style/2.svg",
+                "url" => "/assets/icons/style/2.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 3,
                 "type" => "style",
                 "name" => "3.svg",
-                "url" => "/asssets/icons/style/3.svg",
+                "url" => "/assets/icons/style/3.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 4,
                 "type" => "style",
                 "name" => "4.svg",
-                "url" => "/asssets/icons/style/4.svg",
+                "url" => "/assets/icons/style/4.svg",
                 "created_at" => now()
             ],
         ]);

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     use HasFactory;
+
+    // list status
+    const ACTIVE = 2;
 }

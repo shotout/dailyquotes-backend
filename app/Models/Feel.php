@@ -11,4 +11,9 @@ class Feel extends Model
 
     // list status
     const ACTIVE = 2;
+
+    public function icon()
+    {
+        return $this->hasOne('\App\Models\Media', 'owner_id')->where('type', 'feel');
+    }
 }
