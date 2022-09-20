@@ -6,6 +6,7 @@ use App\Models\Way;
 use App\Models\Area;
 use App\Models\Feel;
 use App\Models\Style;
+use App\Models\Theme;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -44,6 +45,16 @@ class ListController extends Controller
     public function areas()
     {
         $data = Area::where('status', 2)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ], 200);
+    }
+
+    public function themes()
+    {
+        $data = Theme::with('background')->where('status', 2)->get();
 
         return response()->json([
             'status' => 'success',

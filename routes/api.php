@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
+use App\Http\Controllers\Api\v1\UserController;
+use App\Http\Controllers\Api\v1\QuoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +38,28 @@ Route::group(
         Route::get('/feels', [ListController::class, 'feels'])->name('feels');
         Route::get('/ways', [ListController::class, 'ways'])->name('ways');
         Route::get('/areas', [ListController::class, 'areas'])->name('areas');
+        Route::get('/themes', [ListController::class, 'themes'])->name('themes');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'v1/quote',
+        'name' => 'quote.'
+    ],
+    function() {
+        Route::get('/', [QuoteController::class, 'index'])->name('index');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'v1/user',
+        'name' => 'user.'
+    ],
+    function() {
+        Route::post('/save-quote/{id}', [UserController::class, 'saveQuote'])->name('saveQuote');
     }
 );
