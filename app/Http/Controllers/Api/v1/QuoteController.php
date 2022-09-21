@@ -31,8 +31,17 @@ class QuoteController extends Controller
             $dir = 'desc';
         }
 
+        // if user login
+        if (auth('sanctum')->check()) {
+            $category = auth('sanctum')->user()->category_id;
+        } else {
+            $category = 1;
+        }
+
         // order by
-        $query = Quote::where('status', 2)->orderBy($column, $dir);
+        $query = Quote::where('category_id', $category)
+            ->where('status', 2)
+            ->orderBy($column, $dir);
 
         // search
         if ($request->has('search') && $request->input('search') != '') {

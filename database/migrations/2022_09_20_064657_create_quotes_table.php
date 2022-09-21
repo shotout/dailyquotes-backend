@@ -16,6 +16,7 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_id')->nullable();
             $table->text('title')->nullable();
             $table->string('author')->nullable();
             $table->tinyInteger('status')->default(2);
@@ -31,8 +32,21 @@ class CreateQuotesTable extends Migration
 
         DB::table('quotes')->insert([
             [
+                "category_id" => 1,
                 "title" => "Sometimes you need to take a break from everyone and spend time alone, to experience, appreciate and love yourself.",
                 "author" => "Robert Tew",
+                "created_at" => now()
+            ],
+            [
+                "category_id" => 1,
+                "title" => "Result happen over time, not overnight. Work hard, stay consistent.",
+                "author" => "Bob Marley",
+                "created_at" => now()
+            ],
+            [
+                "category_id" => 3,
+                "title" => "You’ve gotta dance like there’s nobody watching, love like you’ll never be hurt, sing like there’s nobody listening, and live like it’s heaven on earth.",
+                "author" => "Julian",
                 "created_at" => now()
             ],
         ]);

@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('style_id')->nullable();
             $table->integer('feel_id')->nullable();
+            $table->integer('category_id')->default(1);
             
             $table->string('name')->nullable();
             $table->string('gender')->nullable();
@@ -24,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();;
             $table->rememberToken()->nullable();;
+            $table->boolean('is_member')->default(false);
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });

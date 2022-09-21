@@ -16,7 +16,7 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->tinyInteger('anytime')->default(0);
+            $table->boolean('anytime')->default(false);
             $table->tinyInteger('often')->nullable();
             $table->time('start')->nullable();
             $table->time('end')->nullable();

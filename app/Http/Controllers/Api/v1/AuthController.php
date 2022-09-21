@@ -53,7 +53,7 @@ class AuthController extends Controller
                     $schedule->end = $request->end;
                 }
                 if ($request->has('anytime') && $request->anytime != '') {
-                    $schedule->anytime = 1;
+                    $schedule->anytime = true;
                 }
                 $schedule->save();
             // -------------------------
