@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Models\User;
 use App\Models\Quote;
+use App\Models\Category;
+use App\Models\UserQuote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\UserQuote;
+use App\Models\Theme;
 
 class UserController extends Controller
 {
@@ -34,6 +37,48 @@ class UserController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $userQuote
+        ], 200);
+    }
+
+    public function updateTheme($id)
+    {
+        $theme = Theme::find($id);
+
+        if (!$theme) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'data not found'
+            ], 404);
+        }
+
+        $user = User::find(auth('sanctum')->user()->id);
+        $user->theme_id = (int)$id;
+        $user->update();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ], 200);
+    }
+
+    public function updateCategory($id)
+    {
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'data not found'
+            ], 404);
+        }
+
+        $user = User::find(auth('sanctum')->user()->id);
+        $user->category_id = (int)$id;
+        $user->update();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
         ], 200);
     }
 }

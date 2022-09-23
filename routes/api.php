@@ -62,5 +62,7 @@ Route::group(
     ],
     function() {
         Route::post('/save-quote/{id}', [UserController::class, 'saveQuote'])->name('saveQuote');
+        Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('updateTheme');
+        Route::patch('/update-category/{id}', [UserController::class, 'updateCategory'])->name('updateCategory');
     }
 );

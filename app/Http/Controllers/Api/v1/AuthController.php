@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Carbon\Carbon;
 use App\Models\Way;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Style;
 use App\Models\Schedule;
 use Illuminate\Support\Str;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -36,9 +38,17 @@ class AuthController extends Controller
                 if ($request->has('feel')) {
                     $user->feel_id = $request->feel;
                 }
-                $user->remember_token = Str::random(16);
+                // $user->remember_token = Str::random(16);
                 $user->save();
             // ------------------------------
+
+            // subscription ---------
+            $sub = new Subscription;
+            $sub->user_id = $user->id;
+            $sub->started = now();
+            $sub->renewal = Carbon::now()->addDay(3);
+            $sub->save();
+            // ----------------------
 
             // schedule ------------
                 $schedule = new Schedule;
@@ -83,7 +93,8 @@ class AuthController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
 
             // data
-            $data = User::with('schedule','style','feel','ways','areas')->find($user->id);
+            $data = User::with('schedule','style','feel','ways','areas','theme', 'category','subscription')
+                ->find($user->id);
 
             // response
             return response()->json([
