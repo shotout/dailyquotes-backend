@@ -16,4 +16,9 @@ class Category extends Model
     {
         return $this->hasOne('\App\Models\Media', 'owner_id')->where('type', 'category');
     }
+
+    public function quotes()
+    {
+        return $this->hasMany('App\Models\Quote');
+    }
 }

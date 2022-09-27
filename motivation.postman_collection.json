@@ -234,6 +234,60 @@
 					"response": []
 				},
 				{
+					"name": "category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/groups?search=love",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"groups"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "love"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "area",
 					"request": {
 						"method": "GET",
@@ -270,7 +324,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|Kg4MuSeyOSyghIArXIhtK3ij84DmVuFYGcUQ2Vhs",
+									"value": "1|4MbWih364if0YK9nqlhooq3asHxoACUIj6rxBy9e",
 									"type": "string"
 								}
 							]
@@ -296,19 +350,19 @@
 					"response": []
 				},
 				{
-					"name": "save to my quote",
+					"name": "update my category",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|Kg4MuSeyOSyghIArXIhtK3ij84DmVuFYGcUQ2Vhs",
+									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
 									"type": "string"
 								}
 							]
 						},
-						"method": "GET",
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "Accept",
@@ -317,12 +371,84 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/quote",
+							"raw": "{{base_url}}/user/update-category/3",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"quote"
+								"user",
+								"update-category",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my theme",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/update-theme/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update-theme",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save to my quote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|8Tqg4GUsxiEusGmFjJmA7ApiT3x0M4WzZ1mtjLS1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/save-quote/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"save-quote",
+								"1"
 							]
 						}
 					},
