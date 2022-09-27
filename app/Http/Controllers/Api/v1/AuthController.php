@@ -19,7 +19,10 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:100',
+            'style' => 'required',
+            'feel' => 'required',
+            'ways' => 'required',
+            'areas' => 'required',
         ]);
 
         $user = DB::transaction(function () use ($request) {
@@ -43,11 +46,11 @@ class AuthController extends Controller
             // ------------------------------
 
             // subscription ---------
-            $sub = new Subscription;
-            $sub->user_id = $user->id;
-            $sub->started = now();
-            $sub->renewal = Carbon::now()->addDay(3);
-            $sub->save();
+                $sub = new Subscription;
+                $sub->user_id = $user->id;
+                $sub->started = now();
+                $sub->renewal = Carbon::now()->addDay(3);
+                $sub->save();
             // ----------------------
 
             // schedule ------------
