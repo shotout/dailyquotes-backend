@@ -10,6 +10,40 @@
 			"name": "auth",
 			"item": [
 				{
+					"name": "check device",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "device_id",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/check-device",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"check-device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "register",
 					"request": {
 						"method": "POST",
@@ -26,6 +60,11 @@
 								{
 									"key": "name",
 									"value": "Padli Yulian",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "1234",
 									"type": "text"
 								},
 								{
@@ -324,7 +363,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|4MbWih364if0YK9nqlhooq3asHxoACUIj6rxBy9e",
+									"value": "1|Rr9tIIfaK7I0WERlS7jbB4ZUnKglu4WsnWyWTKeC",
 									"type": "string"
 								}
 							]
@@ -357,28 +396,53 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
+									"value": "1|Rr9tIIfaK7I0WERlS7jbB4ZUnKglu4WsnWyWTKeC",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categories[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categories[1]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categories[2]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{base_url}}/user/update-category/3",
+							"raw": "{{base_url}}/user/update-category",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
-								"update-category",
-								"3"
+								"update-category"
 							]
 						}
 					},

@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();;
             $table->rememberToken()->nullable();;
             $table->boolean('is_member')->default(false);
+            $table->string('device_id')->nullable();
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });

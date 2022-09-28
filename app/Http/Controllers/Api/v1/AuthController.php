@@ -16,14 +16,49 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+    public function checkDevice(Request $request)
+    {
+        $request->validate([
+            'device_id' => 'required',
+        ]);
+
+        $user = User::where('device_id', $request->device_id)->first();
+        if ($user) {
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+                ->find($user->id);
+
+            return response()->json([
+                'status' => 'success',
+                'token' => $token,
+                'data' => $data
+            ], 200); 
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'device not register'
+        ], 400); 
+    }
+
     public function register(Request $request)
     {
         $request->validate([
+            'device_id' => 'required',
             'style' => 'required',
             'feel' => 'required',
             'ways' => 'required',
             'areas' => 'required',
         ]);
+
+        $isRegister = User::where('device_id', $request->device_id)->first();
+        if ($isRegister) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'device has register'
+            ], 400); 
+        }
 
         $user = DB::transaction(function () use ($request) {
 
@@ -40,6 +75,9 @@ class AuthController extends Controller
                 }
                 if ($request->has('feel')) {
                     $user->feel_id = $request->feel;
+                }
+                if ($request->has('device_id')) {
+                    $user->device_id = $request->device_id;
                 }
                 // $user->remember_token = Str::random(16);
                 $user->save();
@@ -84,6 +122,10 @@ class AuthController extends Controller
                     $user->areas()->sync($areas);
                 }
             // ----------------------
+
+            // categories ------------
+                $user->categories()->sync([1]);
+            // -----------------------
 
             return $user;
         });

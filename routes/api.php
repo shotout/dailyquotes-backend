@@ -24,6 +24,7 @@ Route::group(
         'name' => 'auth.'
     ],
     function() {
+        Route::post('/check-device', [AuthController::class, 'checkDevice'])->name('checkDevice');
         Route::post('/register', [AuthController::class, 'register'])->name('register');
     }
 );
