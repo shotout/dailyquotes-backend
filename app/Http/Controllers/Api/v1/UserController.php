@@ -61,24 +61,20 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function updateCategory($id)
+    public function updateCategory(Request $request)
     {
-        $category = Category::find($id);
+        if ($request->has('categories') && $request->categories != '') {
+            $categories = Category::whereIn('id', $request->categories)->pluck('id')->toArray();
 
-        if (!$category) {
+            $user = User::find(auth('sanctum')->user()->id);
+            $user->categories()->sync($categories);
+
+            $data = User::with('categories')->find(auth('sanctum')->user()->id);
+
             return response()->json([
-                'status' => 'failed',
-                'message' => 'data not found'
-            ], 404);
+                'status' => 'success',
+                'data' => $data
+            ], 200);
         }
-
-        $user = User::find(auth('sanctum')->user()->id);
-        $user->category_id = (int)$id;
-        $user->update();
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $user
-        ], 200);
     }
 }

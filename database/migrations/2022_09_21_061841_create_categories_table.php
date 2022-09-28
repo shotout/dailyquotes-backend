@@ -23,6 +23,13 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('user_category', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
+            // $table->timestamps();
+        });
+
         DB::table('categories')->insert([
             // basic
             ["group_id" => 1, "name" => "General", "is_free" => true, "created_at" => now()],

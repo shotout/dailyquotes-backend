@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Quote;
+use App\Models\Category;
+use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,13 +35,17 @@ class QuoteController extends Controller
 
         // if user login
         if (auth('sanctum')->check()) {
-            $category = auth('sanctum')->user()->category_id;
-        } else {
-            $category = 1;
+            $categories = UserCategory::where('user_id', auth('sanctum')->user()->id)
+                ->pluck('category_id')
+                ->toArray();
+        }
+
+        if (!count($categories)) {
+            $categories = array(1);
         }
 
         // order by
-        $query = Quote::where('category_id', $category)
+        $query = Quote::whereIn('category_id', $categories)
             ->where('status', 2)
             ->orderBy($column, $dir);
 

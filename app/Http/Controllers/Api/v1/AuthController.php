@@ -96,7 +96,7 @@ class AuthController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
 
             // data
-            $data = User::with('schedule','style','feel','ways','areas','theme', 'category','subscription')
+            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
                 ->find($user->id);
 
             // response
