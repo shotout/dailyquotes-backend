@@ -27,6 +27,8 @@ class CreateQuotesTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('quote_id')->nullable();
+            $table->tinyInteger('type')->nullable();
+            $table->string('flag')->nullable();
             $table->timestamps();
         });
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "806c100d-055b-4bf5-9268-41a8b7cdf94e",
+		"_postman_id": "3bc9edfd-2d93-4991-ae31-86a07695d3e9",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -484,14 +484,14 @@
 					"response": []
 				},
 				{
-					"name": "save to my quote",
+					"name": "like or dislike quote",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|8Tqg4GUsxiEusGmFjJmA7ApiT3x0M4WzZ1mtjLS1",
+									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
 									"type": "string"
 								}
 							]
@@ -504,15 +504,154 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{base_url}}/user/save-quote/1",
+							"raw": "{{base_url}}/user/save-quote/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
 								"save-quote",
-								"1"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "work",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "my collection",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "work",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add quote to my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/add-collection",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"add-collection"
 							]
 						}
 					},

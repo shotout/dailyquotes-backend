@@ -11,7 +11,9 @@ class Subscription extends Model
 
     // list type
     const FREE = 1;
-    const ONE_YEAR = 2;
+    const MONTHLY = 2;
+    const YEARLY = 3;
+    const LIFETIME = 4;
 
     // list status
     const ACTIVE = 2;
