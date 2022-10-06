@@ -67,6 +67,7 @@ class ListController extends Controller
     public function groups(Request $request)
     {
         $popular = Category::withCount('quotes')
+            ->with('icon')
             ->orderBy('quotes_count', 'desc')
             ->take(4)
             ->get();
