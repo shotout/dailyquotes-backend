@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Quote;
 use App\Models\Theme;
 use App\Models\Category;
+use App\Models\Schedule;
 use App\Models\UserQuote;
 use App\Models\Collection;
 use Illuminate\Http\Request;
@@ -106,7 +107,29 @@ class UserController extends Controller
 
     public function myCollectionDetail($id)
     {
+        $collection = Collection::find($id);
 
+        if (!$collection) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Collection not found'
+            ], 404);
+        }
+
+        $cq = CollectionQuote::with('quote')
+            ->where('collection_id', $collection->id)
+            ->pluck('quote_id')
+            ->toArray();
+
+        $quotes = Quote::with('like')->whereIn('id', $cq)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => (object) array(
+                'collection' => $collection,
+                'quotes' => $quotes
+            )
+        ], 200);
     }
 
     public function addCollection(Request $request)
@@ -171,5 +194,93 @@ class UserController extends Controller
             'status' => 'success',
             'data' => $cq
         ], 201);
+    }
+
+    public function delQuoteFromCollection($collection, $quote)
+    {
+        $findCollection = Collection::find($collection);
+        $findQuote = Quote::find($quote);
+
+        if (!$findCollection) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Collection not found'
+            ], 404);
+        }
+
+        if (!$findQuote) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Quote not found'
+            ], 404);
+        }
+
+        $cq = CollectionQuote::where('collection_id', $collection)
+            ->where('quote_id', $quote)
+            ->first();
+
+        if ($cq) {
+            $cq->delete();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $cq
+        ], 201);
+    }
+
+    public function showProfile()
+    {
+        $user = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+            ->find(auth('sanctum')->user()->id);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ], 200);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = User::find(auth('sanctum')->user()->id);
+
+        if ($request->has('name') && $request->name != '') {
+            $user->name = $request->name;
+            $user->update();
+        }
+
+        if ($request->has('gender') && $request->gender != '') {
+            $user->gender = $request->gender;
+            $user->update();
+        }
+
+        if ($request->has('style') && $request->style != '') {
+            $user->style_id = $request->style;
+            $user->update();
+        }
+
+        // schedule reminder ------------
+            $schedule = Schedule::where('user_id', auth('sanctum')->user()->id)->first();
+
+            if ($request->has('often') && $request->often != '') {
+                $schedule->often = $request->often;
+            }
+            if ($request->has('start') && $request->start != '') {
+                $schedule->start = $request->start;
+            }
+            if ($request->has('end') && $request->end != '') {
+                $schedule->end = $request->end;
+            }
+            if ($request->has('anytime') && $request->anytime != '') {
+                $schedule->anytime = true;
+            }
+            
+            $schedule->save();
+        // -------------------------
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ], 200);
     }
 }

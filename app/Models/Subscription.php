@@ -14,6 +14,7 @@ class Subscription extends Model
     const MONTHLY = 2;
     const YEARLY = 3;
     const LIFETIME = 4;
+    const ONE_MONTH_FREE = 5;
 
     // list status
     const ACTIVE = 2;

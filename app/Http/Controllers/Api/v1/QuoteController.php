@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Subscription;
 
 class QuoteController extends Controller
 {
@@ -60,10 +61,27 @@ class QuoteController extends Controller
         // pagination
         $data = $query->paginate($length);
 
+        // free 1 month
+        $isFreeUser = Subscription::where('user_id', auth('sanctum')->user()->id)
+            ->where('type', 1)
+            ->where('status', 2)
+            ->exists();
+        $hasMonthFree = Subscription::where('user_id', auth('sanctum')->user()->id)
+            ->where('type', 5)
+            ->exists();
+        if ($isFreeUser && $hasMonthFree) {
+            $month_free = true;
+        } else {
+            $month_free = false;
+        }
+
         // retun response
         return response()->json([
             'status' => 'success',
-            'data' => $data
+            'data' => $data,
+            'flag' => (object) array(
+                'month_free' => $month_free
+            )
         ], 200);
     }
 }

@@ -82,6 +82,6 @@ class User extends Authenticatable
 
     public function subscription()
     {
-        return $this->hasOne('\App\Models\Subscription');
+        return $this->hasOne('\App\Models\Subscription')->where('status', 2);
     }
 }

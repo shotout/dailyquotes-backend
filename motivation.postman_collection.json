@@ -491,7 +491,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
 									"type": "string"
 								}
 							]
@@ -509,20 +509,20 @@
 							"formdata": [
 								{
 									"key": "type",
-									"value": "2",
+									"value": "1",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/user/save-quote/2",
+							"raw": "{{base_url}}/user/save-quote/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
 								"save-quote",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -583,7 +583,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
 									"type": "string"
 								}
 							]
@@ -598,13 +598,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "work",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{base_url}}/user/collection",
@@ -620,6 +614,48 @@
 					"response": []
 				},
 				{
+					"name": "my collection detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "add quote to my collection",
 					"request": {
 						"auth": {
@@ -627,7 +663,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
 									"type": "string"
 								}
 							]
@@ -645,13 +681,167 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{base_url}}/user/add-collection",
+							"raw": "{{base_url}}/user/add-quote/1/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
-								"add-collection"
+								"add-quote",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove quote from my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/del-quote/1/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"del-quote",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Julian",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "Female",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "style",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "often",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "start",
+									"value": "17:00",
+									"type": "text"
+								},
+								{
+									"key": "end",
+									"value": "23:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"profile"
 							]
 						}
 					},

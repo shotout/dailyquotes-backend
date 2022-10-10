@@ -63,12 +63,18 @@ Route::group(
         'name' => 'user.'
     ],
     function() {
+        Route::get('/profile', [UserController::class, 'showProfile'])->name('showProfile');
+        Route::patch('/profile', [UserController::class, 'updateProfile'])->name('updateProfile');
+
         Route::post('/save-quote/{id}', [UserController::class, 'quote'])->name('quote');
         Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('updateTheme');
         Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('updateCategory');
         Route::get('/collection', [UserController::class, 'myCollection'])->name('myCollection');
+        Route::get('/collection/{id}', [UserController::class, 'myCollectionDetail'])->name('myCollectionDetail');
         Route::post('/collection', [UserController::class, 'addCollection'])->name('addCollection');
         Route::post('/add-quote/{collection}/{quote}', [UserController::class, 'addQuoteToCollection'])
             ->name('addQuoteToCollection');
+        Route::post('/del-quote/{collection}/{quote}', [UserController::class, 'delQuoteFromCollection'])
+            ->name('delQuoteFromCollection');
     }
 );

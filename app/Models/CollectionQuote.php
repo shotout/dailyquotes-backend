@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CollectionQuote extends Model
 {
     use HasFactory;
+
+    public function quote()
+    {
+        return $this->belongsTo('\App\Models\Quote');
+    }
 }

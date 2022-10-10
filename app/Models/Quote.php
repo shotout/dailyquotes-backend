@@ -11,4 +11,9 @@ class Quote extends Model
 
     // list status
     const ACTIVE = 2;
+
+    public function like()
+    {
+        return $this->hasOne('\App\Models\UserQuote')->where('user_id', auth('sanctum')->user()->id);
+    }
 }
