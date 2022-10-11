@@ -69,12 +69,18 @@ Route::group(
         Route::post('/save-quote/{id}', [UserController::class, 'quote'])->name('quote');
         Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('updateTheme');
         Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('updateCategory');
+        
         Route::get('/collection', [UserController::class, 'myCollection'])->name('myCollection');
         Route::get('/collection/{id}', [UserController::class, 'myCollectionDetail'])->name('myCollectionDetail');
         Route::post('/collection', [UserController::class, 'addCollection'])->name('addCollection');
+        Route::patch('/collection/{id}', [UserController::class, 'updateCollection'])->name('updateCollection');
+        
         Route::post('/add-quote/{collection}/{quote}', [UserController::class, 'addQuoteToCollection'])
             ->name('addQuoteToCollection');
         Route::post('/del-quote/{collection}/{quote}', [UserController::class, 'delQuoteFromCollection'])
             ->name('delQuoteFromCollection');
+
+        Route::get('/like-quote', [UserController::class, 'listLikeQuote'])->name('listLikeQuote');
+        Route::delete('/like-quote/{id}', [UserController::class, 'deleteLikeQuote'])->name('deleteLikeQuote');
     }
 );

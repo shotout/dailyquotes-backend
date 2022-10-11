@@ -39,7 +39,8 @@
 								"auth",
 								"check-device"
 							]
-						}
+						},
+						"description": "body :\n\ndevice_id = string\n\ninfo :\n\n1.  saat aplikasi pertama buka nembak api ini\n2.  jika belum terdaftar redirect ke register/setup awal\n3.  jika sudah terdaftar cek subscription nya type, started dan renewal\n4.  jika masih aktif redirect ke dashboard/ list quote\n5.  jika expire redirect ke halaman pembaruan subsrciption"
 					},
 					"response": []
 				},
@@ -273,30 +274,6 @@
 					"response": []
 				},
 				{
-					"name": "category",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/list/categories",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"list",
-								"categories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "group",
 					"request": {
 						"method": "GET",
@@ -308,7 +285,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/list/groups?search=love",
+							"raw": "{{base_url}}/list/groups?search=",
 							"host": [
 								"{{base_url}}"
 							],
@@ -319,10 +296,11 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "love"
+									"value": ""
 								}
 							]
-						}
+						},
+						"description": "query string :\n\ndefaultnya kosong\n\n?search={keyword}"
 					},
 					"response": []
 				},
@@ -363,7 +341,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|Rr9tIIfaK7I0WERlS7jbB4ZUnKglu4WsnWyWTKeC",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
 									"type": "string"
 								}
 							]
@@ -377,357 +355,21 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/quote",
+							"raw": "{{base_url}}/quote?length=1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"quote"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update my category",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|Rr9tIIfaK7I0WERlS7jbB4ZUnKglu4WsnWyWTKeC",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "categories[0]",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "categories[1]",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "categories[2]",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "_method",
-									"value": "PATCH",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}/user/update-category",
-							"host": [
-								"{{base_url}}"
 							],
-							"path": [
-								"user",
-								"update-category"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update my theme",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"query": [
 								{
-									"key": "token",
-									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
-									"type": "string"
+									"key": "length",
+									"value": "1"
 								}
 							]
 						},
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/user/update-theme/3",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"update-theme",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "like or dislike quote",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "type",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}/user/save-quote/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"save-quote",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add my collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "work",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}/user/collection",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "my collection",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{base_url}}/user/collection",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "my collection detail",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{base_url}}/user/collection/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"collection",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add quote to my collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{base_url}}/user/add-quote/1/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"add-quote",
-								"1",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "remove quote from my collection",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/user/del-quote/1/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"del-quote",
-								"1",
-								"1"
-							]
-						}
+						"description": "pagination :\n\ndefautnya 1\n\n/api/v1/quote?length={int}"
 					},
 					"response": []
 				}
@@ -844,6 +486,514 @@
 								"profile"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my theme",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/update-theme/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update-theme",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|Rr9tIIfaK7I0WERlS7jbB4ZUnKglu4WsnWyWTKeC",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categories[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "categories[1]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categories[2]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/update-category",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update-category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "collection",
+			"item": [
+				{
+					"name": "my collection detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection/1?length=10&search=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection",
+								"1"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						},
+						"description": "defaultnya /api/v1/user/collection/{id_collection}\n\npagination :\n\ndefaultnya 10\n\nlength={int}\n\nsearching :\n\ndefaultnya kosong\n\nsearch={keyword}"
+					},
+					"response": []
+				},
+				{
+					"name": "add my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|FkSRUxDK3Ap2NtmfjTSXebQWqm4XM1jjhxYxweT3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "work",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection"
+							]
+						},
+						"description": "body :\n\nname = {nama collection}"
+					},
+					"response": []
+				},
+				{
+					"name": "update my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "work edit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection",
+								"1"
+							]
+						},
+						"description": "/api/v1/user/collection/{id_collection}\n\nbody :\n\nname = {nama collection}"
+					},
+					"response": []
+				},
+				{
+					"name": "my collection",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add quote to my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/add-quote/1/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"add-quote",
+								"1",
+								"1"
+							]
+						},
+						"description": "/api/v1/user/add-quote/{id_collection}/{id_quote}"
+					},
+					"response": []
+				},
+				{
+					"name": "remove quote from my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/del-quote/1/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"del-quote",
+								"1",
+								"1"
+							]
+						},
+						"description": "/api/v1/user/add-quote/{id_collection}/{id_quote}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "like quote",
+			"item": [
+				{
+					"name": "like or dislike quote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/save-quote/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"save-quote",
+								"1"
+							]
+						},
+						"description": "api/v1/user/save-quote/{id}\n\nparameter id adalah id quote nya\n\nbody nya :\n\ntype 1 untuk like\n\ntype 2 untuk dislike"
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/like-quote?length=10&column=id&dir=desc&search=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"like-quote"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "10"
+								},
+								{
+									"key": "column",
+									"value": "id"
+								},
+								{
+									"key": "dir",
+									"value": "desc"
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						},
+						"description": "defaultnya api/v1/user/like-quote\n\npagination :\n\ndefaultnya 10\n\nlength={int}\n\nquery string :\n\ndefaultnya newest\n\na-z column=title&dir=asc\n\nz-a column=title&dir=desc\n\nnewest column=id&dir=desc\n\noldest column=id&dir=asc\n\nsearching :\n\ndefaultnya kosong\n\nsearch={keyword}\n\nsearch=love"
+					},
+					"response": []
+				},
+				{
+					"name": "delete like quote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/like-quote/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"like-quote",
+								"1"
+							]
+						},
+						"description": "api/v1/user/like-quote/{id}\n\nparameter id adalah id quote nya"
 					},
 					"response": []
 				}

@@ -105,10 +105,9 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function myCollectionDetail($id)
+    public function myCollectionDetail(Request $request, $id)
     {
         $collection = Collection::find($id);
-
         if (!$collection) {
             return response()->json([
                 'status' => 'failed',
@@ -116,12 +115,29 @@ class UserController extends Controller
             ], 404);
         }
 
+        // limit
+        if ($request->has('length') && $request->input('length') != '') {
+            $length = $request->input('length');
+        } else {
+            $length = 10;
+        }
+        
         $cq = CollectionQuote::with('quote')
             ->where('collection_id', $collection->id)
             ->pluck('quote_id')
             ->toArray();
 
-        $quotes = Quote::with('like')->whereIn('id', $cq)->get();
+        $query = Quote::with('like')->whereIn('id', $cq);
+
+        // search
+        if ($request->has('search') && $request->input('search') != '') {
+            $query->where(function($q) use($request) {
+                $q->where('title', 'like', '%' . $request->input('search') . '%');
+            });
+        }
+
+        // pagination
+        $quotes = $query->paginate($length);
 
         return response()->json([
             'status' => 'success',
@@ -153,6 +169,39 @@ class UserController extends Controller
         $collection->user_id = auth('sanctum')->user()->id;
         $collection->name = $request->name;
         $collection->save();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $collection
+        ], 201);
+    }
+
+    public function updateCollection(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $hasCollection = Collection::where('name', $request->name)
+            ->where('user_id', auth('sanctum')->user()->id)
+            ->first();
+
+        if ($hasCollection) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Collection name has taken'
+            ], 400);
+        }
+
+        $collection = Collection::find($id);
+        if (!$collection) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Collection not found'
+            ], 404);
+        }
+        $collection->name = $request->name;
+        $collection->update();
 
         return response()->json([
             'status' => 'success',
@@ -281,6 +330,77 @@ class UserController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $user
+        ], 200);
+    }
+
+    public function listLikeQuote(Request $request)
+    {
+        // limit
+        if ($request->has('length') && $request->input('length') != '') {
+            $length = $request->input('length');
+        } else {
+            $length = 10;
+        }
+
+        // order by field
+        if ($request->has('column') && $request->input('column') != '') {
+            $column = $request->input('column');
+        } else {
+            $column = 'id';
+        }
+
+        // order direction
+        if ($request->has('dir') && $request->input('dir') != '') {
+            $dir = $request->input('dir');
+        } else {
+            $dir = 'desc';
+        }
+
+        $uq = UserQuote::where('user_id', auth('sanctum')->user()->id)
+            ->where('type', 1)
+            ->pluck('quote_id')
+            ->toArray();
+
+        // order by
+        $query = Quote::whereIn('id', $uq)
+            ->where('status', 2)
+            ->orderBy($column, $dir);
+
+        // search
+        if ($request->has('search') && $request->input('search') != '') {
+            $query->where(function($q) use($request) {
+                $q->where('title', 'like', '%' . $request->input('search') . '%');
+            });
+        }
+
+        // pagination
+        $data = $query->paginate($length);
+
+        // retun response
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ], 200);
+    }
+
+    public function deleteLikeQuote($id)
+    {
+        $uq = UserQuote::where('user_id', auth('sanctum')->user()->id)
+            ->where('quote_id', $id)
+            ->first();
+
+        if (!$uq) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'data not found'
+            ], 404);
+        }
+
+        $uq->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $uq
         ], 200);
     }
 }
