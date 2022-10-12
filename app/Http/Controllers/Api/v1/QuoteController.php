@@ -46,8 +46,14 @@ class QuoteController extends Controller
             $categories = array(1);
         }
 
+        // list past quote user
+        $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
+            ->pluck('quote_id')
+            ->toArray();
+
         // order by
         $query = Quote::whereIn('category_id', $categories)
+            ->whereNotIn('id', $pastQuotes)
             ->where('status', 2)
             ->orderBy($column, $dir);
 
@@ -61,6 +67,15 @@ class QuoteController extends Controller
 
         // pagination
         $data = $query->paginate($length);
+
+        // check if past quotes full
+        if ($data->total() == 0) {
+            $query = Quote::whereIn('category_id', $categories)
+                ->where('status', 2)
+                ->orderBy($column, $dir);
+
+            $data = $query->paginate($length);
+        }
 
         // free 1 month
         $isFreeUser = Subscription::where('user_id', auth('sanctum')->user()->id)
@@ -77,16 +92,18 @@ class QuoteController extends Controller
         }
 
         // add to past quote
-        $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
-            ->where('quote_id', $data[0]->id)
-            ->first();
+        // if ($data->total() > 0) {
+        //     $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
+        //         ->where('quote_id', $data[0]->id)
+        //         ->first();
 
-        if (!$pq) {
-            $pq = new PastQuote;
-            $pq->user_id = auth('sanctum')->user()->id;
-            $pq->quote_id = $data[0]->id;
-            $pq->save();
-        }
+        //     if (!$pq) {
+        //         $pq = new PastQuote;
+        //         $pq->user_id = auth('sanctum')->user()->id;
+        //         $pq->quote_id = $data[0]->id;
+        //         $pq->save();
+        //     }
+        // }
 
         // retun response
         return response()->json([

@@ -998,6 +998,115 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "past quote",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote"
+							]
+						},
+						"description": "defaultnya /api/v1/past-quote\n\nfree user type 1 :\n\nhanya nampilin 5 quote\n\npaid user type selain 1:\n\npagination :\n\ndefaultnya 10\n\nlength={int}\n\n/api/v1/past-quote?length=10"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote",
+								"6"
+							]
+						},
+						"description": "/api/v1/past-quote/{quote_id}"
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote",
+								"6"
+							]
+						},
+						"description": "/api/v1/past-quote/{quote_id}"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

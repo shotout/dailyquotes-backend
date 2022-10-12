@@ -67,6 +67,25 @@ class UserPastQuoteController extends Controller
         }
     }
 
+    public function store($id)
+    {
+        $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
+            ->where('quote_id', $id)
+            ->first();
+
+        if (!$pq) {
+            $pq = new PastQuote;
+            $pq->user_id = auth('sanctum')->user()->id;
+            $pq->quote_id = $id;
+            $pq->save();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $pq
+        ], 200);
+    }
+
     public function destroy($id)
     {
         $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)

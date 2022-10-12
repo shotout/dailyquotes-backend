@@ -94,6 +94,7 @@ Route::group(
     ],
     function() {
         Route::get('/', [UserPastQuoteController::class, 'index'])->name('index');
+        Route::post('/{id}', [UserPastQuoteController::class, 'store'])->name('store');
         Route::delete('/{id}', [UserPastQuoteController::class, 'destroy'])->name('destroy');
     }
 );
