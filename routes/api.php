@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
+use App\Http\Controllers\Api\v1\UserLikeController;
 use App\Http\Controllers\Api\v1\UserPastQuoteController;
+use App\Http\Controllers\Api\v1\UserCollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,25 +66,25 @@ Route::group(
         'name' => 'user.'
     ],
     function() {
-        Route::get('/profile', [UserController::class, 'showProfile'])->name('showProfile');
-        Route::patch('/profile', [UserController::class, 'updateProfile'])->name('updateProfile');
+        Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
+        Route::patch('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
 
-        Route::post('/save-quote/{id}', [UserController::class, 'quote'])->name('quote');
-        Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('updateTheme');
-        Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('updateCategory');
+        Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('theme.update');
+        Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('category.update.');
         
-        Route::get('/collection', [UserController::class, 'myCollection'])->name('myCollection');
-        Route::get('/collection/{id}', [UserController::class, 'myCollectionDetail'])->name('myCollectionDetail');
-        Route::post('/collection', [UserController::class, 'addCollection'])->name('addCollection');
-        Route::patch('/collection/{id}', [UserController::class, 'updateCollection'])->name('updateCollection');
-        
-        Route::post('/add-quote/{collection}/{quote}', [UserController::class, 'addQuoteToCollection'])
-            ->name('addQuoteToCollection');
-        Route::post('/del-quote/{collection}/{quote}', [UserController::class, 'delQuoteFromCollection'])
-            ->name('delQuoteFromCollection');
+        Route::get('/collection', [UserCollectionController::class, 'index'])->name('collection.index');
+        Route::get('/collection/{id}', [UserCollectionController::class, 'show'])->name('collection.show');
+        Route::post('/collection', [UserCollectionController::class, 'store'])->name('collection.store');
+        Route::patch('/collection/{id}', [UserCollectionController::class, 'update'])
+            ->name('collection.update');
+        Route::post('/add-quote/{collection}/{quote}', [UserCollectionController::class, 'storeQuote'])
+            ->name('collection.quote.store');
+        Route::post('/del-quote/{collection}/{quote}', [UserCollectionController::class, 'destroyQuote'])
+            ->name('collection.quote.destroy');
 
-        Route::get('/like-quote', [UserController::class, 'listLikeQuote'])->name('listLikeQuote');
-        Route::delete('/like-quote/{id}', [UserController::class, 'deleteLikeQuote'])->name('deleteLikeQuote');
+        Route::get('/like-quote', [UserLikeController::class, 'index'])->name('like.index');
+        Route::post('/save-quote/{id}', [UserLikeController::class, 'store'])->name('like.store');
+        Route::delete('/like-quote/{id}', [UserLikeController::class, 'destroy'])->name('like.destroy');
     }
 );
 
