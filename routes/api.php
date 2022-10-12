@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
+use App\Http\Controllers\Api\v1\UserPastQuoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,5 +83,17 @@ Route::group(
 
         Route::get('/like-quote', [UserController::class, 'listLikeQuote'])->name('listLikeQuote');
         Route::delete('/like-quote/{id}', [UserController::class, 'deleteLikeQuote'])->name('deleteLikeQuote');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'v1/past-quote',
+        'name' => 'past-quote.'
+    ],
+    function() {
+        Route::get('/', [UserPastQuoteController::class, 'index'])->name('index');
+        Route::delete('/{id}', [UserPastQuoteController::class, 'destroy'])->name('destroy');
     }
 );

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Quote;
 use App\Models\Category;
+use App\Models\PastQuote;
+use App\Models\Subscription;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Subscription;
 
 class QuoteController extends Controller
 {
@@ -73,6 +74,18 @@ class QuoteController extends Controller
             $month_free = true;
         } else {
             $month_free = false;
+        }
+
+        // add to past quote
+        $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
+            ->where('quote_id', $data[0]->id)
+            ->first();
+
+        if (!$pq) {
+            $pq = new PastQuote;
+            $pq->user_id = auth('sanctum')->user()->id;
+            $pq->quote_id = $data[0]->id;
+            $pq->save();
         }
 
         // retun response
