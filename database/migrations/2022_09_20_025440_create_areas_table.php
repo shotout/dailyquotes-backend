@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->float('percentage')->nullable();
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });
@@ -29,14 +30,14 @@ class CreateAreasTable extends Migration
         });
 
         DB::table('areas')->insert([
-            ["name" => "Productivity", "created_at" => now()],
-            ["name" => "Positive Thinking", "created_at" => now()],
-            ["name" => "Inspiration", "created_at" => now()],
-            ["name" => "Faith & Spirituality", "created_at" => now()],
-            ["name" => "Relationships", "created_at" => now()],
-            ["name" => "Working Out", "created_at" => now()],
-            ["name" => "Self-Esteem", "created_at" => now()],
-            ["name" => "Achieving Goals", "created_at" => now()],
+            ["name" => "Productivity", "percentage" => 3.64, "created_at" => now()],
+            ["name" => "Positive Thinking", "percentage" => 2.22, "created_at" => now()],
+            ["name" => "Inspiration", "percentage" => 3.64, "created_at" => now()],
+            ["name" => "Stress & Anxiety", "percentage" => 5, "created_at" => now()],
+            ["name" => "Relationships", "percentage" => 3.64, "created_at" => now()],
+            ["name" => "Working Out", "percentage" => 4.44, "created_at" => now()],
+            ["name" => "Self-Esteem", "percentage" => 3.33, "created_at" => now()],
+            ["name" => "Achieving Goals", "percentage" => 4.44, "created_at" => now()],
         ]);
     }
 
