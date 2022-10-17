@@ -13,6 +13,7 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Jobs\UserPool;
 
 class AuthController extends Controller
 {
@@ -131,8 +132,8 @@ class AuthController extends Controller
         });
 
         if ($user) {
-            // sending email verification
-            // SendConfirmEmail::dispatch($user, 'register')->onQueue('apiMotivation');
+            // count user pool
+            UserPool::dispatch($user->id)->onQueue('apiMooti');
 
             // generate token
             $token = $user->createToken('auth_token')->plainTextToken;
