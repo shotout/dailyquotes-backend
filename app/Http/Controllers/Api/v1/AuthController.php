@@ -47,8 +47,8 @@ class AuthController extends Controller
         $request->validate([
             'device_id' => 'required',
             'style' => 'required',
-            'feel' => 'required',
-            'ways' => 'required',
+            // 'feel' => 'required',
+            // 'ways' => 'required',
             'areas' => 'required',
         ]);
 
