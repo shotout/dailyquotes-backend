@@ -53,44 +53,51 @@ class UserPool implements ShouldQueue
                 $pool->user_id = $this->user->id;
                 $pool->category_id = $category->id;
 
-                $cf = CategoryFeel::where('category_id', $category->id)
-                    ->where('feel_id', $this->user->feel->id)
-                    ->first();
-                if ($cf) {
-                    $feel = Feel::find($cf->feel_id);
-                    if ($feel) {
-                        $pool->feel = $feel->percentage;
-                    }
-                }
-
-                foreach ($this->user->ways as $item) {
-                    $cw = CategoryWay::where('category_id', $category->id)
-                        ->where('way_id', $item->id)
+                if ($this->user->feel) {
+                    $cf = CategoryFeel::where('category_id', $category->id)
+                        ->where('feel_id', $this->user->feel->id)
                         ->first();
-                    if ($cw) {
-                        $way = Way::find($cw->way_id);
-                        if ($way) {
-                            $sumWay += $way->percentage;
+                    if ($cf) {
+                        $feel = Feel::find($cf->feel_id);
+                        if ($feel) {
+                            $pool->feel = $feel->percentage;
                         }
                     }
                 }
-                $pool->way = $sumWay / count($this->user->ways);
 
-                foreach ($this->user->areas as $item) {
-                    $ca = CategoryArea::where('category_id', $category->id)
-                        ->where('area_id', $item->id)
-                        ->first();
-                    if ($ca) {
-                        $area = Area::find($ca->area_id);
-                        if ($area) {
-                            $sumArea += $area->percentage;
+                if (count($this->user->ways)) {
+                    foreach ($this->user->ways as $item) {
+                        $cw = CategoryWay::where('category_id', $category->id)
+                            ->where('way_id', $item->id)
+                            ->first();
+                        if ($cw) {
+                            $way = Way::find($cw->way_id);
+                            if ($way) {
+                                $sumWay += $way->percentage;
+                            }
                         }
                     }
+                    $pool->way = $sumWay / count($this->user->ways);
                 }
-                $pool->area = $sumArea / count($this->user->areas);
 
-                $pool->total = $pool->feel + $pool->way + $pool->area;
+                if (count($this->user->areas)) {
+                    foreach ($this->user->areas as $item) {
+                        $ca = CategoryArea::where('category_id', $category->id)
+                            ->where('area_id', $item->id)
+                            ->first();
+                        if ($ca) {
+                            $area = Area::find($ca->area_id);
+                            if ($area) {
+                                $sumArea += $area->percentage;
+                            }
+                        }
+                    }
+                    $pool->area = $sumArea / count($this->user->areas);
+                }
+
                 $pool->save();
+                $pool->total = $pool->feel + $pool->way + $pool->area;
+                $pool->update();
             }
         }
 
