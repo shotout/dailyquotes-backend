@@ -132,15 +132,17 @@ class AuthController extends Controller
         });
 
         if ($user) {
-            // count user pool
-            UserPool::dispatch($user->id)->onQueue('apiMooti');
-
             // generate token
             $token = $user->createToken('auth_token')->plainTextToken;
 
             // data
             $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
                 ->find($user->id);
+
+            // count user pool
+            if ($data->feel && count($data->ways)) {
+                UserPool::dispatch($user->id)->onQueue('apiMooti');
+            }
 
             // response
             return response()->json([
