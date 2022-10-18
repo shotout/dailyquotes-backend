@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('style_id')->nullable();
             $table->integer('feel_id')->nullable();
-            $table->integer('theme_id')->default(1);
             
             $table->string('name')->nullable();
             $table->string('gender')->nullable();

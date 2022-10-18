@@ -341,7 +341,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"value": "1|Gq9lvrGWS1uPQ4GgCJu6Wyaccw1hWafcbEZJR0QD",
 									"type": "string"
 								}
 							]
@@ -355,7 +355,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/quote?length=1",
+							"raw": "{{base_url}}/quote?length=15",
 							"host": [
 								"{{base_url}}"
 							],
@@ -365,7 +365,7 @@
 							"query": [
 								{
 									"key": "length",
-									"value": "1"
+									"value": "15"
 								}
 							]
 						},
@@ -497,12 +497,12 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
+									"value": "1|Gq9lvrGWS1uPQ4GgCJu6Wyaccw1hWafcbEZJR0QD",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -510,15 +510,41 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								},
+								{
+									"key": "themes[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "themes[1]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "themes[2]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"url": {
-							"raw": "{{base_url}}/user/update-theme/3",
+							"raw": "{{base_url}}/user/update-theme",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
-								"update-theme",
-								"3"
+								"update-theme"
 							]
 						}
 					},

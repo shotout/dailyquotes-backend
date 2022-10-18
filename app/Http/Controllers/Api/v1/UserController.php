@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function showProfile()
     {
-        $user = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+        $user = User::with('schedule','style','feel','ways','areas','themes', 'categories','subscription')
             ->find(auth('sanctum')->user()->id);
 
         return response()->json([
@@ -66,25 +66,21 @@ class UserController extends Controller
         ], 200);
     }
     
-    public function updateTheme($id)
+    public function updateTheme(Request $request)
     {
-        $theme = Theme::find($id);
+        if ($request->has('themes') && $request->themes != '') {
+            $themes = Theme::whereIn('id', $request->themes)->pluck('id')->toArray();
 
-        if (!$theme) {
+            $user = User::find(auth('sanctum')->user()->id);
+            $user->themes()->sync($themes);
+
+            $data = User::with('themes')->find(auth('sanctum')->user()->id);
+
             return response()->json([
-                'status' => 'failed',
-                'message' => 'data not found'
-            ], 404);
+                'status' => 'success',
+                'data' => $data
+            ], 200);
         }
-
-        $user = User::find(auth('sanctum')->user()->id);
-        $user->theme_id = (int)$id;
-        $user->update();
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $user
-        ], 200);
     }
 
     public function updateCategory(Request $request)

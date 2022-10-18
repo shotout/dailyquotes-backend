@@ -33,6 +33,13 @@ class CreateThemesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('user_themes', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id')->nullable();
+            $table->integer('theme_id')->nullable();
+            // $table->timestamps();
+        });
+
         DB::table('themes')->insert([
             [
                 "name" => "Theme 1",

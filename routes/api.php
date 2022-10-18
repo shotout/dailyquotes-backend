@@ -69,7 +69,7 @@ Route::group(
         Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
         Route::patch('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
 
-        Route::patch('/update-theme/{id}', [UserController::class, 'updateTheme'])->name('theme.update');
+        Route::patch('/update-theme', [UserController::class, 'updateTheme'])->name('theme.update');
         Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('category.update.');
         
         Route::get('/collection', [UserCollectionController::class, 'index'])->name('collection.index');

@@ -76,6 +76,17 @@ class QuoteController extends Controller
             $data = $query->paginate($length);
         }
 
+        // user themes
+        $counter = 0;
+        foreach ($data as $qt) {
+            if ($counter == count(auth('sanctum')->user()->themes)) {
+                $counter = 0;
+            }
+
+            $qt->theme = auth('sanctum')->user()->themes[$counter];
+            $counter++;
+        }
+
         // free 1 month
         $isFreeUser = Subscription::where('user_id', auth('sanctum')->user()->id)
             ->where('type', 1)

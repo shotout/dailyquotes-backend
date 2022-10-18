@@ -27,7 +27,7 @@ class AuthController extends Controller
         if ($user) {
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+            $data = User::with('schedule','style','feel','ways','areas','themes', 'categories','subscription')
                 ->find($user->id);
 
             return response()->json([
@@ -124,6 +124,10 @@ class AuthController extends Controller
                 }
             // ----------------------
 
+            // themes ------------
+                $user->themes()->sync([1]);
+            // -----------------------
+
             // categories ------------
                 $user->categories()->sync([1]);
             // -----------------------
@@ -136,7 +140,7 @@ class AuthController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
 
             // data
-            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+            $data = User::with('schedule','style','feel','ways','areas','themes', 'categories','subscription')
                 ->find($user->id);
 
             // count user pool
