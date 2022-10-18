@@ -72,17 +72,33 @@ class ListController extends Controller
             ->take(4)
             ->get();
 
-        $query = Group::with('categories')->where('status', 2);
-
         if ($request->has('search') && $request->input('search') != '') {
-            $query->whereHas('categories', function($q) use($request) {
+            // $query->whereHas('categories', function($q) use($request) {
+            //     $q->where('name', 'like', '%' . $request->input('search') . '%');
+            // });
+
+            $query = Group::with(['categories' => function($q) use($request) {
                 $q->where('name', 'like', '%' . $request->input('search') . '%');
-            });
+            }])->where('status', 2);
+        } else {
+            $query = Group::with('categories')->where('status', 2);
+        }
+
+        $groups = $query->get();
+        
+        if ($request->has('search') && $request->input('search') != '') {
+            $res = array();
+            foreach ($groups as $group) {
+                if (count($group->categories)) {
+                    $res[] = $group;
+                }
+            }
+            $groups = $res;
         }
 
         $data = array(
             "popular" => $popular,
-            "category" => $query->get()
+            "category" => $groups
         );
 
         return response()->json([
