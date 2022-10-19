@@ -145,7 +145,7 @@ class AuthController extends Controller
 
             // count user pool
             if ($data->feel && count($data->ways)) {
-                UserPool::dispatch($user->id)->onQueue('apiMooti');
+                UserPool::dispatch($user->id)->onQueue(env('SUPERVISOR'));
             }
 
             // response
