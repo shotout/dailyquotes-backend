@@ -16,6 +16,7 @@ class CreateWaysTable extends Migration
     {
         Schema::create('ways', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
             $table->float('percentage')->nullable();
             $table->tinyInteger('status')->default(2);

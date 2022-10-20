@@ -16,6 +16,7 @@ class CreateFeelsTable extends Migration
     {
         Schema::create('feels', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
             $table->float('percentage')->nullable();
             $table->tinyInteger('status')->default(2);

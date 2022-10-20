@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->integer('group_id')->nullable();
             $table->string('name')->nullable();
             $table->boolean('is_free')->default(false);

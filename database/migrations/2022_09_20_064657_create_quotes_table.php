@@ -16,6 +16,7 @@ class CreateQuotesTable extends Migration
     {
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->text('title')->nullable();
             $table->string('author')->nullable();

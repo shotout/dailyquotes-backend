@@ -16,6 +16,7 @@ class CreateThemesTable extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
             $table->string('flag')->nullable();
             $table->boolean('is_free')->default(false);
