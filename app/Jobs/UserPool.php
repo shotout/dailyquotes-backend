@@ -101,6 +101,7 @@ class UserPool implements ShouldQueue
             }
         }
 
+        UserPoolQuote::dispatch($this->user->id)->onQueue(env('SUPERVISOR'));
         Log::info('Job UserPool Success ...');
     }
 }

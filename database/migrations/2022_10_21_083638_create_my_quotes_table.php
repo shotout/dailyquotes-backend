@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoolsTable extends Migration
+class CreateMyQuotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreatePoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pools', function (Blueprint $table) {
+        Schema::create('my_quotes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('category_id')->nullable();
-            $table->float('feel')->default(0);
-            $table->float('way')->default(0);
-            $table->float('area')->default(0);
-            $table->float('total')->default(0);
-            $table->integer('quote')->default(0);
+            $table->integer('totalQuote')->default(0);
+            $table->integer('takeQuote')->default(0);
+            $table->longText('quotes')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreatePoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pools');
+        Schema::dropIfExists('my_quotes');
     }
 }

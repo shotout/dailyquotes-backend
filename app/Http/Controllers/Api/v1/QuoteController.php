@@ -8,6 +8,7 @@ use App\Models\Subscription;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\MyQuote;
 
 class QuoteController extends Controller
 {
@@ -35,45 +36,57 @@ class QuoteController extends Controller
         }
 
         // if user login
-        if (auth('sanctum')->check()) {
-            $categories = UserCategory::where('user_id', auth('sanctum')->user()->id)
-                ->pluck('category_id')
-                ->toArray();
-        }
+        // if (auth('sanctum')->check()) {
+        //     $categories = UserCategory::where('user_id', auth('sanctum')->user()->id)
+        //         ->pluck('category_id')
+        //         ->toArray();
+        // }
 
-        if (!count($categories)) {
-            $categories = array(1);
-        }
+        // if (!count($categories)) {
+        //     $categories = array(1);
+        // }
 
         // list past quote user
         $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
             ->pluck('quote_id')
             ->toArray();
 
-        // order by
-        $query = Quote::whereIn('category_id', $categories)
-            ->whereNotIn('id', $pastQuotes)
-            ->where('status', 2)
-            ->orderBy($column, $dir);
-
-        // search
-        if ($request->has('search') && $request->input('search') != '') {
-            $query->where(function($q) use($request) {
-                $q->where('field1', 'like', '%' . $request->input('search') . '%')
-                    ->orWhere('field2', 'like', '%' . $request->input('search') . '%');
-            });
-        }
-
-        // pagination
-        $data = $query->paginate($length);
-
-        // check if past quotes full
-        if ($data->total() == 0) {
-            $query = Quote::whereIn('category_id', $categories)
+        // my quotes
+        $myQuotes = MyQuote::where('user_id', auth('sanctum')->user()->id)->first();
+        if ($myQuotes) {
+            // order by
+            $query = Quote::whereIn('id', $myQuotes->quotes)
+                ->whereNotIn('id', $pastQuotes)
                 ->where('status', 2)
                 ->orderBy($column, $dir);
 
+            // pagination
             $data = $query->paginate($length);
+
+            // check if past quotes full
+            if ($data->total() == 0) {
+                $query = Quote::whereIn('id', $myQuotes->quotes)
+                    ->where('status', 2)
+                    ->orderBy($column, $dir);
+
+                $data = $query->paginate($length);
+            }
+        } else {
+            // order by
+            $query = Quote::whereNotIn('id', $pastQuotes)
+                ->where('status', 2)
+                ->orderBy($column, $dir);
+
+            // pagination
+            $data = $query->paginate($length);
+
+            // check if past quotes full
+            if ($data->total() == 0) {
+                $query = Quote::where('status', 2)
+                    ->orderBy($column, $dir);
+
+                $data = $query->paginate($length);
+            }
         }
 
         // user themes
