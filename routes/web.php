@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // \App\Jobs\QuoteNotif::dispatch()->onQueue(env('SUPERVISOR'));
+    // return 'success ...';
 });

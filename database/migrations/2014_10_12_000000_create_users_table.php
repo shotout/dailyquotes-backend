@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken()->nullable();;
             $table->boolean('is_member')->default(false);
             $table->string('device_id')->nullable();
+            $table->string('fcm_token')->nullable();
+            $table->integer('notif_count')->default(0);
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });

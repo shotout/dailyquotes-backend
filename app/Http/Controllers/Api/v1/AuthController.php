@@ -80,6 +80,9 @@ class AuthController extends Controller
                 if ($request->has('device_id')) {
                     $user->device_id = $request->device_id;
                 }
+                if ($request->has('fcm_token')) {
+                    $user->fcm_token = $request->fcm_token;
+                }
                 // $user->remember_token = Str::random(16);
                 $user->save();
             // ------------------------------

@@ -20,6 +20,7 @@ class CreateQuotesTable extends Migration
             $table->integer('category_id')->nullable();
             $table->text('title')->nullable();
             $table->string('author')->nullable();
+            $table->boolean('has_notif')->default(false);
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });
