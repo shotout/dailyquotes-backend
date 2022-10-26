@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "3bc9edfd-2d93-4991-ae31-86a07695d3e9",
+		"_postman_id": "4cabf756-f241-41b0-b432-a4cd8044cdd1",
 		"name": "motivation",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12074833"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -155,6 +154,17 @@
 								{
 									"key": "areas[2]",
 									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "jeda",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "fcm_token",
+									"value": "1234fdgdfh",
 									"type": "text"
 								}
 							]
@@ -473,6 +483,12 @@
 									"key": "end",
 									"value": "23:00",
 									"type": "text"
+								},
+								{
+									"key": "fcm_token",
+									"value": "2321defd",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},

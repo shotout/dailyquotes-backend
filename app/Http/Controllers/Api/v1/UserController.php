@@ -41,6 +41,11 @@ class UserController extends Controller
             $user->update();
         }
 
+        if ($request->has('fcm_token') && $request->fcm_token != '') {
+            $user->fcm_token = $request->fcm_token;
+            $user->update();
+        }
+
         // schedule reminder ------------
             $schedule = Schedule::where('user_id', auth('sanctum')->user()->id)->first();
 
