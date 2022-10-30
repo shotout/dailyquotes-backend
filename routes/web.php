@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::post('/authenticate',  [LoginController::class, 'authenticate'])->name('login.post');
+
+Route::prefix('admin')->middleware('auth:web')->group(function () {
+    Route::get('/list', [AdminController::class, 'index'])->name('admin');
+    Route::post('/change-status', [AdminController::class, 'changeStatus']);
+    Route::get('/create-admin', [AdminController::class, 'create']);
+    Route::post('save-admin', [AdminController::class, 'store']);
+    Route::get('edit/{id}', [AdminController::class, 'edit']);
+});
+
