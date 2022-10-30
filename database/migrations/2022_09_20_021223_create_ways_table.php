@@ -16,7 +16,9 @@ class CreateWaysTable extends Migration
     {
         Schema::create('ways', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
+            $table->float('percentage')->nullable();
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });
@@ -29,12 +31,12 @@ class CreateWaysTable extends Migration
         });
 
         DB::table('ways')->insert([
-            ["name" => "Family", "created_at" => now()],
-            ["name" => "Friends", "created_at" => now()],
-            ["name" => "Work", "created_at" => now()],
-            ["name" => "Health", "created_at" => now()],
-            ["name" => "Relationship", "created_at" => now()],
-            ["name" => "Other", "created_at" => now()]
+            ["name" => "Family", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Friends", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Work", "percentage" => 3.75, "created_at" => now()],
+            ["name" => "Health", "percentage" => 3.75, "created_at" => now()],
+            ["name" => "Relationship", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Other", "percentage" => 1.00, "created_at" => now()]
         ]);
 
         DB::table('media')->insert([

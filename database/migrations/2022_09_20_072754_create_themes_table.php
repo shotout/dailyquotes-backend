@@ -16,6 +16,7 @@ class CreateThemesTable extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
             $table->string('flag')->nullable();
             $table->boolean('is_free')->default(false);
@@ -31,6 +32,13 @@ class CreateThemesTable extends Migration
 
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
+        });
+
+        Schema::create('user_themes', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id')->nullable();
+            $table->integer('theme_id')->nullable();
+            // $table->timestamps();
         });
 
         DB::table('themes')->insert([

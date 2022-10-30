@@ -13,6 +13,7 @@ use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Jobs\UserPool;
 
 class AuthController extends Controller
 {
@@ -26,7 +27,7 @@ class AuthController extends Controller
         if ($user) {
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+            $data = User::with('schedule','style','feel','ways','areas','themes', 'categories','subscription')
                 ->find($user->id);
 
             return response()->json([
@@ -47,8 +48,8 @@ class AuthController extends Controller
         $request->validate([
             'device_id' => 'required',
             'style' => 'required',
-            'feel' => 'required',
-            'ways' => 'required',
+            // 'feel' => 'required',
+            // 'ways' => 'required',
             'areas' => 'required',
         ]);
 
@@ -78,6 +79,9 @@ class AuthController extends Controller
                 }
                 if ($request->has('device_id')) {
                     $user->device_id = $request->device_id;
+                }
+                if ($request->has('fcm_token')) {
+                    $user->fcm_token = $request->fcm_token;
                 }
                 // $user->remember_token = Str::random(16);
                 $user->save();
@@ -123,6 +127,10 @@ class AuthController extends Controller
                 }
             // ----------------------
 
+            // themes ------------
+                $user->themes()->sync([1]);
+            // -----------------------
+
             // categories ------------
                 $user->categories()->sync([1]);
             // -----------------------
@@ -131,15 +139,17 @@ class AuthController extends Controller
         });
 
         if ($user) {
-            // sending email verification
-            // SendConfirmEmail::dispatch($user, 'register')->onQueue('apiMotivation');
-
             // generate token
             $token = $user->createToken('auth_token')->plainTextToken;
 
             // data
-            $data = User::with('schedule','style','feel','ways','areas','theme', 'categories','subscription')
+            $data = User::with('schedule','style','feel','ways','areas','themes', 'categories','subscription')
                 ->find($user->id);
+
+            // count user pool
+            if ($data->feel && count($data->ways)) {
+                UserPool::dispatch($user->id)->onQueue(env('SUPERVISOR'));
+            }
 
             // response
             return response()->json([

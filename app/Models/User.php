@@ -70,9 +70,9 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Models\Area', 'user_area');
     }
 
-    public function theme()
+    public function themes()
     {
-        return $this->belongsTo('\App\Models\Theme')->with('background');
+        return $this->belongsToMany('\App\Models\Theme', 'user_themes')->with('background');
     }
 
     public function categories()

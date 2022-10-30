@@ -6,6 +6,8 @@
 
         <title>Laravel</title>
 
+        <link rel="icon" type="image/x-icon" href="{{url('/assets/logos/favicon.jpg')}}">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 

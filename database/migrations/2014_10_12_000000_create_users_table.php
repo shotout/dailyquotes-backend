@@ -15,9 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->integer('style_id')->nullable();
             $table->integer('feel_id')->nullable();
-            $table->integer('theme_id')->default(1);
             
             $table->string('name')->nullable();
             $table->string('gender')->nullable();
@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken()->nullable();;
             $table->boolean('is_member')->default(false);
             $table->string('device_id')->nullable();
+            $table->string('fcm_token')->nullable();
+            $table->integer('notif_count')->default(0);
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });

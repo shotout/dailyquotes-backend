@@ -16,18 +16,20 @@ class CreateFeelsTable extends Migration
     {
         Schema::create('feels', function (Blueprint $table) {
             $table->id();
+            $table->string('entry_id')->nullable();
             $table->string('name')->nullable();
+            $table->float('percentage')->nullable();
             $table->tinyInteger('status')->default(2);
             $table->timestamps();
         });
 
         DB::table('feels')->insert([
-            ["name" => "Awesome", "created_at" => now()],
-            ["name" => "Good", "created_at" => now()],
-            ["name" => "Ok", "created_at" => now()],
-            ["name" => "Bad", "created_at" => now()],
-            ["name" => "Terrible", "created_at" => now()],
-            ["name" => "Other", "created_at" => now()]
+            ["name" => "Awesome", "percentage" => 1.30, "created_at" => now()],
+            ["name" => "Good", "percentage" => 1.30, "created_at" => now()],
+            ["name" => "Ok", "percentage" => 1.25, "created_at" => now()],
+            ["name" => "Bad", "percentage" => 1.07, "created_at" => now()],
+            ["name" => "Terrible", "percentage" => 1.07, "created_at" => now()],
+            ["name" => "Other", "percentage" => 1.00, "created_at" => now()]
         ]);
 
         DB::table('media')->insert([

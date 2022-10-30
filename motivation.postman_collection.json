@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "3bc9edfd-2d93-4991-ae31-86a07695d3e9",
+		"_postman_id": "4cabf756-f241-41b0-b432-a4cd8044cdd1",
 		"name": "motivation",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12074833"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -155,6 +154,17 @@
 								{
 									"key": "areas[2]",
 									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "jeda",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "fcm_token",
+									"value": "1234fdgdfh",
 									"type": "text"
 								}
 							]
@@ -341,7 +351,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"value": "1|Gq9lvrGWS1uPQ4GgCJu6Wyaccw1hWafcbEZJR0QD",
 									"type": "string"
 								}
 							]
@@ -355,7 +365,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/quote?length=1",
+							"raw": "{{base_url}}/quote?length=15",
 							"host": [
 								"{{base_url}}"
 							],
@@ -365,7 +375,7 @@
 							"query": [
 								{
 									"key": "length",
-									"value": "1"
+									"value": "15"
 								}
 							]
 						},
@@ -473,6 +483,12 @@
 									"key": "end",
 									"value": "23:00",
 									"type": "text"
+								},
+								{
+									"key": "fcm_token",
+									"value": "2321defd",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -497,12 +513,12 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|cmMk9YMtmSWuzSP3lVRAZB907VqSdg4ZkzvPZJDX",
+									"value": "1|Gq9lvrGWS1uPQ4GgCJu6Wyaccw1hWafcbEZJR0QD",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -510,15 +526,41 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PATCH",
+									"type": "text"
+								},
+								{
+									"key": "themes[0]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "themes[1]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "themes[2]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"url": {
-							"raw": "{{base_url}}/user/update-theme/3",
+							"raw": "{{base_url}}/user/update-theme",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"user",
-								"update-theme",
-								"3"
+								"update-theme"
 							]
 						}
 					},
@@ -994,6 +1036,115 @@
 							]
 						},
 						"description": "api/v1/user/like-quote/{id}\n\nparameter id adalah id quote nya"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "past quote",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote"
+							]
+						},
+						"description": "defaultnya /api/v1/past-quote\n\nfree user type 1 :\n\nhanya nampilin 5 quote\n\npaid user type selain 1:\n\npagination :\n\ndefaultnya 10\n\nlength={int}\n\n/api/v1/past-quote?length=10"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote",
+								"6"
+							]
+						},
+						"description": "/api/v1/past-quote/{quote_id}"
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/past-quote/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"past-quote",
+								"6"
+							]
+						},
+						"description": "/api/v1/past-quote/{quote_id}"
 					},
 					"response": []
 				}

@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
+    // \App\Jobs\QuoteNotif::dispatch()->onQueue(env('SUPERVISOR'));
+    // return 'success ...';
 });
+
+
 
 Route::post('/authenticate',  [LoginController::class, 'authenticate'])->name('login.post');
 
