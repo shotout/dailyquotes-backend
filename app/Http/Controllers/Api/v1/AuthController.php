@@ -90,6 +90,7 @@ class AuthController extends Controller
             // subscription ---------
                 $sub = new Subscription;
                 $sub->user_id = $user->id;
+                $sub->plan_id = 1;
                 $sub->started = now();
                 $sub->renewal = Carbon::now()->addDay(3);
                 $sub->save();
