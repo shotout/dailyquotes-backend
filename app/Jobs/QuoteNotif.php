@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\User;
 use App\Models\Quote;
+use App\Models\Schedule;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Queue\SerializesModels;
@@ -37,11 +38,11 @@ class QuoteNotif implements ShouldQueue
             ->orderBy('id', 'asc')
             ->first();
 
-        Log::info($quote);
+        // Log::info($quote);
 
         if ($quote) {
-            User::whereNotNull('fcm_token')->increment('notif_count', 1);
-            $users = User::whereNotNull('fcm_token')->get();
+            // User::whereNotNull('fcm_token')->increment('notif_count', 1);
+            $users = User::with('schedule')->whereNotNull('fcm_token')->get();
           
             $SERVER_API_KEY = env('FIREBASE_SERVER_API_KEY');
 
@@ -50,37 +51,66 @@ class QuoteNotif implements ShouldQueue
             $descShort = substr($filterDesc, 0, 100);
 
             foreach ($users as $user) {
-                $data = [
-                    "to" => $user->fcm_token,
-                    "notification" => [
-                        "title" => $quote->author,
-                        "body" => $descShort,  
-                        "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
-                        // "image" => 'https://backend.nftdaily.app/image.png',
-                        "badge" => $user->notif_count
-                    ]
-                ];
-    
-                Log::info($data);
-    
-                $dataString = json_encode($data);
+                if ($user->schedule->counter_notif < $user->schedule->often) {
+                    if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= $user->schedule->start && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= $user->schedule->end) {
+
+                        // \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->format('H:i:s');
+                        // Log::info('ada ...');
+
+                        $data = [
+                            "to" => $user->fcm_token,
+                            "notification" => [
+                                "title" => $quote->author,
+                                "body" => $descShort,  
+                                "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
+                                // "image" => 'https://backend.nftdaily.app/image.png',
+                                "badge" => $user->notif_count + 1
+                            ]
+                        ];
             
-                $headers = [
-                    'Authorization: key=' . $SERVER_API_KEY,
-                    'Content-Type: application/json',
-                ];
+                        // Log::info($data);
             
-                $ch = curl_init();
-          
-                curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+                        $dataString = json_encode($data);
                     
-                $response = curl_exec($ch);
-                Log::info($response);
+                        $headers = [
+                            'Authorization: key=' . $SERVER_API_KEY,
+                            'Content-Type: application/json',
+                        ];
+                    
+                        $ch = curl_init();
+                
+                        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+                        curl_setopt($ch, CURLOPT_POST, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+                            
+                        $response = curl_exec($ch);
+                        // Log::info($response);
+
+                        // update user schedule
+                        $schedule = Schedule::find($user->schedule->id);
+                        if ($schedule) {
+                            $schedule->counter_notif++;
+                            $schedule->update();
+                        }
+
+                        // update user
+                        $user->notif_count++;
+                        $user->update();
+
+                    }
+                } else {
+                    // reset schedule counter
+                    if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= '00:00:00' && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= '01:00:00') {
+                        $schedule = Schedule::find($user->schedule->id);
+                        if ($schedule) {
+                            $schedule->counter_notif = 0;
+                            $schedule->update();
+                        }
+                    }
+                }
             }
 
             // update status

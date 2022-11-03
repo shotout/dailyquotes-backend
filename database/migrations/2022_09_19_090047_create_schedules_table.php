@@ -17,7 +17,9 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->boolean('anytime')->default(false);
-            $table->tinyInteger('often')->nullable();
+            $table->tinyInteger('often')->default(0);
+            $table->tinyInteger('counter_notif')->default(0);
+            $table->string('timezone')->nullable();
             $table->time('start')->nullable();
             $table->time('end')->nullable();
             $table->timestamps();

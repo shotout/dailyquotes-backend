@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3bc9edfd-2d93-4991-ae31-86a07695d3e9",
+		"_postman_id": "4af70d94-34c3-4768-9c68-7c499590ee32",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -65,7 +65,7 @@
 								},
 								{
 									"key": "device_id",
-									"value": "1234",
+									"value": "123456",
 									"type": "text"
 								},
 								{
@@ -155,6 +155,22 @@
 								{
 									"key": "areas[2]",
 									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "jeda",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "fcm_token",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "timezone",
+									"value": "Asia/Jakarta",
 									"type": "text"
 								}
 							]
