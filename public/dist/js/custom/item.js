@@ -764,7 +764,7 @@ if (($('.main-body .page-wrapper').find('.list-container').length)) {
 		} else {
 			var status = '1';
 		}
-		var url = SITE_URL + "/pool/update-area";
+		var url = "https://backend-mooti.walletads.io/pool/update-area";
 
 		$.ajax({
 			url: url,
@@ -794,7 +794,7 @@ if (($('.main-body .page-wrapper').find('.list-container').length)) {
 		} else {
 			var status = '1';
 		}
-		var url = SITE_URL + "/pool/update-feels";
+		var url = "https://backend-mooti.walletads.io/pool/update-feels";
 
 		$.ajax({
 			url: url,
@@ -825,7 +825,7 @@ if (($('.main-body .page-wrapper').find('.list-container').length)) {
 		} else {
 			var status = '1';
 		}
-		var url = SITE_URL + "/pool/update-ways";
+		var url = "https://backend-mooti.walletads.io/pool/update-ways";
 
 		$.ajax({
 			url: url,
