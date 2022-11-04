@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'title',
+        'category_id'
+    ];
     // list status
     const ACTIVE = 2;
 
