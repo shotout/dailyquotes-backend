@@ -100,10 +100,7 @@ class CategoriesController extends Controller
             $image->move($destinationPath, $name);
             $url = '/assets/icons/category/' . $name;
 
-            $media = Media::where('owner_id', $category->id)->where('type', 'category')->first();
-            if ($media->url) {
-                unlink(env('APP_URL') . $media->url);
-            }
+            $media = Media::where('owner_id', $category->id)->where('type', 'category')->first();           
             $media->name = $name;
             $media->url = $url;
             $media->save();
@@ -119,9 +116,6 @@ class CategoriesController extends Controller
         $category->delete();
 
         $media = Media::where('owner_id', $category->id)->where('type', 'category')->first();
-        if ($media->url) {
-            unlink(public_path($media->url));
-        }
         $media->delete();
 
         return redirect()->route('bc.list')->with('success', __('Category deleted successfully.'));
