@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
     // \App\Jobs\QuoteNotif::dispatch()->onQueue(env('SUPERVISOR'));
+    // \App\Jobs\ResetNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // return 'success ...';
 });
 

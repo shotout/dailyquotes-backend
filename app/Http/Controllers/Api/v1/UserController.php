@@ -26,12 +26,12 @@ class UserController extends Controller
     {
         $user = User::find(auth('sanctum')->user()->id);
 
-        if ($request->has('name') && $request->name != '') {
+        if ($request->has('name')) {
             $user->name = $request->name;
             $user->update();
         }
 
-        if ($request->has('gender') && $request->gender != '') {
+        if ($request->has('gender')) {
             $user->gender = $request->gender;
             $user->update();
         }

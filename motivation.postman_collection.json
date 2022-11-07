@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4cabf756-f241-41b0-b432-a4cd8044cdd1",
+		"_postman_id": "4af70d94-34c3-4768-9c68-7c499590ee32",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -64,7 +64,7 @@
 								},
 								{
 									"key": "device_id",
-									"value": "1234",
+									"value": "123456",
 									"type": "text"
 								},
 								{
@@ -164,7 +164,12 @@
 								},
 								{
 									"key": "fcm_token",
-									"value": "1234fdgdfh",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "timezone",
+									"value": "Asia/Jakarta",
 									"type": "text"
 								}
 							]
