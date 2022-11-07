@@ -102,8 +102,9 @@ class CategoriesController extends Controller
 
             $media = Media::where('owner_id', $category->id)->where('type', 'category')->first();
             if ($media->url) {
-                unlink(public_path($media->url));
+                unlink(env('APP_URL') . $media->url);
             }
+            $media->name = $name;
             $media->url = $url;
             $media->save();
         }
