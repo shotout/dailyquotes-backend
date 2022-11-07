@@ -8,7 +8,7 @@ class AdminListDataTable extends DataTable
 {
     public function ajax()
     {
-        //parse the data
+        
         $admins = $this->query();
         return datatables()
             ->of($admins)
