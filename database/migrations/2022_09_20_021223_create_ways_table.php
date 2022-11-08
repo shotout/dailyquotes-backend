@@ -43,43 +43,43 @@ class CreateWaysTable extends Migration
             [
                 "owner_id" => 1,
                 "type" => "way",
-                "name" => "family.svg",
-                "url" => "/assets/icons/way/family.svg",
+                "name" => "family.png",
+                "url" => "/assets/icons/way/family.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 2,
                 "type" => "way",
-                "name" => "friends.svg",
-                "url" => "/assets/icons/way/friends.svg",
+                "name" => "friends.png",
+                "url" => "/assets/icons/way/friends.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 3,
                 "type" => "way",
-                "name" => "work.svg",
-                "url" => "/assets/icons/way/work.svg",
+                "name" => "work.png",
+                "url" => "/assets/icons/way/work.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 4,
                 "type" => "way",
-                "name" => "health.svg",
-                "url" => "/assets/icons/way/health.svg",
+                "name" => "health.png",
+                "url" => "/assets/icons/way/health.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 5,
                 "type" => "way",
-                "name" => "relationship.svg",
-                "url" => "/assets/icons/way/relationship.svg",
+                "name" => "relationship.png",
+                "url" => "/assets/icons/way/relationship.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 6,
                 "type" => "way",
-                "name" => "other.svg",
-                "url" => "/assets/icons/way/other.svg",
+                "name" => "other.png",
+                "url" => "/assets/icons/way/other.png",
                 "created_at" => now()
             ],
         ]);
