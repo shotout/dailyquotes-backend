@@ -46,37 +46,37 @@ class CreateCategoriesTable extends Migration
             ["group_id" => 3, "name" => "Positive Thinking", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Happiness", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Personal Growth", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Loving MySelf", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Being Thankful", "is_free" => false, "created_at" => now()],
+            ["group_id" => 3, "name" => "Attitude", "is_free" => false, "created_at" => now()],
+            ["group_id" => 3, "name" => "Cool", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Being Alone", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Travel", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Nature", "is_free" => false, "created_at" => now()],
 
             // relationships
             ["group_id" => 4, "name" => "Relationship", "is_free" => false, "created_at" => now()],
             ["group_id" => 4, "name" => "Love", "is_free" => false, "created_at" => now()],
             ["group_id" => 4, "name" => "Friendship", "is_free" => false, "created_at" => now()],
+            ["group_id" => 4, "name" => "Family", "is_free" => false, "created_at" => now()],
+            ["group_id" => 4, "name" => "Dating", "is_free" => false, "created_at" => now()],
 
             // work & productivity
             ["group_id" => 5, "name" => "Leadership", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Productivity", "is_free" => false, "created_at" => now()],
+            ["group_id" => 5, "name" => "Business", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Success", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Education", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Creativity", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Inspiration", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Career", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Reading", "is_free" => false, "created_at" => now()],
 
             // health & fitness
             ["group_id" => 6, "name" => "Wellness", "is_free" => false, "created_at" => now()],
-            ["group_id" => 6, "name" => "Exercise", "is_free" => false, "created_at" => now()],
-            ["group_id" => 6, "name" => "Loving My Body", "is_free" => false, "created_at" => now()],
+            ["group_id" => 6, "name" => "Beauty", "is_free" => false, "created_at" => now()],
             ["group_id" => 6, "name" => "Health", "is_free" => false, "created_at" => now()],
 
             // spiritual & philosophy
-            ["group_id" => 7, "name" => "Faith & Spirituality", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Dreams & Spirituality", "is_free" => false, "created_at" => now()],
             ["group_id" => 7, "name" => "Mindfulness", "is_free" => false, "created_at" => now()],
             ["group_id" => 7, "name" => "Wisdom", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Imagination", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Freedom", "is_free" => false, "created_at" => now()],
         ]);
 
         DB::table('media')->insert([
@@ -146,15 +146,15 @@ class CreateCategoriesTable extends Migration
             [
                 "owner_id" => 10,
                 "type" => "category",
-                "name" => "loving_myself.svg",
-                "url" => "/assets/icons/category/loving_myself.svg",
+                "name" => "attitude.svg",
+                "url" => "/assets/icons/category/attitude.svg",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 11,
                 "type" => "category",
-                "name" => "being_thankful.svg",
-                "url" => "/assets/icons/category/being_thankful.svg",
+                "name" => "cool.svg",
+                "url" => "/assets/icons/category/cool.svg",
                 "created_at" => now()
             ],
             [
@@ -174,71 +174,71 @@ class CreateCategoriesTable extends Migration
             [
                 "owner_id" => 14,
                 "type" => "category",
-                "name" => "nature.svg",
-                "url" => "/assets/icons/category/nature.svg",
-                "created_at" => now()
-            ],
-            [
-                "owner_id" => 15,
-                "type" => "category",
                 "name" => "relationship.svg",
                 "url" => "/assets/icons/category/relationship.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 16,
+                "owner_id" => 15,
                 "type" => "category",
                 "name" => "love.svg",
                 "url" => "/assets/icons/category/love.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 17,
+                "owner_id" => 16,
                 "type" => "category",
                 "name" => "friendship.svg",
                 "url" => "/assets/icons/category/friendship.svg",
                 "created_at" => now()
             ],
             [
+                "owner_id" => 17,
+                "type" => "category",
+                "name" => "family.svg",
+                "url" => "/assets/icons/category/family.svg",
+                "created_at" => now()
+            ],
+            [
                 "owner_id" => 18,
+                "type" => "category",
+                "name" => "dating.svg",
+                "url" => "/assets/icons/category/dating.svg",
+                "created_at" => now()
+            ],
+            [
+                "owner_id" => 19,
                 "type" => "category",
                 "name" => "leadership.svg",
                 "url" => "/assets/icons/category/leadership.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 19,
+                "owner_id" => 20,
                 "type" => "category",
-                "name" => "productivity.svg",
-                "url" => "/assets/icons/category/productivity.svg",
+                "name" => "business.svg",
+                "url" => "/assets/icons/category/business.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 20,
+                "owner_id" => 21,
                 "type" => "category",
                 "name" => "success.svg",
                 "url" => "/assets/icons/category/success.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 21,
+                "owner_id" => 22,
                 "type" => "category",
                 "name" => "education.svg",
                 "url" => "/assets/icons/category/education.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 22,
+                "owner_id" => 23,
                 "type" => "category",
                 "name" => "creativity.svg",
                 "url" => "/assets/icons/category/creativity.svg",
-                "created_at" => now()
-            ],
-            [
-                "owner_id" => 23,
-                "type" => "category",
-                "name" => "inspiration.svg",
-                "url" => "/assets/icons/category/inspiration.svg",
                 "created_at" => now()
             ],
             [
@@ -251,57 +251,57 @@ class CreateCategoriesTable extends Migration
             [
                 "owner_id" => 25,
                 "type" => "category",
-                "name" => "reading.svg",
-                "url" => "/assets/icons/category/reading.svg",
-                "created_at" => now()
-            ],
-            [
-                "owner_id" => 26,
-                "type" => "category",
                 "name" => "wellness.svg",
                 "url" => "/assets/icons/category/wellness.svg",
                 "created_at" => now()
             ],
             [
+                "owner_id" => 26,
+                "type" => "category",
+                "name" => "beauty.svg",
+                "url" => "/assets/icons/category/beauty.svg",
+                "created_at" => now()
+            ],
+            [
                 "owner_id" => 27,
-                "type" => "category",
-                "name" => "exercise.svg",
-                "url" => "/assets/icons/category/exercise.svg",
-                "created_at" => now()
-            ],
-            [
-                "owner_id" => 28,
-                "type" => "category",
-                "name" => "loving_mybody.svg",
-                "url" => "/assets/icons/category/loving_mybody.svg",
-                "created_at" => now()
-            ],
-            [
-                "owner_id" => 29,
                 "type" => "category",
                 "name" => "health.svg",
                 "url" => "/assets/icons/category/health.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 30,
+                "owner_id" => 28,
                 "type" => "category",
-                "name" => "faith&spirituality.svg",
-                "url" => "/assets/icons/category/faith&spirituality.svg",
+                "name" => "dreams&spirituality.svg",
+                "url" => "/assets/icons/category/dreams&spirituality.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 31,
+                "owner_id" => 29,
                 "type" => "category",
                 "name" => "mindfulness.svg",
                 "url" => "/assets/icons/category/mindfulness.svg",
                 "created_at" => now()
             ],
             [
-                "owner_id" => 32,
+                "owner_id" => 30,
                 "type" => "category",
                 "name" => "wisdom.svg",
                 "url" => "/assets/icons/category/wisdom.svg",
+                "created_at" => now()
+            ],
+            [
+                "owner_id" => 31,
+                "type" => "category",
+                "name" => "imagination.svg",
+                "url" => "/assets/icons/category/imagination.svg",
+                "created_at" => now()
+            ],
+            [
+                "owner_id" => 32,
+                "type" => "category",
+                "name" => "freedom.svg",
+                "url" => "/assets/icons/category/freedom.svg",
                 "created_at" => now()
             ],
         ]);
