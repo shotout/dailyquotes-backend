@@ -191,7 +191,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Quote::factory(10)->create([
             "category_id" => 32,
-            "title" => "Quote Wisdom",
+            "title" => "Quote Freedom",
             "author" => "Freedom",
         ]);
     }
