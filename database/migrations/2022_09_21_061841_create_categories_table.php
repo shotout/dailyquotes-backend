@@ -46,262 +46,262 @@ class CreateCategoriesTable extends Migration
             ["group_id" => 3, "name" => "Positive Thinking", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Happiness", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Personal Growth", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Loving MySelf", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Being Thankful", "is_free" => false, "created_at" => now()],
+            ["group_id" => 3, "name" => "Attitude", "is_free" => false, "created_at" => now()],
+            ["group_id" => 3, "name" => "Cool", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Being Alone", "is_free" => false, "created_at" => now()],
             ["group_id" => 3, "name" => "Travel", "is_free" => false, "created_at" => now()],
-            ["group_id" => 3, "name" => "Nature", "is_free" => false, "created_at" => now()],
 
             // relationships
             ["group_id" => 4, "name" => "Relationship", "is_free" => false, "created_at" => now()],
             ["group_id" => 4, "name" => "Love", "is_free" => false, "created_at" => now()],
             ["group_id" => 4, "name" => "Friendship", "is_free" => false, "created_at" => now()],
+            ["group_id" => 4, "name" => "Family", "is_free" => false, "created_at" => now()],
+            ["group_id" => 4, "name" => "Dating", "is_free" => false, "created_at" => now()],
 
             // work & productivity
             ["group_id" => 5, "name" => "Leadership", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Productivity", "is_free" => false, "created_at" => now()],
+            ["group_id" => 5, "name" => "Business", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Success", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Education", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Creativity", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Inspiration", "is_free" => false, "created_at" => now()],
             ["group_id" => 5, "name" => "Career", "is_free" => false, "created_at" => now()],
-            ["group_id" => 5, "name" => "Reading", "is_free" => false, "created_at" => now()],
 
             // health & fitness
             ["group_id" => 6, "name" => "Wellness", "is_free" => false, "created_at" => now()],
-            ["group_id" => 6, "name" => "Exercise", "is_free" => false, "created_at" => now()],
-            ["group_id" => 6, "name" => "Loving My Body", "is_free" => false, "created_at" => now()],
+            ["group_id" => 6, "name" => "Beauty", "is_free" => false, "created_at" => now()],
             ["group_id" => 6, "name" => "Health", "is_free" => false, "created_at" => now()],
 
             // spiritual & philosophy
-            ["group_id" => 7, "name" => "Faith & Spirituality", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Dreams & Spirituality", "is_free" => false, "created_at" => now()],
             ["group_id" => 7, "name" => "Mindfulness", "is_free" => false, "created_at" => now()],
             ["group_id" => 7, "name" => "Wisdom", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Imagination", "is_free" => false, "created_at" => now()],
+            ["group_id" => 7, "name" => "Freedom", "is_free" => false, "created_at" => now()],
         ]);
 
         DB::table('media')->insert([
             [
                 "owner_id" => 1,
                 "type" => "category",
-                "name" => "general.svg",
-                "url" => "/assets/icons/category/general.svg",
+                "name" => "general.png",
+                "url" => "/assets/icons/category/general.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 2,
                 "type" => "category",
-                "name" => "myfavorite.svg",
-                "url" => "/assets/icons/category/myfavorite.svg",
+                "name" => "myfavorite.png",
+                "url" => "/assets/icons/category/myfavorite.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 3,
                 "type" => "category",
-                "name" => "stress.svg",
-                "url" => "/assets/icons/category/stress.svg",
+                "name" => "stress.png",
+                "url" => "/assets/icons/category/stress.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 4,
                 "type" => "category",
-                "name" => "anxiety.svg",
-                "url" => "/assets/icons/category/anxiety.svg",
+                "name" => "anxiety.png",
+                "url" => "/assets/icons/category/anxiety.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 5,
                 "type" => "category",
-                "name" => "letting_go.svg",
-                "url" => "/assets/icons/category/letting_go.svg",
+                "name" => "letting_go.png",
+                "url" => "/assets/icons/category/letting_go.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 6,
                 "type" => "category",
-                "name" => "hard_times.svg",
-                "url" => "/assets/icons/category/hard_times.svg",
+                "name" => "hard_times.png",
+                "url" => "/assets/icons/category/hard_times.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 7,
                 "type" => "category",
-                "name" => "positive_thinking.svg",
-                "url" => "/assets/icons/category/positive_thinking.svg",
+                "name" => "positive_thinking.png",
+                "url" => "/assets/icons/category/positive_thinking.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 8,
                 "type" => "category",
-                "name" => "happiness.svg",
-                "url" => "/assets/icons/category/happiness.svg",
+                "name" => "happiness.png",
+                "url" => "/assets/icons/category/happiness.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 9,
                 "type" => "category",
-                "name" => "personal_growth.svg",
-                "url" => "/assets/icons/category/personal_growth.svg",
+                "name" => "personal_growth.png",
+                "url" => "/assets/icons/category/personal_growth.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 10,
                 "type" => "category",
-                "name" => "loving_myself.svg",
-                "url" => "/assets/icons/category/loving_myself.svg",
+                "name" => "attitude.png",
+                "url" => "/assets/icons/category/attitude.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 11,
                 "type" => "category",
-                "name" => "being_thankful.svg",
-                "url" => "/assets/icons/category/being_thankful.svg",
+                "name" => "cool.png",
+                "url" => "/assets/icons/category/cool.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 12,
                 "type" => "category",
-                "name" => "being_alone.svg",
-                "url" => "/assets/icons/category/being_alone.svg",
+                "name" => "being_alone.png",
+                "url" => "/assets/icons/category/being_alone.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 13,
                 "type" => "category",
-                "name" => "travel.svg",
-                "url" => "/assets/icons/category/travel.svg",
+                "name" => "travel.png",
+                "url" => "/assets/icons/category/travel.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 14,
                 "type" => "category",
-                "name" => "nature.svg",
-                "url" => "/assets/icons/category/nature.svg",
+                "name" => "relationship.png",
+                "url" => "/assets/icons/category/relationship.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 15,
                 "type" => "category",
-                "name" => "relationship.svg",
-                "url" => "/assets/icons/category/relationship.svg",
+                "name" => "love.png",
+                "url" => "/assets/icons/category/love.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 16,
                 "type" => "category",
-                "name" => "love.svg",
-                "url" => "/assets/icons/category/love.svg",
+                "name" => "friendship.png",
+                "url" => "/assets/icons/category/friendship.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 17,
                 "type" => "category",
-                "name" => "friendship.svg",
-                "url" => "/assets/icons/category/friendship.svg",
+                "name" => "family.png",
+                "url" => "/assets/icons/category/family.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 18,
                 "type" => "category",
-                "name" => "leadership.svg",
-                "url" => "/assets/icons/category/leadership.svg",
+                "name" => "dating.png",
+                "url" => "/assets/icons/category/dating.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 19,
                 "type" => "category",
-                "name" => "productivity.svg",
-                "url" => "/assets/icons/category/productivity.svg",
+                "name" => "leadership.png",
+                "url" => "/assets/icons/category/leadership.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 20,
                 "type" => "category",
-                "name" => "success.svg",
-                "url" => "/assets/icons/category/success.svg",
+                "name" => "business.png",
+                "url" => "/assets/icons/category/business.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 21,
                 "type" => "category",
-                "name" => "education.svg",
-                "url" => "/assets/icons/category/education.svg",
+                "name" => "success.png",
+                "url" => "/assets/icons/category/success.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 22,
                 "type" => "category",
-                "name" => "creativity.svg",
-                "url" => "/assets/icons/category/creativity.svg",
+                "name" => "education.png",
+                "url" => "/assets/icons/category/education.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 23,
                 "type" => "category",
-                "name" => "inspiration.svg",
-                "url" => "/assets/icons/category/inspiration.svg",
+                "name" => "creativity.png",
+                "url" => "/assets/icons/category/creativity.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 24,
                 "type" => "category",
-                "name" => "career.svg",
-                "url" => "/assets/icons/category/career.svg",
+                "name" => "career.png",
+                "url" => "/assets/icons/category/career.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 25,
                 "type" => "category",
-                "name" => "reading.svg",
-                "url" => "/assets/icons/category/reading.svg",
+                "name" => "wellness.png",
+                "url" => "/assets/icons/category/wellness.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 26,
                 "type" => "category",
-                "name" => "wellness.svg",
-                "url" => "/assets/icons/category/wellness.svg",
+                "name" => "beauty.png",
+                "url" => "/assets/icons/category/beauty.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 27,
                 "type" => "category",
-                "name" => "exercise.svg",
-                "url" => "/assets/icons/category/exercise.svg",
+                "name" => "health.png",
+                "url" => "/assets/icons/category/health.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 28,
                 "type" => "category",
-                "name" => "loving_mybody.svg",
-                "url" => "/assets/icons/category/loving_mybody.svg",
+                "name" => "dreams&spirituality.png",
+                "url" => "/assets/icons/category/dreams&spirituality.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 29,
                 "type" => "category",
-                "name" => "health.svg",
-                "url" => "/assets/icons/category/health.svg",
+                "name" => "mindfulness.png",
+                "url" => "/assets/icons/category/mindfulness.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 30,
                 "type" => "category",
-                "name" => "faith&spirituality.svg",
-                "url" => "/assets/icons/category/faith&spirituality.svg",
+                "name" => "wisdom.png",
+                "url" => "/assets/icons/category/wisdom.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 31,
                 "type" => "category",
-                "name" => "mindfulness.svg",
-                "url" => "/assets/icons/category/mindfulness.svg",
+                "name" => "imagination.png",
+                "url" => "/assets/icons/category/imagination.png",
                 "created_at" => now()
             ],
             [
                 "owner_id" => 32,
                 "type" => "category",
-                "name" => "wisdom.svg",
-                "url" => "/assets/icons/category/wisdom.svg",
+                "name" => "freedom.png",
+                "url" => "/assets/icons/category/freedom.png",
                 "created_at" => now()
             ],
         ]);
