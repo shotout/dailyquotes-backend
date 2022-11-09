@@ -23,6 +23,7 @@ Route::get('/', function () {
     return view('auth.login');
     // \App\Jobs\QuoteNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // \App\Jobs\ResetNotif::dispatch()->onQueue(env('SUPERVISOR'));
+    // \App\Jobs\UpdatePool::dispatch('area', 1)->onQueue(env('SUPERVISOR'));
     // return 'success ...';
 });
 
