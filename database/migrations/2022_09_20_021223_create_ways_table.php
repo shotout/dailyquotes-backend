@@ -33,9 +33,9 @@ class CreateWaysTable extends Migration
         DB::table('ways')->insert([
             ["name" => "Family", "percentage" => 2.73, "created_at" => now()],
             ["name" => "Friends", "percentage" => 2.73, "created_at" => now()],
-            ["name" => "Work", "percentage" => 3.75, "created_at" => now()],
-            ["name" => "Health", "percentage" => 3.75, "created_at" => now()],
-            ["name" => "Relationship", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Work", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Health", "percentage" => 2.73, "created_at" => now()],
+            ["name" => "Relationship", "percentage" => 2.50, "created_at" => now()],
             ["name" => "Other", "percentage" => 1.00, "created_at" => now()]
         ]);
 

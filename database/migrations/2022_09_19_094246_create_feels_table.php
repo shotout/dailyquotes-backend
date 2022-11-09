@@ -24,11 +24,11 @@ class CreateFeelsTable extends Migration
         });
 
         DB::table('feels')->insert([
-            ["name" => "Awesome", "percentage" => 1.30, "created_at" => now()],
+            ["name" => "Awesome", "percentage" => 1.36, "created_at" => now()],
             ["name" => "Good", "percentage" => 1.30, "created_at" => now()],
             ["name" => "Ok", "percentage" => 1.25, "created_at" => now()],
-            ["name" => "Bad", "percentage" => 1.07, "created_at" => now()],
-            ["name" => "Terrible", "percentage" => 1.07, "created_at" => now()],
+            ["name" => "Bad", "percentage" => 1.11, "created_at" => now()],
+            ["name" => "Terrible", "percentage" => 1.11, "created_at" => now()],
             ["name" => "Other", "percentage" => 1.00, "created_at" => now()]
         ]);
 

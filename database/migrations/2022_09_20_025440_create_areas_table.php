@@ -31,14 +31,14 @@ class CreateAreasTable extends Migration
         });
 
         DB::table('areas')->insert([
-            ["name" => "Productivity", "percentage" => 3.64, "created_at" => now()],
-            ["name" => "Positive Thinking", "percentage" => 2.22, "created_at" => now()],
+            ["name" => "Productivity", "percentage" => 3.33, "created_at" => now()],
+            ["name" => "Positive Thinking", "percentage" => 2.11, "created_at" => now()],
             ["name" => "Inspiration", "percentage" => 3.64, "created_at" => now()],
-            ["name" => "Stress & Anxiety", "percentage" => 5, "created_at" => now()],
-            ["name" => "Relationships", "percentage" => 3.64, "created_at" => now()],
-            ["name" => "Working Out", "percentage" => 4.44, "created_at" => now()],
-            ["name" => "Self-Esteem", "percentage" => 3.33, "created_at" => now()],
-            ["name" => "Achieving Goals", "percentage" => 4.44, "created_at" => now()],
+            ["name" => "Stress & Anxiety", "percentage" => 4.00, "created_at" => now()],
+            ["name" => "Relationships", "percentage" => 3.33, "created_at" => now()],
+            ["name" => "Working Out", "percentage" => 4.00, "created_at" => now()],
+            ["name" => "Self-Esteem", "percentage" => 2.50, "created_at" => now()],
+            ["name" => "Achieving Goals", "percentage" => 3.64, "created_at" => now()],
         ]);
     }
 
