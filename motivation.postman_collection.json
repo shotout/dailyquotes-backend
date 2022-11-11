@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4af70d94-34c3-4768-9c68-7c499590ee32",
+		"_postman_id": "4a3346ab-b760-411d-8b45-d04d4fd73e01",
 		"name": "motivation",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12074833"
 	},
 	"item": [
 		{
@@ -340,6 +341,31 @@
 								"areas"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "link",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/links",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"links"
+							]
+						},
+						"description": "query string :\n\ndefaultnya kosong\n\n?search={title}\n\n?flag={flag}\n\n?column={id}&dir={desc}"
 					},
 					"response": []
 				}

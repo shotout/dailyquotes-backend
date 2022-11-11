@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Way;
 use App\Models\Area;
 use App\Models\Feel;
+use App\Models\Link;
+use App\Models\Group;
 use App\Models\Style;
 use App\Models\Theme;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Group;
 
 class ListController extends Controller
 {
@@ -114,6 +115,42 @@ class ListController extends Controller
         if ($request->has('search') && $request->input('search') != '') {
             $query->where(function($q) use($request) {
                 $q->where('name', 'like', '%' . $request->input('search') . '%');
+            });
+        }
+
+        $data = $query->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ], 200);
+    }
+
+    public function links(Request $request)
+    {
+        // order by field
+        if ($request->has('column') && $request->input('column') != '') {
+            $column = $request->input('column');
+        } else {
+            $column = 'id';
+        }
+
+        // order direction
+        if ($request->has('dir') && $request->input('dir') != '') {
+            $dir = $request->input('dir');
+        } else {
+            $dir = 'desc';
+        }
+
+        $query = Link::with('icon')->where('status', 2)->orderBy($column, $dir);
+
+        if ($request->has('flag') && $request->flag != '') {
+            $query->where('flag', $request->flag);
+        }
+
+        if ($request->has('search') && $request->input('search') != '') {
+            $query->where(function($q) use($request) {
+                $q->where('title', 'like', '%' . $request->input('search') . '%');
             });
         }
 
