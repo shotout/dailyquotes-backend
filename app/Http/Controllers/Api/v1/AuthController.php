@@ -99,18 +99,28 @@ class AuthController extends Controller
             // schedule ------------
                 $schedule = new Schedule;
                 $schedule->user_id = $user->id;
-                if ($request->has('often')) {
-                    $schedule->often = $request->often;
+
+                if ($request->has('timezone')) {
+                    $schedule->timezone = $request->timezone;
                 }
-                if ($request->has('start')) {
-                    $schedule->start = $request->start;
-                }
-                if ($request->has('end')) {
-                    $schedule->end = $request->end;
-                }
+              
                 if ($request->has('anytime') && $request->anytime != '') {
                     $schedule->anytime = true;
+                    $schedule->often = 6;
+                    $schedule->start = '08:00';
+                    $schedule->end = '22:00';
+                } else {
+                    if ($request->has('often')) {
+                        $schedule->often = $request->often;
+                    }
+                    if ($request->has('start')) {
+                        $schedule->start = $request->start;
+                    }
+                    if ($request->has('end')) {
+                        $schedule->end = $request->end;
+                    }
                 }
+
                 $schedule->save();
             // -------------------------
 

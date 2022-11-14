@@ -59,14 +59,14 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Quote::factory(10)->create([
             "category_id" => 10,
-            "title" => "Quote Loving MySelf",
-            "author" => "Loving MySelf",
+            "title" => "Quote Attitude",
+            "author" => "Attitude",
         ]);
 
         \App\Models\Quote::factory(10)->create([
             "category_id" => 11,
-            "title" => "Quote Being Thankful",
-            "author" => "Being Thankful",
+            "title" => "Quote Cool",
+            "author" => "Cool",
         ]);
 
         \App\Models\Quote::factory(10)->create([
@@ -83,62 +83,62 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Quote::factory(10)->create([
             "category_id" => 14,
-            "title" => "Quote Nature",
-            "author" => "Nature",
-        ]);
-
-        \App\Models\Quote::factory(10)->create([
-            "category_id" => 15,
             "title" => "Quote Relationship",
             "author" => "Relationship",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 16,
+            "category_id" => 15,
             "title" => "Quote Love",
             "author" => "Love",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 17,
+            "category_id" => 16,
             "title" => "Quote Friendship",
             "author" => "Friendship",
         ]);
 
         \App\Models\Quote::factory(10)->create([
+            "category_id" => 17,
+            "title" => "Quote Family",
+            "author" => "Family",
+        ]);
+
+        \App\Models\Quote::factory(10)->create([
             "category_id" => 18,
+            "title" => "Quote Dating",
+            "author" => "Dating",
+        ]);
+
+        \App\Models\Quote::factory(10)->create([
+            "category_id" => 19,
             "title" => "Quote Leadership",
             "author" => "Leadership",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 19,
-            "title" => "Quote Productivity",
-            "author" => "Productivity",
+            "category_id" => 20,
+            "title" => "Quote Business",
+            "author" => "Business",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 20,
+            "category_id" => 21,
             "title" => "Quote Success",
             "author" => "Success",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 21,
+            "category_id" => 22,
             "title" => "Quote Education",
             "author" => "Education",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 22,
+            "category_id" => 23,
             "title" => "Quote Creativity",
             "author" => "Creativity",
-        ]);
-
-        \App\Models\Quote::factory(10)->create([
-            "category_id" => 23,
-            "title" => "Quote Inspiration",
-            "author" => "Inspiration",
         ]);
 
         \App\Models\Quote::factory(10)->create([
@@ -149,50 +149,50 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Quote::factory(10)->create([
             "category_id" => 25,
-            "title" => "Quote Reading",
-            "author" => "Reading",
-        ]);
-
-        \App\Models\Quote::factory(10)->create([
-            "category_id" => 26,
             "title" => "Quote Wellness",
             "author" => "Wellness",
         ]);
 
         \App\Models\Quote::factory(10)->create([
+            "category_id" => 26,
+            "title" => "Quote Beauty",
+            "author" => "Beauty",
+        ]);
+
+        \App\Models\Quote::factory(10)->create([
             "category_id" => 27,
-            "title" => "Quote Exercise",
-            "author" => "Exercise",
-        ]);
-
-        \App\Models\Quote::factory(10)->create([
-            "category_id" => 28,
-            "title" => "Quote Loving My Body",
-            "author" => "Loving My Body",
-        ]);
-
-        \App\Models\Quote::factory(10)->create([
-            "category_id" => 29,
             "title" => "Quote Health",
             "author" => "Health",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 30,
-            "title" => "Quote Faith & Spirituality",
-            "author" => "Faith & Spirituality",
+            "category_id" => 28,
+            "title" => "Quote Dreams & Spirituality",
+            "author" => "Dreams & Spirituality",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 31,
+            "category_id" => 29,
             "title" => "Quote Mindfulness",
             "author" => "Mindfulness",
         ]);
 
         \App\Models\Quote::factory(10)->create([
-            "category_id" => 32,
+            "category_id" => 30,
             "title" => "Quote Wisdom",
             "author" => "Wisdom",
+        ]);
+
+        \App\Models\Quote::factory(10)->create([
+            "category_id" => 31,
+            "title" => "Quote Imagination",
+            "author" => "Imagination",
+        ]);
+
+        \App\Models\Quote::factory(10)->create([
+            "category_id" => 32,
+            "title" => "Quote Freedom",
+            "author" => "Freedom",
         ]);
     }
 }

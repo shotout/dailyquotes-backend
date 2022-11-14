@@ -46,6 +46,7 @@ Route::group(
         Route::get('/themes', [ListController::class, 'themes'])->name('themes');
         Route::get('/groups', [ListController::class, 'groups'])->name('groups');
         Route::get('/categories', [ListController::class, 'categories'])->name('categories');
+        Route::get('/links', [ListController::class, 'links'])->name('links');
     }
 );
 
