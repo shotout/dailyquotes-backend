@@ -16,10 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('plan_id')->nullable();
+            $table->integer('plan_id')->nullable();
             $table->string('code')->nullable();
             $table->string('type')->default('card');
-            $table->bigInteger('total')->default(0);
+            $table->float('total')->default(0);
             $table->text('api_checkout')->nullable();
             $table->text('api_webhook')->nullable();
             $table->string('status')->nullable('unpaid');

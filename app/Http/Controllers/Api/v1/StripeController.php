@@ -15,7 +15,9 @@ class StripeController extends Controller
 {
     public function index()
     {
-        $plans = Plan::whereNotNull('price')->get();
+        $plans = Plan::where('is_show', true)
+            ->orderBy('sequence', 'asc')
+            ->get();
 
         return response()->json([
             'status' => 'success',
@@ -25,6 +27,14 @@ class StripeController extends Controller
 
     public function checkout(Request $request)
     {
+        // test
+        // stripe listen --forward-to motivation.test/api/v1/stripe/webhook
+
+        $request->validate([
+            'plan' => 'required',
+            'price' => 'required',
+        ]);
+
         $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
         $checkout = $stripe->checkout->sessions->create([
             'payment_method_types'  => ['card'],
@@ -45,8 +55,8 @@ class StripeController extends Controller
         if ($checkout) {
             $payment = new Payment;
             $payment->plan_id = $request->plan;
-            // $payment->user_id = auth('sanctum')->user()->id;
-            $payment->user_id = 1;
+            $payment->user_id = auth('sanctum')->user()->id;
+            // $payment->user_id = 1;
             $payment->code = $checkout->id;
             $payment->total = $checkout->amount_total / 100;
             $payment->api_checkout = $checkout;

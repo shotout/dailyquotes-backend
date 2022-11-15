@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4a3346ab-b760-411d-8b45-d04d4fd73e01",
+		"_postman_id": "3e2c2cbc-53b1-42d3-b615-40427f1d1377",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -1176,6 +1176,95 @@
 							]
 						},
 						"description": "/api/v1/past-quote/{quote_id}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "plan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|Xm4QpwomV4cdEAM5shayNUdGhkNsqja99N8rvDbt",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stripe/plan",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stripe",
+								"plan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|i19fsL7Fs9Kn6fnh1k1vMY7eSqqqSCFlu5D9vzAV",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "plan",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "price_1M4JltKITpzX4txvmoWEcyvm",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/stripe/checkout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stripe",
+								"checkout"
+							]
+						},
+						"description": "body :\n\nplan = id\n\nprice = stripe_id"
 					},
 					"response": []
 				}

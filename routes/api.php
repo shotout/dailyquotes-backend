@@ -105,13 +105,13 @@ Route::group(
 
 Route::group(
     [
-        // 'middleware' => 'auth:sanctum',
+        'middleware' => 'auth:sanctum',
         'prefix' => 'v1/stripe',
         'name' => 'stripe.'
     ],
     function() {
         Route::get('/plan', [StripeController::class, 'index'])->name('index');
-        Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+        Route::post('/checkout', [StripeController::class, 'checkout'])->name('checkout');
         Route::post('/webhook', [StripeController::class, 'webhook'])
             ->withoutMiddleware('auth:sanctum')
             ->name('webhook');
