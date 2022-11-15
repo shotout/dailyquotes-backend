@@ -18,4 +18,9 @@ class Subscription extends Model
 
     // list status
     const ACTIVE = 2;
+
+    public function plan()
+    {
+        return $this->belongsTo('\App\Models\Plan');
+    }
 }

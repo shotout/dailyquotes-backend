@@ -27,13 +27,18 @@ class StripeController extends Controller
 
     public function checkout(Request $request)
     {
-        // test
+        // localhost test
         // stripe listen --forward-to motivation.test/api/v1/stripe/webhook
 
         $request->validate([
             'plan' => 'required',
             'price' => 'required',
         ]);
+
+        $mode = 'subscription';
+        if ($request->plan == 4) {
+            $mode = 'payment';
+        }
 
         $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
         $checkout = $stripe->checkout->sessions->create([
@@ -44,7 +49,7 @@ class StripeController extends Controller
                     "quantity" => 1,
                 ]
             ],
-            'mode' => 'subscription',
+            'mode' => $mode,
             'success_url' => url('/api/v1/stripe/success'),
             'cancel_url' => url('/api/v1/stripe/cancel'),
         ]);
