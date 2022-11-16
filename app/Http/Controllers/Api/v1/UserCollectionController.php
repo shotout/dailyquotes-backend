@@ -127,6 +127,28 @@ class UserCollectionController extends Controller
         ], 201);
     }
 
+    public function destroy($id)
+    {
+        $collection = Collection::where('id', $id)
+            ->where('user_id', auth('sanctum')->user()->id)
+            ->first();
+
+        if (!$collection) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Collection not found'
+            ], 404);
+        }
+
+        CollectionQuote::where('collection_id', $collection->id)->delete();
+        $collection->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $collection
+        ], 200);
+    }
+
     public function storeQuote($collection, $quote)
     {
         $findCollection = Collection::find($collection);

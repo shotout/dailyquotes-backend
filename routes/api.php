@@ -79,6 +79,8 @@ Route::group(
         Route::post('/collection', [UserCollectionController::class, 'store'])->name('collection.store');
         Route::patch('/collection/{id}', [UserCollectionController::class, 'update'])
             ->name('collection.update');
+        Route::delete('/collection/{id}', [UserCollectionController::class, 'destroy'])
+            ->name('collection.destroy');
         Route::post('/add-quote/{collection}/{quote}', [UserCollectionController::class, 'storeQuote'])
             ->name('collection.quote.store');
         Route::post('/del-quote/{collection}/{quote}', [UserCollectionController::class, 'destroyQuote'])
@@ -110,6 +112,7 @@ Route::group(
         'name' => 'stripe.'
     ],
     function() {
+        Route::get('/free', [StripeController::class, 'free'])->name('free');
         Route::get('/plan', [StripeController::class, 'index'])->name('index');
         Route::post('/checkout', [StripeController::class, 'checkout'])->name('checkout');
         Route::post('/webhook', [StripeController::class, 'webhook'])

@@ -716,6 +716,45 @@
 					"response": []
 				},
 				{
+					"name": "delete my collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|ZXpkycQXXk0A3q7SMnraw3PdzgDtRdkRoJnh8olp",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/user/collection/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"collection",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "add my collection",
 					"request": {
 						"auth": {
@@ -1213,6 +1252,40 @@
 							"path": [
 								"stripe",
 								"plan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1 month free",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|ZXpkycQXXk0A3q7SMnraw3PdzgDtRdkRoJnh8olp",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stripe/free",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stripe",
+								"free"
 							]
 						}
 					},

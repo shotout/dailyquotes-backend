@@ -151,4 +151,32 @@ class StripeController extends Controller
             'data' => null
         ], 200); 
     }
+
+    public function free()
+    {
+        $isFree = Subscription::where('user_id', auth('sanctum')->user()->id)
+            ->where('plan_id', 5)
+            ->exists();
+
+        if ($isFree) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'user has 1-month Premium for free!'
+            ], 400); 
+        }
+
+        Subscription::where('user_id', auth('sanctum')->user()->id)->update(['status' => 1]);
+        $sub = new Subscription;
+        $sub->user_id = auth('sanctum')->user()->id;
+        $sub->plan_id = 5;
+        $sub->started = now();
+        $sub->renewal = Carbon::now()->addMonth(1);
+        $sub->type = 5;
+        $sub->save();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $sub
+        ], 200); 
+    }
 }
