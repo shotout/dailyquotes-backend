@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3e2c2cbc-53b1-42d3-b615-40427f1d1377",
+		"_postman_id": "d803d1fe-3fe2-4b05-8da3-fbbfcda58430",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -461,7 +461,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|MV4bOG56JPwMPmLei2liDJ6HRuZu6aTmQSpxOI7r",
+									"value": "1|43Ih0ddUVN8EeP7CR3KIfxOMdsmSSAwetkVyfNNF",
 									"type": "string"
 								}
 							]
@@ -503,23 +503,31 @@
 								{
 									"key": "often",
 									"value": "6",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "start",
 									"value": "17:00",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "end",
 									"value": "23:00",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "fcm_token",
 									"value": "2321defd",
 									"type": "text",
 									"disabled": true
+								},
+								{
+									"key": "notif_count",
+									"value": "0",
+									"type": "text"
 								}
 							]
 						},

@@ -65,6 +65,12 @@ class UserController extends Controller
             $schedule->save();
         // -------------------------
 
+        // reset user notif counter
+        if ($request->has('notif_count')) {
+            $user->notif_count = 0;
+            $user->update();
+        }
+
         return response()->json([
             'status' => 'success',
             'data' => $user
