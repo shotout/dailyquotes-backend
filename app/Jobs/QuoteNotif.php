@@ -87,7 +87,7 @@ class QuoteNotif implements ShouldQueue
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
                             
                         $response = curl_exec($ch);
-                        // Log::info($response);
+                        Log::info($response);
 
                         // update user schedule
                         $schedule = Schedule::find($user->schedule->id);
