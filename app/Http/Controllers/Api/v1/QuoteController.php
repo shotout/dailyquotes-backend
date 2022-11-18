@@ -25,14 +25,14 @@ class QuoteController extends Controller
         if ($request->has('column') && $request->input('column') != '') {
             $column = $request->input('column');
         } else {
-            $column = 'id';
+            $column = 'order';
         }
 
         // order direction
         if ($request->has('dir') && $request->input('dir') != '') {
             $dir = $request->input('dir');
         } else {
-            $dir = 'desc';
+            $dir = 'asc';
         }
 
         // if user login
