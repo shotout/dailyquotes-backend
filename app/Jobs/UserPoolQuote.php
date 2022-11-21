@@ -82,6 +82,7 @@ class UserPoolQuote implements ShouldQueue
         $mc->quotes = $myQuotes;
         $mc->save();
 
+        GenerateTimer::dispatch($this->user->id)->onQueue(env('SUPERVISOR'));
         Log::info('Job UserPoolQuote Success ...');
     }
 }

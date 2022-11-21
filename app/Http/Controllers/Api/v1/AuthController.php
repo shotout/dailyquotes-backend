@@ -111,7 +111,14 @@ class AuthController extends Controller
                     $schedule->end = '22:00';
                 } else {
                     if ($request->has('often')) {
-                        $schedule->often = $request->often;
+                        $hour = \Carbon\Carbon::parse($request->end)
+                            ->diffInHours(\Carbon\Carbon::parse($request->start));
+                        
+                        if ($request->often > $hour) {
+                            $schedule->often = $hour;
+                        } else {
+                            $schedule->often = $request->often;
+                        }
                     }
                     if ($request->has('start')) {
                         $schedule->start = $request->start;
@@ -120,7 +127,7 @@ class AuthController extends Controller
                         $schedule->end = $request->end;
                     }
                 }
-
+                
                 $schedule->save();
             // -------------------------
 

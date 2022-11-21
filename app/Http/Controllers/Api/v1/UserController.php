@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Theme;
 use App\Models\Category;
 use App\Models\Schedule;
+use App\Jobs\GenerateTimer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -50,7 +51,14 @@ class UserController extends Controller
             $schedule = Schedule::where('user_id', auth('sanctum')->user()->id)->first();
 
             if ($request->has('often') && $request->often != '') {
-                $schedule->often = $request->often;
+                $hour = \Carbon\Carbon::parse($request->end)
+                    ->diffInHours(\Carbon\Carbon::parse($request->start));
+                        
+                if ($request->often > $hour) {
+                    $schedule->often = $hour;
+                } else {
+                    $schedule->often = $request->often;
+                }
             }
             if ($request->has('start') && $request->start != '') {
                 $schedule->start = $request->start;
@@ -63,6 +71,7 @@ class UserController extends Controller
             }
             
             $schedule->save();
+            GenerateTimer::dispatch($user->id)->onQueue(env('SUPERVISOR'));
         // -------------------------
 
         // reset user notif counter
