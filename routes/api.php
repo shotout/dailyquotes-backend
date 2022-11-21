@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\v1\ListController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
 use App\Http\Controllers\Api\v1\StripeController;
-use App\Http\Controllers\api\v1\SubscriptionsController;
+use App\Http\Controllers\Api\v1\SubscriptionsController;
 use App\Http\Controllers\Api\v1\UserLikeController;
 use App\Http\Controllers\Api\v1\UserPastQuoteController;
 use App\Http\Controllers\Api\v1\UserCollectionController;
