@@ -31,14 +31,13 @@ class SubscriptionsController extends Controller
                 $subscriptions->plan_id = 1;
                 $subscriptions->started = null;
                 $subscriptions->renewal = null;
+                $subscriptions->subscription_data = null;
                 $subscriptions->save();
             } else {
                 $subscriptions = new Subscription;
                 $subscriptions->user_id = auth()->user()->id;
                 $subscriptions->type = $request->subscription_type;
                 $subscriptions->plan_id = 1;
-                $subscriptions->started = null;
-                $subscriptions->renewal = null;
                 $subscriptions->save();
             }
 
@@ -56,6 +55,7 @@ class SubscriptionsController extends Controller
                 $subscriptions->plan_id = 2;
                 $subscriptions->started = Carbon::now();
                 $subscriptions->renewal = Carbon::now()->addDay(2);
+                $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();
             } else {
                 $subscriptions = new Subscription;
@@ -64,6 +64,7 @@ class SubscriptionsController extends Controller
                 $subscriptions->plan_id = 2;
                 $subscriptions->started = Carbon::now();
                 $subscriptions->renewal = Carbon::now()->addDay(2);
+                $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();
             }
 
@@ -81,6 +82,7 @@ class SubscriptionsController extends Controller
                 $subscriptions->plan_id = 3;
                 $subscriptions->started = Carbon::now();
                 $subscriptions->renewal = Carbon::now()->addMonth(1);
+                $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();             
 
             } else {
@@ -90,6 +92,7 @@ class SubscriptionsController extends Controller
                 $subscriptions->plan_id = 3;
                 $subscriptions->started = Carbon::now();
                 $subscriptions->renewal = Carbon::now()->addMonth(1);
+                $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();
             }
             
