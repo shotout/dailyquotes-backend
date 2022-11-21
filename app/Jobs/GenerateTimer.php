@@ -42,18 +42,18 @@ class GenerateTimer implements ShouldQueue
     
         for ($i=1; $i <= $this->user->schedule->often; $i++) { 
             if ($i == 1) {
-                $timer[] = $this->user->schedule->start;
+                $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)->format('H:i');
             } else if ($i == $this->user->schedule->often) {
-                $timer[] = $this->user->schedule->end;
+                $timer[] = \Carbon\Carbon::parse($this->user->schedule->end)->format('H:i');
             } else {
                 if ($this->user->schedule->often == 3) {
                     $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
                         ->addHour($hour / 2)
-                        ->format('H:i:s');
+                        ->format('H:i');
                 } else {
                     $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
                         ->addHour($interval * $i)
-                        ->format('H:i:s');
+                        ->format('H:i');
                 }
             }
         }

@@ -54,7 +54,7 @@ class QuoteNotif implements ShouldQueue
                 if ($user->schedule->counter_notif < $user->schedule->often) {
                     if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= $user->schedule->start && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= $user->schedule->end) {
                         if ($user->schedule->timer) {
-                            if (in_array(now()->setTimezone($user->schedule->timezone)->format('H:i:s'), $user->schedule->timer)) {
+                            if (in_array(now()->setTimezone($user->schedule->timezone)->format('H:i'), $user->schedule->timer)) {
 
                                 // \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->format('H:i:s');
                                 Log::info('ada ...');
