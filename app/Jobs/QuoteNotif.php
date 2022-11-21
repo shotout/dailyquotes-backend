@@ -64,6 +64,7 @@ class QuoteNotif implements ShouldQueue
                                 "body" => $descShort,  
                                 "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
                                 // "image" => 'https://backend.nftdaily.app/image.png',
+                                "sound" => "circle.mp3",
                                 "badge" => $user->notif_count + 1
                             ]
                         ];
