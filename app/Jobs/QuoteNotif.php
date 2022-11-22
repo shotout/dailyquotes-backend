@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Quote;
 use App\Models\Schedule;
@@ -52,7 +53,7 @@ class QuoteNotif implements ShouldQueue
 
             foreach ($users as $user) {
                 if ($user->schedule->counter_notif < $user->schedule->often) {
-                    if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= $user->schedule->start && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= $user->schedule->end) {
+                    if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= $user->schedule->start && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= Carbon::parse($user->schedule->end)->addMinute(10)->format('H:i:s')) {
                         if ($user->schedule->timer) {
                             if (in_array(now()->setTimezone($user->schedule->timezone)->format('H:i'), $user->schedule->timer)) {
 
