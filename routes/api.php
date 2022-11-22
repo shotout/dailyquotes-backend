@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ListController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
 use App\Http\Controllers\Api\v1\StripeController;
+use App\Http\Controllers\Api\v1\SubscriptionsController;
 use App\Http\Controllers\Api\v1\UserLikeController;
 use App\Http\Controllers\Api\v1\UserPastQuoteController;
 use App\Http\Controllers\Api\v1\UserCollectionController;
@@ -124,5 +125,17 @@ Route::group(
         Route::get('/cancel', [StripeController::class, 'cancel'])
             ->withoutMiddleware('auth:sanctum')
             ->name('cancel');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'v1/subscription',
+        'name' => 'subscription.'
+    ],
+    function() {
+        Route::get('/', [SubscriptionsController::class, 'index'])->name('index');
+        Route::post('/update', [SubscriptionsController::class, 'subscribe'])->name('subscribe');
     }
 );
