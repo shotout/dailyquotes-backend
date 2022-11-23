@@ -37,8 +37,7 @@ class GenerateTimer implements ShouldQueue
     {
         $minutes = \Carbon\Carbon::parse($this->user->schedule->end)
             ->diffInMinutes(\Carbon\Carbon::parse($this->user->schedule->start));
-        if ($minutes == 30) $minutes = 60;
-        $range = $minutes / 60;
+        $range = $minutes;
         $interval = floor($range / $this->user->schedule->often);
         $timer = array();
     
@@ -50,11 +49,11 @@ class GenerateTimer implements ShouldQueue
             } else {
                 if ($this->user->schedule->often == 3) {
                     $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
-                        ->addMinutes(($range / 2) * 60)
+                        ->addMinutes($range / 2)
                         ->format('H:i');
                 } else {
                     $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
-                        ->addMinutes(($interval * 60) * $i)
+                        ->addMinutes($interval* $i)
                         ->format('H:i');
                 }
             }

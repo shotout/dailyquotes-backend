@@ -51,16 +51,7 @@ class UserController extends Controller
             $schedule = Schedule::where('user_id', auth('sanctum')->user()->id)->first();
 
             if ($request->has('often') && $request->often != '') {
-                $minutes = \Carbon\Carbon::parse($request->end)
-                    ->diffInMinutes(\Carbon\Carbon::parse($request->start));
-                if ($minutes == 30) $minutes = 60;
-                $range = $minutes / 60;
-                        
-                if ($request->often > $range) {
-                    $schedule->often = $range;
-                } else {
-                    $schedule->often = $request->often;
-                }
+                $schedule->often = $request->often;
             }
             if ($request->has('start') && $request->start != '') {
                 $schedule->start = $request->start;

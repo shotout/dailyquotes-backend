@@ -110,17 +110,8 @@ class AuthController extends Controller
                     $schedule->start = '08:00';
                     $schedule->end = '22:00';
                 } else {
-                    if ($request->has('often')) {
-                        $minutes = \Carbon\Carbon::parse($request->end)
-                            ->diffInMinutes(\Carbon\Carbon::parse($request->start));
-                        if ($minutes == 30) $minutes = 60;
-                        $range = $minutes / 60;
-                        
-                        if ($request->often > $range) {
-                            $schedule->often = $range;
-                        } else {
-                            $schedule->often = $request->often;
-                        }
+                    if ($request->has('often')) {                       
+                        $schedule->often = $request->often;
                     }
                     if ($request->has('start')) {
                         $schedule->start = $request->start;
