@@ -18,7 +18,7 @@ class UserPastQuoteController extends Controller
         if (auth('sanctum')->user()->subscription->type == 1) {
             $quotes = Quote::with('like')->whereIn('id', $pq)
                 ->where('status', 2)
-                ->orderBy('id', 'desc')
+                ->orderBy('order', 'asc')
                 ->limit(5)
                 ->get();
 
@@ -38,14 +38,14 @@ class UserPastQuoteController extends Controller
             if ($request->has('column') && $request->input('column') != '') {
                 $column = $request->input('column');
             } else {
-                $column = 'id';
+                $column = 'order';
             }
 
             // order direction
             if ($request->has('dir') && $request->input('dir') != '') {
                 $dir = $request->input('dir');
             } else {
-                $dir = 'desc';
+                $dir = 'asc';
             }
 
             // order by
