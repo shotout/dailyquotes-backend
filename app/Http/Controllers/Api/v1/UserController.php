@@ -53,7 +53,8 @@ class UserController extends Controller
             if ($request->has('often') && $request->often != '') {
                 $minutes = \Carbon\Carbon::parse($request->end)
                     ->diffInMinutes(\Carbon\Carbon::parse($request->start));
-                $range = $minutes / 30;
+                if ($minutes == 30) $minutes = 60;
+                $range = $minutes / 60;
                         
                 if ($request->often > $range) {
                     $schedule->often = $range;
