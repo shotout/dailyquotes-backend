@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Quote;
+use App\Models\MyQuote;
 use App\Models\PastQuote;
+use App\Models\UserQuote;
 use App\Models\Subscription;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\MyQuote;
 
 class QuoteController extends Controller
 {
@@ -51,41 +52,225 @@ class QuoteController extends Controller
             ->pluck('quote_id')
             ->toArray();
 
-        // my quotes
+
+        // check user category
+        $isGeneral = UserCategory::where('user_id', auth('sanctum')->user()->id)
+            ->where('category_id', 1)
+            ->exists();
+        $isFavorite = UserCategory::where('user_id', auth('sanctum')->user()->id)
+            ->where('category_id', 2)
+            ->exists();
+        $userCategories = UserCategory::where('user_id', auth('sanctum')->user()->id)
+            ->whereNotIn('category_id', [1,2])
+            ->pluck('category_id')
+            ->toArray();
+        $userFavorites = UserQuote::where('user_id', auth('sanctum')->user()->id)
+            ->where('type', 1)
+            ->pluck('quote_id')
+            ->toArray();
         $myQuotes = MyQuote::where('user_id', auth('sanctum')->user()->id)->first();
-        if ($myQuotes) {
-            // order by
-            $query = Quote::whereIn('id', $myQuotes->quotes)
-                ->whereNotIn('id', $pastQuotes)
-                ->where('status', 2)
-                ->orderBy($column, $dir);
 
-            // pagination
-            $data = $query->paginate($length);
+        if ($isGeneral) {
+            if ($isFavorite && count($userFavorites)) {
+                if ($myQuotes) {
+                    // order by
+                    if (count($userCategories)) {
+                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                            ->whereIn('id', $userFavorites)
+                            ->whereNotIn('id', $pastQuotes)
+                            ->whereIn('category_id', $userCategories)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                            ->whereIn('id', $userFavorites)
+                            ->whereNotIn('id', $pastQuotes)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+                    
+                    // pagination
+                    $data = $query->paginate($length);
 
-            // check if past quotes full
-            if ($data->total() == 0) {
-                $query = Quote::whereIn('id', $myQuotes->quotes)
-                    ->where('status', 2)
-                    ->orderBy($column, $dir);
+                    // check if past quotes full
+                    if ($data->total() == 0) {
+                        if (count($userCategories)) {
+                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                                ->whereIn('id', $userFavorites)
+                                ->whereIn('category_id', $userCategories)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } else {
+                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                                ->whereIn('id', $userFavorites)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } 
 
-                $data = $query->paginate($length);
+                        $data = $query->paginate($length);
+                    }
+                } else {
+                    // order by
+                    if (count($userCategories)) {
+                        $query = Quote::whereNotIn('id', $pastQuotes)
+                            ->whereIn('category_id', $userCategories)
+                            ->whereIn('id', $userFavorites)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::whereNotIn('id', $pastQuotes)
+                            ->whereIn('id', $userFavorites)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+
+                    // pagination
+                    $data = $query->paginate($length);
+
+                    // check if past quotes full
+                    if ($data->total() == 0) {
+                        if (count($userCategories)) {
+                            $query = Quote::whereIn('category_id', $userCategories)
+                                ->whereIn('id', $userFavorites)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } else {
+                            $query = Quote::where('status', 2)
+                                ->whereIn('id', $userFavorites)
+                                ->orderBy($column, $dir);
+                        }
+                        
+                        $data = $query->paginate($length);
+                    }
+                }
+            } else {
+                if ($myQuotes) {
+                    // order by
+                    if (count($userCategories)) {
+                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                            ->whereNotIn('id', $pastQuotes)
+                            ->whereIn('category_id', $userCategories)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                            ->whereNotIn('id', $pastQuotes)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+                    
+                    // pagination
+                    $data = $query->paginate($length);
+
+                    // check if past quotes full
+                    if ($data->total() == 0) {
+                        if (count($userCategories)) {
+                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                                ->whereIn('category_id', $userCategories)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } else {
+                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } 
+
+                        $data = $query->paginate($length);
+                    }
+                } else {
+                    // order by
+                    if (count($userCategories)) {
+                        $query = Quote::whereNotIn('id', $pastQuotes)
+                            ->whereIn('category_id', $userCategories)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::whereNotIn('id', $pastQuotes)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+
+                    // pagination
+                    $data = $query->paginate($length);
+
+                    // check if past quotes full
+                    if ($data->total() == 0) {
+                        if (count($userCategories)) {
+                            $query = Quote::whereIn('category_id', $userCategories)
+                                ->where('status', 2)
+                                ->orderBy($column, $dir);
+                        } else {
+                            $query = Quote::where('status', 2)->orderBy($column, $dir);
+                        }
+                        
+                        $data = $query->paginate($length);
+                    }
+                }
             }
         } else {
-            // order by
-            $query = Quote::whereNotIn('id', $pastQuotes)
-                ->where('status', 2)
-                ->orderBy($column, $dir);
+            if ($isFavorite && count($userFavorites)) {
+                // order by
+                if (count($userCategories)) {
+                    $query = Quote::whereNotIn('id', $pastQuotes)
+                        ->whereIn('id', $userFavorites)
+                        ->whereIn('category_id', $userCategories)
+                        ->where('status', 2)
+                        ->orderBy($column, $dir);
+                } else {
+                    $query = Quote::whereNotIn('id', $pastQuotes)
+                        ->whereIn('id', $userFavorites)
+                        ->where('status', 2)
+                        ->orderBy($column, $dir);
+                }
+                
 
-            // pagination
-            $data = $query->paginate($length);
-
-            // check if past quotes full
-            if ($data->total() == 0) {
-                $query = Quote::where('status', 2)
-                    ->orderBy($column, $dir);
-
+                // pagination
                 $data = $query->paginate($length);
+
+                // check if past quotes full
+                if ($data->total() == 0) {
+                    if (count($userCategories)) {
+                        $query = Quote::whereIn('category_id', $userCategories)
+                            ->whereIn('id', $userFavorites)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::whereIn('id', $userFavorites)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+                    
+                    $data = $query->paginate($length);
+                }
+            } else {
+                // order by
+                if (count($userCategories)) {
+                    $query = Quote::whereNotIn('id', $pastQuotes)
+                        ->whereIn('category_id', $userCategories)
+                        ->where('status', 2)
+                        ->orderBy($column, $dir);
+                } else {
+                    $query = Quote::whereNotIn('id', $pastQuotes)
+                        ->where('status', 2)
+                        ->orderBy($column, $dir);
+                }
+                
+                // pagination
+                $data = $query->paginate($length);
+
+                // check if past quotes full
+                if ($data->total() == 0) {
+                    if (count($userCategories)) {
+                        $query = Quote::whereIn('category_id', $userCategories)
+                            ->where('status', 2)
+                            ->orderBy($column, $dir);
+                    } else {
+                        $query = Quote::where('status', 2)
+                            ->orderBy($column, $dir);
+                    }
+                    
+                    $data = $query->paginate($length);
+                }
             }
         }
 
