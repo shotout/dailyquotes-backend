@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
+use App\Http\Controllers\api\v1\PurchaselyController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
 use App\Http\Controllers\Api\v1\StripeController;
@@ -141,5 +142,15 @@ Route::group(
     function() {
         Route::get('/', [SubscriptionsController::class, 'index'])->name('index');
         Route::post('/update', [SubscriptionsController::class, 'subscribe'])->name('subscribe');
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'v1/purchasely',
+        'name' => 'purchasely.'
+    ],
+    function() {
+        Route::post('/', [PurchaselyController::class, 'index'])->name('purchasely');
     }
 );
