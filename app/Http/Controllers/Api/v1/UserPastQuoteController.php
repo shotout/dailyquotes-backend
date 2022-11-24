@@ -13,6 +13,7 @@ class UserPastQuoteController extends Controller
     {
         $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
             ->pluck('quote_id')
+            ->orderBy('created_at', 'desc')
             ->toArray();
 
         if (auth('sanctum')->user()->subscription->type == 1) {
