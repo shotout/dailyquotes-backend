@@ -45,7 +45,7 @@ class UserPastQuoteController extends Controller
             if ($request->has('dir') && $request->input('dir') != '') {
                 $dir = $request->input('dir');
             } else {
-                $dir = 'asc';
+                $dir = 'desc';
             }
 
             // order by
