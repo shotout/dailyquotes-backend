@@ -75,6 +75,7 @@ class StripeController extends Controller
         ], 200);
     }
 
+    // stripe
     public function webhook(Request $request)
     {
         $endpoint_secret = env("STRIPE_WEBHOOK");
@@ -129,6 +130,25 @@ class StripeController extends Controller
             Log::info('ok');
             Log::info($res);
         }
+
+        return response()->json([
+            'status' => 'ok',
+            'data' => null
+        ], 200); 
+    }
+
+    // purchasely
+    public function webhooks(Request $request)
+    {
+        // Subscription events attributes -----
+        // event_name (SUBSCRIPTION_STARTED, SUBSCRIPTION_RENEWED, RENEWAL_DISABLED)
+        // user_id
+        // plan (annual-mooti-subscription)
+        // product 
+        // store_product_id (mooti_annual_package)
+
+        Log::info("log purchasely");
+        Log::info($request->all());
 
         return response()->json([
             'status' => 'ok',

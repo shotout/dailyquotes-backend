@@ -126,6 +126,10 @@ Route::group(
         Route::get('/cancel', [StripeController::class, 'cancel'])
             ->withoutMiddleware('auth:sanctum')
             ->name('cancel');
+
+        Route::post('/webhooks', [StripeController::class, 'webhooks'])
+            ->withoutMiddleware('auth:sanctum')
+            ->name('webhooks');
     }
 );
 
