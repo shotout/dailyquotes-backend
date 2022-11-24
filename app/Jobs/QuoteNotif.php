@@ -124,6 +124,9 @@ class QuoteNotif implements ShouldQueue
             $quote->update();
 
             Log::info('Job QuoteNotif Success ...');
+        } else {
+            // reset has notif
+            Quote::where('has_notif', true)->update(['has_notif' => false]);
         }
     }
 }
