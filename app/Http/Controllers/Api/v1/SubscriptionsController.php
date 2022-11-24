@@ -51,7 +51,7 @@ class SubscriptionsController extends Controller
         if ($request->subscription_type == 2) {
 
             $user = User::where('id', auth()->user()->id)->first();
-            $user->puchasely_id = $request->puchasely_id;
+            $user->purchasely_id = $request->purchasely_id;
             $user->save();
 
             $subscriptions = Subscription::where('user_id', auth()->user()->id)->first();
