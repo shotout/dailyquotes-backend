@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class SubscriptionsController extends Controller
             'subscription_type' => 'required',
         ]);
 
-        if ($request->subscription_type == 1 ) {
+        if ($request->subscription_type == 1) {
 
             $subscriptions = Subscription::where('user_id', auth()->user()->id)->first();
 
@@ -48,6 +49,10 @@ class SubscriptionsController extends Controller
         }
 
         if ($request->subscription_type == 2) {
+
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->puchasely_id = $request->puchasely_id;
+            $user->save();
 
             $subscriptions = Subscription::where('user_id', auth()->user()->id)->first();
             if ($subscriptions) {
@@ -76,6 +81,10 @@ class SubscriptionsController extends Controller
 
         if ($request->subscription_type == 3) {
 
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->puchasely_id = $request->puchasely_id;
+            $user->save();
+
             $subscriptions = Subscription::where('user_id', auth()->user()->id)->first();
             if ($subscriptions) {
                 $subscriptions->type = $request->subscription_type;
@@ -83,8 +92,7 @@ class SubscriptionsController extends Controller
                 $subscriptions->started = Carbon::now();
                 $subscriptions->renewal = Carbon::now()->addMonth(1);
                 $subscriptions->subscription_data = $request->subscription_data;
-                $subscriptions->save();             
-
+                $subscriptions->save();
             } else {
                 $subscriptions = new Subscription;
                 $subscriptions->user_id = auth()->user()->id;
@@ -95,14 +103,11 @@ class SubscriptionsController extends Controller
                 $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();
             }
-            
+
             return response()->json([
                 'status' => 'ok',
                 'data' => $subscriptions
             ], 200);
-
-        }        
-
-      
+        }
     }
 }
