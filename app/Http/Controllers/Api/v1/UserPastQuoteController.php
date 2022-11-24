@@ -18,7 +18,7 @@ class UserPastQuoteController extends Controller
         if (auth('sanctum')->user()->subscription->type == 1) {
             $quotes = Quote::with('like')->whereIn('id', $pq)
                 ->where('status', 2)
-                ->orderBy('order', 'asc')
+                ->orderBy('order', 'desc')
                 ->limit(5)
                 ->get();
 
