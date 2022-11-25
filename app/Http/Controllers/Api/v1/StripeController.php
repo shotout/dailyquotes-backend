@@ -142,7 +142,7 @@ class StripeController extends Controller
     {
         // Subscription events attributes -----
         // event_name (SUBSCRIPTION_STARTED, SUBSCRIPTION_RENEWED, RENEWAL_DISABLED)
-        // user_id
+        // user_id / anonymous_user_id
         // plan (annual-mooti-subscription)
         // product 
         // store_product_id (mooti_annual_package)
