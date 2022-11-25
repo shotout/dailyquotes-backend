@@ -19,14 +19,9 @@ class PurchaselyController extends Controller
         $subscription = Subscription::where('user_id', $user->id)->first();
 
         if ($data['event_name'] == 'ACTIVATE') {
-            if ($data['store_product_id'] == 'mooti_annual_package') {
-                $type = 2;
-            } else {
-                $type = 3;
-            }
-
+       
             // update the subscription end
-            $subscription->type = $type;
+            $subscription->type = 4;
             $subscription->started = date('Y-m-d', strtotime($data['purchased_at']));
             $subscription->renewal = date('Y-m-d', strtotime($data['next_renewal_at']));
             $subscription->purchasely_data = $data;
