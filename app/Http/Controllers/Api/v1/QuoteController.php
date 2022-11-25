@@ -47,12 +47,6 @@ class QuoteController extends Controller
         //     $categories = array(1);
         // }
 
-        // list past quote user
-        $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
-            ->pluck('quote_id')
-            ->toArray();
-
-
         // check user category
         $isGeneral = UserCategory::where('user_id', auth('sanctum')->user()->id)
             ->where('category_id', 1)
@@ -68,22 +62,28 @@ class QuoteController extends Controller
             ->where('type', 1)
             ->pluck('quote_id')
             ->toArray();
+        $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
+            ->pluck('quote_id')
+            ->toArray();
         $myQuotes = MyQuote::where('user_id', auth('sanctum')->user()->id)->first();
 
         if ($isGeneral) {
             if ($isFavorite && count($userFavorites)) {
+                $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
+                    ->whereNotIn('quote_id', $userFavorites)
+                    ->pluck('quote_id')
+                    ->toArray();
+
                 if ($myQuotes) {
                     // order by
                     if (count($userCategories)) {
                         $query = Quote::whereIn('id', $myQuotes->quotes)
-                            ->whereIn('id', $userFavorites)
                             ->whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
                         $query = Quote::whereIn('id', $myQuotes->quotes)
-                            ->whereIn('id', $userFavorites)
                             ->whereNotIn('id', $pastQuotes)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
@@ -96,13 +96,11 @@ class QuoteController extends Controller
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
                             $query = Quote::whereIn('id', $myQuotes->quotes)
-                                ->whereIn('id', $userFavorites)
                                 ->whereIn('category_id', $userCategories)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
                             $query = Quote::whereIn('id', $myQuotes->quotes)
-                                ->whereIn('id', $userFavorites)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } 
@@ -114,12 +112,10 @@ class QuoteController extends Controller
                     if (count($userCategories)) {
                         $query = Quote::whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
-                            ->whereIn('id', $userFavorites)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
                         $query = Quote::whereNotIn('id', $pastQuotes)
-                            ->whereIn('id', $userFavorites)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     }
@@ -131,12 +127,10 @@ class QuoteController extends Controller
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
                             $query = Quote::whereIn('category_id', $userCategories)
-                                ->whereIn('id', $userFavorites)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
                             $query = Quote::where('status', 2)
-                                ->whereIn('id', $userFavorites)
                                 ->orderBy($column, $dir);
                         }
                         
@@ -209,16 +203,19 @@ class QuoteController extends Controller
             }
         } else {
             if ($isFavorite && count($userFavorites)) {
+                $pastQuotes = PastQuote::where('user_id', auth('sanctum')->user()->id)
+                    ->whereNotIn('quote_id', $userFavorites)
+                    ->pluck('quote_id')
+                    ->toArray();
+
                 // order by
                 if (count($userCategories)) {
                     $query = Quote::whereNotIn('id', $pastQuotes)
-                        ->whereIn('id', $userFavorites)
                         ->whereIn('category_id', $userCategories)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 } else {
                     $query = Quote::whereNotIn('id', $pastQuotes)
-                        ->whereIn('id', $userFavorites)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 }
@@ -231,12 +228,10 @@ class QuoteController extends Controller
                 if ($data->total() == 0) {
                     if (count($userCategories)) {
                         $query = Quote::whereIn('category_id', $userCategories)
-                            ->whereIn('id', $userFavorites)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::whereIn('id', $userFavorites)
-                            ->where('status', 2)
+                        $query = Quote::where('status', 2)
                             ->orderBy($column, $dir);
                     }
                     
