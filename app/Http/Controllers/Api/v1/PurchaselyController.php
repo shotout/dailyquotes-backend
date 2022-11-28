@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class PurchaselyController extends Controller
 {
-    public function index(request $request)
+    public function webhook(request $request)
     {
         $data = $request->all();
         Log::info($data);
