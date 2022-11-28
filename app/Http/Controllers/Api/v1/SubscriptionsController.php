@@ -91,7 +91,6 @@ class SubscriptionsController extends Controller
             if ($subscriptions) {
                 $subscriptions->type = $request->subscription_type;
                 $subscriptions->plan_id = 4;
-                $subscriptions->subscription_data = $request->subscription_data;
                 $subscriptions->save();
             } 
             return response()->json([
