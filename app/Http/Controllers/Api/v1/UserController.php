@@ -47,6 +47,11 @@ class UserController extends Controller
             $user->update();
         }
 
+        if ($request->has('purchasely_id')) {
+            $user->purchasely_id = $request->purchasely_id;
+            $user->update();
+        }
+
         // schedule reminder ------------
             $schedule = Schedule::where('user_id', auth('sanctum')->user()->id)->first();
 
