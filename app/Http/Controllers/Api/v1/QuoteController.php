@@ -269,6 +269,14 @@ class QuoteController extends Controller
             }
         }
 
+        // quote notif detail
+        if ($request->has('notif') && $request->notif != '') {
+            $quoteNotif = Quote::find($request->notif);
+            if ($quoteNotif) {
+                $data[0] = $quoteNotif;
+            }
+        }
+
         // user themes
         $counter = 0;
         foreach ($data as $qt) {
