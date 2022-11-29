@@ -11,16 +11,27 @@ class UserPastQuoteController extends Controller
 {
     public function index(Request $request)
     {
-        $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
-            ->pluck('quote_id')
-            ->toArray();
-
         if (auth('sanctum')->user()->subscription->type == 1) {
-            $quotes = Quote::with('like')->whereIn('id', $pq)
-                ->where('status', 2)
-                ->orderBy('order', 'desc')
-                ->limit(5)
-                ->get();
+            // $quotes = Quote::with('like')->whereIn('id', $pq)
+            //     ->where('status', 2)
+            //     ->orderBy('order', 'desc')
+            //     ->limit(5)
+            //     ->get();
+
+            $pq = PastQuote::where('user_id', auth('sanctum')->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->pluck('quote_id')
+                ->toArray();
+
+            $quotes = array();
+
+            foreach ($pq as $item) {
+                $quote = Quote::with('like')->find($item);
+                if ($quote) {
+                    $quotes[] = $quote;
+                }
+            }
 
             return response()->json([
                 'status' => 'success',
@@ -38,7 +49,7 @@ class UserPastQuoteController extends Controller
             if ($request->has('column') && $request->input('column') != '') {
                 $column = $request->input('column');
             } else {
-                $column = 'order';
+                $column = 'created_at';
             }
 
             // order direction
@@ -48,9 +59,7 @@ class UserPastQuoteController extends Controller
                 $dir = 'desc';
             }
 
-            // order by
-            $query = Quote::with('like')->whereIn('id', $pq)
-                ->where('status', 2)
+            $query = PastQuote::where('user_id', auth('sanctum')->user()->id)
                 ->orderBy($column, $dir);
 
             // pagination
@@ -58,6 +67,13 @@ class UserPastQuoteController extends Controller
                 $quotes = $query->get();
             } else {
                 $quotes = $query->paginate($length);
+            }
+            
+            foreach ($quotes as $i => $item) {
+                $quote = Quote::with('like')->find($item->quote_id);
+                if ($quote) {
+                    $quotes[$i] = $quote;
+                }
             }
 
             return response()->json([
