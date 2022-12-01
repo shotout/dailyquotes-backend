@@ -75,6 +75,9 @@ Route::group(
 
         Route::patch('/update-theme', [UserController::class, 'updateTheme'])->name('theme.update');
         Route::patch('/update-category', [UserController::class, 'updateCategory'])->name('category.update.');
+
+        Route::get('/rating', [UserController::class, 'getRating'])->name('rating.show');
+        Route::post('/rating', [UserController::class, 'postRating'])->name('rating.store');
         
         Route::get('/collection', [UserCollectionController::class, 'index'])->name('collection.index');
         Route::get('/collection/{id}', [UserCollectionController::class, 'show'])->name('collection.show');

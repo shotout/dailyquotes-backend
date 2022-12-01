@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "755e839b-f44f-4d09-ae0e-0bcf4e237578",
+		"_postman_id": "72a5db57-cb82-4fb1-b36a-f18ca51bee2b",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -452,6 +452,84 @@
 							"path": [
 								"user",
 								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|k2HIDoFoJPkes6NqdtM1iyrZyjRQB6wrH3DmGXCP",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/rating",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"rating"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|k2HIDoFoJPkes6NqdtM1iyrZyjRQB6wrH3DmGXCP",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/rating",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"rating"
 							]
 						}
 					},
