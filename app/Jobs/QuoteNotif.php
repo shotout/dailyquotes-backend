@@ -62,8 +62,10 @@ class QuoteNotif implements ShouldQueue
 
                                 $data = [
                                     "to" => $user->fcm_token,
-                                    "notification" => [
+                                    "data" => [
                                         "id" => $quote->id,
+                                    ],
+                                    "notification" => [
                                         "title" => $quote->author,
                                         "body" => $descShort,  
                                         "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
