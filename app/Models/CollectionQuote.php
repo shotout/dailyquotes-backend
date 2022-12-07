@@ -11,6 +11,6 @@ class CollectionQuote extends Model
 
     public function quote()
     {
-        return $this->belongsTo('\App\Models\Quote');
+        return $this->belongsTo('\App\Models\Quote')->with('like');
     }
 }
