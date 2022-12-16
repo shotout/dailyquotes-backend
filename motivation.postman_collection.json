@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "72a5db57-cb82-4fb1-b36a-f18ca51bee2b",
+		"_postman_id": "a82ab81b-8405-49d6-a7d1-39e57f9d2085",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -452,6 +452,46 @@
 							"path": [
 								"user",
 								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notif",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|DETz7yu1lTJZO9TpeUkqbxHGtwkYtbcAldzRFleZ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/user/notif?length=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"notif"
+							],
+							"query": [
+								{
+									"key": "length",
+									"value": "1"
+								}
 							]
 						}
 					},

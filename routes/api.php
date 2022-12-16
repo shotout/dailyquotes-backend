@@ -94,6 +94,8 @@ Route::group(
         Route::get('/like-quote', [UserLikeController::class, 'index'])->name('like.index');
         Route::post('/save-quote/{id}', [UserLikeController::class, 'store'])->name('like.store');
         Route::delete('/like-quote/{id}', [UserLikeController::class, 'destroy'])->name('like.destroy');
+
+        Route::get('/notif', [UserController::class, 'notif'])->name('notif.show');
     }
 );
 
