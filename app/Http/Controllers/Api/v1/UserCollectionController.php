@@ -39,17 +39,15 @@ class UserCollectionController extends Controller
         } else {
             $length = 10;
         }
-        
-        $cq = CollectionQuote::with('quote')
-            ->where('collection_id', $collection->id)
-            ->pluck('quote_id')
-            ->toArray();
 
-        $query = Quote::with('like')->whereIn('id', $cq);
+        // query
+        $query = CollectionQuote::with('quote')
+            ->where('collection_id', $collection->id)
+            ->orderBy('id', 'desc');
 
         // search
         if ($request->has('search') && $request->input('search') != '') {
-            $query->where(function($q) use($request) {
+            $query->whereHas('quote', function($q) use($request) {
                 $q->where('title', 'like', '%' . $request->input('search') . '%');
             });
         }

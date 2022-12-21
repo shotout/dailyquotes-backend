@@ -77,13 +77,15 @@ class QuoteController extends Controller
                 if ($myQuotes) {
                     // order by
                     if (count($userCategories)) {
-                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                        $query = Quote::with('like')
+                            ->whereIn('id', $myQuotes->quotes)
                             ->whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                        $query = Quote::with('like')
+                            ->whereIn('id', $myQuotes->quotes)
                             ->whereNotIn('id', $pastQuotes)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
@@ -95,12 +97,14 @@ class QuoteController extends Controller
                     // check if past quotes full
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
-                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                            $query = Quote::with('like')
+                                ->whereIn('id', $myQuotes->quotes)
                                 ->whereIn('category_id', $userCategories)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
-                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                            $query = Quote::with('like')
+                                ->whereIn('id', $myQuotes->quotes)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } 
@@ -110,12 +114,14 @@ class QuoteController extends Controller
                 } else {
                     // order by
                     if (count($userCategories)) {
-                        $query = Quote::whereNotIn('id', $pastQuotes)
+                        $query = Quote::with('like')
+                            ->whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::whereNotIn('id', $pastQuotes)
+                        $query = Quote::with('like')
+                            ->whereNotIn('id', $pastQuotes)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     }
@@ -126,11 +132,13 @@ class QuoteController extends Controller
                     // check if past quotes full
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
-                            $query = Quote::whereIn('category_id', $userCategories)
+                            $query = Quote::with('like')
+                                ->whereIn('category_id', $userCategories)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
-                            $query = Quote::where('status', 2)
+                            $query = Quote::with('like')
+                                ->where('status', 2)
                                 ->orderBy($column, $dir);
                         }
                         
@@ -141,13 +149,15 @@ class QuoteController extends Controller
                 if ($myQuotes) {
                     // order by
                     if (count($userCategories)) {
-                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                        $query = Quote::with('like')
+                            ->whereIn('id', $myQuotes->quotes)
                             ->whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::whereIn('id', $myQuotes->quotes)
+                        $query = Quote::with('like')
+                            ->whereIn('id', $myQuotes->quotes)
                             ->whereNotIn('id', $pastQuotes)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
@@ -159,12 +169,14 @@ class QuoteController extends Controller
                     // check if past quotes full
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
-                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                            $query = Quote::with('like')
+                                ->whereIn('id', $myQuotes->quotes)
                                 ->whereIn('category_id', $userCategories)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
-                            $query = Quote::whereIn('id', $myQuotes->quotes)
+                            $query = Quote::with('like')
+                                ->whereIn('id', $myQuotes->quotes)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } 
@@ -174,12 +186,14 @@ class QuoteController extends Controller
                 } else {
                     // order by
                     if (count($userCategories)) {
-                        $query = Quote::whereNotIn('id', $pastQuotes)
+                        $query = Quote::with('like')
+                            ->whereNotIn('id', $pastQuotes)
                             ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::whereNotIn('id', $pastQuotes)
+                        $query = Quote::with('like')
+                            ->whereNotIn('id', $pastQuotes)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     }
@@ -190,11 +204,13 @@ class QuoteController extends Controller
                     // check if past quotes full
                     if ($data->total() == 0) {
                         if (count($userCategories)) {
-                            $query = Quote::whereIn('category_id', $userCategories)
+                            $query = Quote::with('like')
+                                ->whereIn('category_id', $userCategories)
                                 ->where('status', 2)
                                 ->orderBy($column, $dir);
                         } else {
-                            $query = Quote::where('status', 2)->orderBy($column, $dir);
+                            $query = Quote::with('like')
+                                ->where('status', 2)->orderBy($column, $dir);
                         }
                         
                         $data = $query->paginate($length);
@@ -210,12 +226,14 @@ class QuoteController extends Controller
 
                 // order by
                 if (count($userCategories)) {
-                    $query = Quote::whereNotIn('id', $pastQuotes)
+                    $query = Quote::with('like')
+                        ->whereNotIn('id', $pastQuotes)
                         ->whereIn('category_id', $userCategories)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 } else {
-                    $query = Quote::whereNotIn('id', $pastQuotes)
+                    $query = Quote::with('like')
+                        ->whereNotIn('id', $pastQuotes)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 }
@@ -227,11 +245,13 @@ class QuoteController extends Controller
                 // check if past quotes full
                 if ($data->total() == 0) {
                     if (count($userCategories)) {
-                        $query = Quote::whereIn('category_id', $userCategories)
+                        $query = Quote::with('like')
+                            ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::where('status', 2)
+                        $query = Quote::with('like')
+                            ->where('status', 2)
                             ->orderBy($column, $dir);
                     }
                     
@@ -240,12 +260,14 @@ class QuoteController extends Controller
             } else {
                 // order by
                 if (count($userCategories)) {
-                    $query = Quote::whereNotIn('id', $pastQuotes)
+                    $query = Quote::with('like')
+                        ->whereNotIn('id', $pastQuotes)
                         ->whereIn('category_id', $userCategories)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 } else {
-                    $query = Quote::whereNotIn('id', $pastQuotes)
+                    $query = Quote::with('like')
+                        ->whereNotIn('id', $pastQuotes)
                         ->where('status', 2)
                         ->orderBy($column, $dir);
                 }
@@ -256,11 +278,13 @@ class QuoteController extends Controller
                 // check if past quotes full
                 if ($data->total() == 0) {
                     if (count($userCategories)) {
-                        $query = Quote::whereIn('category_id', $userCategories)
+                        $query = Quote::with('like')
+                            ->whereIn('category_id', $userCategories)
                             ->where('status', 2)
                             ->orderBy($column, $dir);
                     } else {
-                        $query = Quote::where('status', 2)
+                        $query = Quote::with('like')
+                            ->where('status', 2)
                             ->orderBy($column, $dir);
                     }
                     
@@ -271,7 +295,7 @@ class QuoteController extends Controller
 
         // quote notif detail
         if ($request->has('notif') && $request->notif != '') {
-            $quoteNotif = Quote::find($request->notif);
+            $quoteNotif = Quote::with('like')->find($request->notif);
             if ($quoteNotif) {
                 $data[0] = $quoteNotif;
             }

@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\User;
+use App\Models\Quote;
 use App\Models\Theme;
+use App\Models\Rating;
 use App\Models\Category;
 use App\Models\Schedule;
 use App\Jobs\GenerateTimer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Rating;
+use App\Models\UserNotif;
 
 class UserController extends Controller
 {
@@ -138,6 +140,40 @@ class UserController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $rating
+        ], 200);
+    }
+
+    public function notif(Request $request)
+    {
+        if ($request->has('length') && $request->input('length') != '') {
+            $length = $request->input('length');
+        } else {
+            $length = 1;
+        }
+
+        $notif = UserNotif::where('user_id', auth('sanctum')->user()->id)
+            ->pluck('quote_id')
+            ->toArray();
+
+        $query = Quote::whereNotIn('id', $notif)->orderBy('order', 'asc');
+        $data = $query->paginate($length);
+
+        // adding flag has notif
+        foreach ($data as $quote) {
+            $un = new UserNotif;
+            $un->user_id = auth('sanctum')->user()->id;
+            $un->quote_id = $quote->id;
+            $un->save();
+        }
+
+        // check if quotes empty
+        if ($data->total() == 0) {
+            UserNotif::where('user_id', auth('sanctum')->user()->id)->delete();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
         ], 200);
     }
 }
