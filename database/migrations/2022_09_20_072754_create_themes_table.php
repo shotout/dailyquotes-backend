@@ -28,6 +28,7 @@ class CreateThemesTable extends Migration
             // $table->string('line_height')->nullable();
             $table->string('text_color')->nullable();
             $table->string('text_shadow')->nullable();
+            $table->string('text_shadow_offset')->nullable();
             $table->string('background_color')->nullable();
 
             $table->tinyInteger('status')->default(2);
@@ -44,47 +45,62 @@ class CreateThemesTable extends Migration
         DB::table('themes')->insert([
             [
                 "name" => "Theme 1",
-                "is_free" => true,
-                "font_family" => "Iowan Old Style",
+                "is_free" => false,
+                "font_family" => "EBGaramond-Medium",
                 "text_color" => "#000000",
                 "text_shadow" => null,
+                "text_shadow_offset" => null,
                 "background_color" => null,
                 "created_at" => now()
             ],
             [
                 "name" => "Theme 2",
                 "is_free" => false,
-                "font_family" => "Koulen",
+                "font_family" => "Koulen-Regular",
                 "text_color" => "#FFFFFF",
-                "text_shadow" => "0px 4px 4px rgba(0, 0, 0, 0.65)",
+                "text_shadow" => "rgba(0, 0, 0, 0.75)",
+                "text_shadow_offset" => '{"width":2,"height":2}',
                 "background_color" => null,
                 "created_at" => now()
             ],
             [
                 "name" => "Theme 3",
                 "is_free" => false,
-                "font_family" => "Koulen",
+                "font_family" => "FjallaOne-Regular",
                 "text_color" => "#FFFFFF",
-                "text_shadow" => "0px 4px 4px rgba(0, 0, 0, 0.65)",
+                "text_shadow" => "rgba(0, 0, 0, 0.75)",
+                "text_shadow_offset" => '{"width":1,"height":1}',
                 "background_color" => null,
                 "created_at" => now()
             ],
             [
                 "name" => "Theme 4",
                 "is_free" => false,
-                "font_family" => "License Plate",
-                "text_color" => "#FFFFFF",
-                "text_shadow" => "0px 4px 4px rgba(0, 0, 0, 0.65)",
+                "font_family" => "Montserrat-SemiBold",
+                "text_color" => "#FFDA97",
+                "text_shadow" => "rgba(0, 0, 0, 0.75)",
+                "text_shadow_offset" => null,
                 "background_color" => null,
                 "created_at" => now()
             ],
             [
                 "name" => "Theme 5",
                 "is_free" => false,
-                "font_family" => "Patua One",
+                "font_family" => "PatuaOne-Regular",
                 "text_color" => "#FFFFFF",
                 "text_shadow" => null,
-                "background_color" => "rgba(0, 0, 0, 0.6)",
+                "text_shadow_offset" => null,
+                "background_color" => "rgba(0,0,0,0.7)",
+                "created_at" => now()
+            ],
+            [
+                "name" => "Random",
+                "is_free" => true,
+                "font_family" => null,
+                "text_color" => null,
+                "text_shadow" => null,
+                "text_shadow_offset" => null,
+                "background_color" => null,
                 "created_at" => now()
             ],
         ]);
@@ -123,6 +139,13 @@ class CreateThemesTable extends Migration
                 "type" => "theme",
                 "name" => "5.png",
                 "url" => "/assets/images/theme/bg/5.png",
+                "created_at" => now()
+            ],
+            [
+                "owner_id" => 6,
+                "type" => "theme",
+                "name" => "6.png",
+                "url" => "/assets/images/theme/bg/6.png",
                 "created_at" => now()
             ],
         ]);

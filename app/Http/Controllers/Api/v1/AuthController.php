@@ -142,7 +142,7 @@ class AuthController extends Controller
             // ----------------------
 
             // themes ------------
-                $user->themes()->sync([1]);
+                $user->themes()->sync([6]);
             // -----------------------
 
             // categories ------------

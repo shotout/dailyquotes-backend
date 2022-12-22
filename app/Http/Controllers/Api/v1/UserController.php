@@ -70,6 +70,10 @@ class UserController extends Controller
             if ($request->has('anytime') && $request->anytime != '') {
                 $schedule->anytime = true;
             }
+
+            if ($request->has('timezone') && $request->timezone != '') {
+                $schedule->timezone = $request->timezone;
+            }
             
             $schedule->save();
             GenerateTimer::dispatch($user->id)->onQueue(env('SUPERVISOR'));

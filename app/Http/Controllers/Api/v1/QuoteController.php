@@ -301,16 +301,17 @@ class QuoteController extends Controller
             }
         }
 
-        // user themes
-        $counter = 0;
-        foreach ($data as $qt) {
-            if ($counter == count(auth('sanctum')->user()->themes)) {
-                $counter = 0;
-            }
+        // user random themes base on quote swipe
+            // $counter = 0;
+            // foreach ($data as $qt) {
+            //     if ($counter == count(auth('sanctum')->user()->themes)) {
+            //         $counter = 0;
+            //     }
 
-            $qt->theme = auth('sanctum')->user()->themes[$counter];
-            $counter++;
-        }
+            //     $qt->theme = auth('sanctum')->user()->themes[$counter];
+            //     $counter++;
+            // }
+        // ---------------
 
         // free 1 month
         $isFreeUser = Subscription::where('user_id', auth('sanctum')->user()->id)
