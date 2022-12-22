@@ -40,29 +40,31 @@ class GenerateTimer implements ShouldQueue
         $range = $minutes;
         $interval = floor($range / $this->user->schedule->often);
         $timer = array();
-    
-        if ($interval >= 6) {
-            for ($i=1; $i <= $this->user->schedule->often; $i++) { 
-                if ($i == 1) {
-                    $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)->format('H:i');
-                } else if ($i == $this->user->schedule->often) {
-                    $timer[] = \Carbon\Carbon::parse($this->user->schedule->end)->format('H:i');
+
+        for ($i=1; $i <= $this->user->schedule->often; $i++) { 
+            if ($i == 1) {
+                $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)->format('H:i');
+            } else if ($i == $this->user->schedule->often) {
+                $timer[] = \Carbon\Carbon::parse($this->user->schedule->end)->format('H:i');
+            } else {
+                if ($this->user->schedule->often == 3) {
+                    $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
+                        ->addMinutes($range / 2)
+                        ->format('H:i');
                 } else {
-                    if ($this->user->schedule->often == 3) {
-                        $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
-                            ->addMinutes($range / 2)
-                            ->format('H:i');
-                    } else {
-                        $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
-                            ->addMinutes($interval* $i)
-                            ->format('H:i');
-                    }
+                    $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)
+                        ->addMinutes($interval* $i)
+                        ->format('H:i');
                 }
             }
-        
+        }
+    
+        if ($interval >= 6) {
             Schedule::where('id', $this->user->schedule->id)->update(['timer' => $timer]);
+            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => null]);
         } else {
             Schedule::where('id', $this->user->schedule->id)->update(['timer' => null]);
+            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => $timer]);
         }
 
         Log::info('Job GenerateTimer Success ...');
