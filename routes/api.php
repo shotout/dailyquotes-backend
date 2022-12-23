@@ -46,7 +46,8 @@ Route::group(
         Route::get('/ways', [ListController::class, 'ways'])->name('ways');
         Route::get('/areas', [ListController::class, 'areas'])->name('areas');
         Route::get('/themes', [ListController::class, 'themes'])->name('themes');
-        Route::get('/groups', [ListController::class, 'groups'])->name('groups');
+        Route::get('/groups', [ListController::class, 'groups'])
+            ->middleware('auth:sanctum')->name('groups');
         Route::get('/categories', [ListController::class, 'categories'])->name('categories');
         Route::get('/links', [ListController::class, 'links'])->name('links');
     }

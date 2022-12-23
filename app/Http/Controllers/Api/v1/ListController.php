@@ -12,6 +12,7 @@ use App\Models\Theme;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserCategory;
 
 class ListController extends Controller
 {
@@ -99,8 +100,24 @@ class ListController extends Controller
 
         $data = array(
             "popular" => $popular,
-            "category" => $groups
+            "category" => $groups,
+            "alternative" => null
         );
+
+        // alternative category
+        if ($request->has('search') && $request->input('search') != '') {
+            if (!count($groups)) {
+                $myCategory = UserCategory::where('user_id', auth('sanctum')->user()->id)
+                    ->pluck('category_id')
+                    ->toArray();
+
+                $data['alternative'] = Group::with(['categories' => function($q) use($myCategory) {
+                    $q->whereNotIn('id', $myCategory);
+                }])
+                    ->where('status', 2)
+                    ->get();
+            }
+        }
 
         return response()->json([
             'status' => 'success',
