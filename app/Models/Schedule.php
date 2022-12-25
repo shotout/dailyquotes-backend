@@ -10,6 +10,7 @@ class Schedule extends Model
     use HasFactory;
 
     protected $casts = [
-        'timer' => 'json'
+        'timer' => 'json',
+        'timer_local' => 'json'
     ];
 }

@@ -40,7 +40,7 @@ class GenerateTimer implements ShouldQueue
         $range = $minutes;
         $interval = floor($range / $this->user->schedule->often);
         $timer = array();
-    
+
         for ($i=1; $i <= $this->user->schedule->often; $i++) { 
             if ($i == 1) {
                 $timer[] = \Carbon\Carbon::parse($this->user->schedule->start)->format('H:i');
@@ -59,7 +59,14 @@ class GenerateTimer implements ShouldQueue
             }
         }
     
-        Schedule::where('id', $this->user->schedule->id)->update(['timer' => $timer]);
+        if ($interval >= 6) {
+            Schedule::where('id', $this->user->schedule->id)->update(['timer' => $timer]);
+            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => null]);
+        } else {
+            Schedule::where('id', $this->user->schedule->id)->update(['timer' => null]);
+            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => $timer]);
+        }
+
         Log::info('Job GenerateTimer Success ...');
     }
 }
