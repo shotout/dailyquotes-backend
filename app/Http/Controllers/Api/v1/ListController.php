@@ -107,15 +107,17 @@ class ListController extends Controller
         // alternative category
         if ($request->has('search') && $request->input('search') != '') {
             if (!count($groups)) {
-                $myCategory = UserCategory::where('user_id', auth('sanctum')->user()->id)
-                    ->pluck('category_id')
-                    ->toArray();
+                if (auth('sanctum')->check()) {
+                    $myCategory = UserCategory::where('user_id', auth('sanctum')->user()->id)
+                        ->pluck('category_id')
+                        ->toArray();
 
-                $data['alternative'] = Group::with(['categories' => function($q) use($myCategory) {
-                    $q->whereNotIn('id', $myCategory);
-                }])
-                    ->where('status', 2)
-                    ->get();
+                    $data['alternative'] = Group::with(['categories' => function($q) use($myCategory) {
+                        $q->whereNotIn('id', $myCategory);
+                    }])
+                        ->where('status', 2)
+                        ->get();
+                }
             }
         }
 
