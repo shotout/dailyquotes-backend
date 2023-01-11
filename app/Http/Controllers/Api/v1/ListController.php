@@ -112,11 +112,19 @@ class ListController extends Controller
                         ->pluck('category_id')
                         ->toArray();
 
-                    $data['alternative'] = Group::with(['categories' => function($q) use($myCategory) {
+                    $alternatives = Group::with(['categories' => function($q) use($myCategory) {
                         $q->whereNotIn('id', $myCategory);
                     }])
                         ->where('status', 2)
                         ->get();
+
+                    $resp = array();
+                    foreach ($alternatives as $group) {
+                        if (count($group->categories)) {
+                            $resp[] = $group;
+                        }
+                    }
+                    $data['alternative'] = $resp;
                 }
             }
         }
