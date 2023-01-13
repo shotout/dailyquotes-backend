@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed484198-5dc7-4717-9e3b-81f959cceae3",
+		"_postman_id": "842fbbe4-5ddb-4d88-8d6d-0c68fcd6cf74",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -65,7 +65,7 @@
 								},
 								{
 									"key": "device_id",
-									"value": "123456",
+									"value": "1234567",
 									"type": "text"
 								},
 								{
@@ -171,6 +171,17 @@
 								{
 									"key": "timezone",
 									"value": "Asia/Jakarta",
+									"type": "text"
+								},
+								{
+									"key": "jeda",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "commit_goal",
+									"value": "12",
 									"type": "text"
 								}
 							]
@@ -284,6 +295,54 @@
 							"path": [
 								"list",
 								"themes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "background",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/backgrounds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"backgrounds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fonts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/list/fonts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"list",
+								"fonts"
 							]
 						}
 					},
@@ -576,6 +635,130 @@
 					"response": []
 				},
 				{
+					"name": "add cutome theme",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|bYsteLi4q47tpZTywB9iQxbS2d25340elO8lPBxO",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "background_color",
+									"value": "#000",
+									"type": "text"
+								},
+								{
+									"key": "background_image",
+									"value": "/assets/images/theme/bg/1.png",
+									"type": "text"
+								},
+								{
+									"key": "font_family",
+									"value": "Koulen-Regular",
+									"type": "text"
+								},
+								{
+									"key": "text_color",
+									"value": "#FFF",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/custome-theme",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"custome-theme"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update cutome theme",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|bYsteLi4q47tpZTywB9iQxbS2d25340elO8lPBxO",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "background_color",
+									"value": "#FFF",
+									"type": "text"
+								},
+								{
+									"key": "background_image",
+									"value": "/assets/images/theme/bg/2.png",
+									"type": "text"
+								},
+								{
+									"key": "font_family",
+									"value": "EBGaramond-Medium",
+									"type": "text"
+								},
+								{
+									"key": "text_color",
+									"value": "#000",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "patch",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/user/custome-theme/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"custome-theme",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "update",
 					"request": {
 						"auth": {
@@ -583,7 +766,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|362qROa5ffTOjGeRld907LUHmPVRrVBZJAotQkhl",
+									"value": "2|9GdvM84Rvo5idxCZkl3gbZpLLR831gtJBIFEtnex",
 									"type": "string"
 								}
 							]
@@ -655,6 +838,11 @@
 								{
 									"key": "timezone",
 									"value": "Asia/Bangkok",
+									"type": "text"
+								},
+								{
+									"key": "commit_goal",
+									"value": "6",
 									"type": "text"
 								}
 							]

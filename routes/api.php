@@ -49,6 +49,8 @@ Route::group(
         Route::get('/groups', [ListController::class, 'groups'])->name('groups');
         Route::get('/categories', [ListController::class, 'categories'])->name('categories');
         Route::get('/links', [ListController::class, 'links'])->name('links');
+        Route::get('/fonts', [ListController::class, 'fonts'])->name('fonts');
+        Route::get('/backgrounds', [ListController::class, 'backgrounds'])->name('backgrounds');
     }
 );
 
@@ -96,6 +98,9 @@ Route::group(
         Route::delete('/like-quote/{id}', [UserLikeController::class, 'destroy'])->name('like.destroy');
 
         Route::get('/notif', [UserController::class, 'notif'])->name('notif.show');
+
+        Route::post('/custome-theme', [UserController::class, 'storeCustomeTheme'])->name('customeTheme.store');
+        Route::patch('/custome-theme/{id}', [UserController::class, 'updateCustomeTheme'])->name('customeTheme.update');
     }
 );
 
