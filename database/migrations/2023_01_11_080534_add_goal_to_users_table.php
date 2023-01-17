@@ -15,6 +15,8 @@ class AddGoalToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->tinyInteger('commit_goal')->nullable()->after('notif_count');
+            $table->boolean('specific_goal')->default(false)->after('notif_count');
+            $table->boolean('important_change')->default(false)->after('notif_count');
         });
 
         Schema::table('themes', function (Blueprint $table) {
@@ -31,6 +33,8 @@ class AddGoalToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('commit_goal');
+            $table->dropColumn('specific_goal');
+            $table->dropColumn('important_change');
         });
 
         Schema::table('themes', function (Blueprint $table) {

@@ -65,7 +65,7 @@
 								},
 								{
 									"key": "device_id",
-									"value": "1234567",
+									"value": "12345",
 									"type": "text"
 								},
 								{
@@ -165,7 +165,7 @@
 								},
 								{
 									"key": "fcm_token",
-									"value": "1234",
+									"value": "12345",
 									"type": "text"
 								},
 								{
@@ -182,6 +182,16 @@
 								{
 									"key": "commit_goal",
 									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "specific_goal",
+									"value": "yes",
+									"type": "text"
+								},
+								{
+									"key": "important_change",
+									"value": "no",
 									"type": "text"
 								}
 							]
