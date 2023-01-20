@@ -36,9 +36,7 @@ class ThemesListDataTable extends DataTable
     public function query()
     {
         $categories = Theme::join('media', 'media.owner_id', '=', 'themes.id')
-            ->join('user_themes', 'user_themes.theme_id', '=', 'themes.id')
             ->select('themes.id','themes.name')
-            ->selectRaw('count(user_themes.user_id) as total_users')
             ->where('themes.name', '!=', 'Random')
             ->groupBy('themes.id')
             ->get();
