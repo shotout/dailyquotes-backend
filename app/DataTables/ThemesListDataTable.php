@@ -48,7 +48,7 @@ class ThemesListDataTable extends DataTable
     {
         return $this->builder()
             ->addColumn(['data' => 'id', 'name' => 'id', "visible" => false])
-            ->addColumn(['data' => 'name', 'name' => 'name', 'title' => __('Category Name')])
+            ->addColumn(['data' => 'name', 'name' => 'name', 'title' => __('Theme Name')])
             ->addColumn(['data' => 'url', 'name' => 'url', 'title' => __('Image')])
             ->addColumn(['data' => 'total_users', 'name' => 'total_users', 'title' => __('Total Users')])
             ->parameters([
