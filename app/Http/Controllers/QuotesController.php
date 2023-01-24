@@ -95,12 +95,19 @@ class QuotesController extends Controller
 
     public function importcsv(Request $request)
     {
-
-        if( $request->hasFile('file') ) {
-                        
-        }
         $category = $request->group_name;
+
+        Quote::where('category_id', $category)->delete();
+
         Excel::import(new QuotesImport($category), $request->file('csv_file'));
-        return redirect()->route('qt.list')->with('success', 'Quotes imported successfully');
+
+        $quote = Quote::get();
+        foreach ($quote as $key => $value) {
+            $value->order = rand(1, 10000);
+            $value->save();
+        }
+
+        return redirect()->route('qt.list')->with('success', 'Quotes imported successfully');  
+        
     }
 }

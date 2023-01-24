@@ -6,6 +6,7 @@ use App\Http\Controllers\GroupCategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PoolController;
 use App\Http\Controllers\QuotesController;
+use App\Http\Controllers\ThemeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,5 +79,9 @@ Route::prefix('pool')->middleware('auth:web')->group(function () {
     Route::post('/update-feels', [PoolController::class, 'feel'])->name('pl.feels');
     Route::get('/ways', [PoolController::class, 'ways'])->name('pl.ways');
     Route::post('/update-ways', [PoolController::class, 'way'])->name('pl.ways');
+});
+
+Route::prefix('themes')->middleware('auth:web')->group(function () {
+    Route::get('/list', [ThemeController::class, 'index'])->name('tm.list');
 });
 

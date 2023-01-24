@@ -32,6 +32,12 @@
                         <li class="{{ isset($sub_menu) && $sub_menu == 'pool' ? 'active' : '' }}"><a href="{{ url('pool/list') }}" class="">{{ __('What areas in life would you like to improve?') }}</a></li>                                      
                     </ul>
                 </li>
+                <li data-username="themes" class="nav-item pcoded-hasmenu {{ $menu == 'themes' ? 'pcoded-trigger active' : '' }}">
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">{{ __('Themes') }} </span></a>
+                    <ul class="pcoded-submenu">
+                        <li class="{{ isset($sub_menu) && $sub_menu == 'themeslist' ? 'active' : '' }}"><a href="{{ url('themes/list') }}" class="">{{ __('Users Theme') }}</a></li>                                        
+                    </ul>
+                </li>
 
             </ul>
             </li><br><br>
