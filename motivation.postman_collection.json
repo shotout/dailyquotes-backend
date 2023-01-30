@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "842fbbe4-5ddb-4d88-8d6d-0c68fcd6cf74",
+		"_postman_id": "9d267080-8b63-4b83-a4d5-d8ab40858990",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -1672,6 +1672,45 @@
 							]
 						},
 						"description": "body :\n\nplan = id\n\nprice = stripe_id"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "setting",
+			"item": [
+				{
+					"name": "paywall",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|7ETdFvR3UduNTPFbQehvmsSJqyAZYAyPIXnaYJew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/setting/paywall",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"setting",
+								"paywall"
+							]
+						}
 					},
 					"response": []
 				}
