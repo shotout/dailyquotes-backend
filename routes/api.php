@@ -63,6 +63,7 @@ Route::group(
     ],
     function() {
         Route::get('/', [QuoteController::class, 'index'])->name('index');
+        Route::post('/share/{id}', [QuoteController::class, 'share'])->name('share');
     }
 );
 

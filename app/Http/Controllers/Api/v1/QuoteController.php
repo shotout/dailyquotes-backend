@@ -336,4 +336,24 @@ class QuoteController extends Controller
             )
         ], 200);
     }
+
+    public function share($id)
+    {
+        $quote = Quote::find($id);
+
+        if (!$quote) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'data not found'
+            ], 404);
+        }
+
+        $quote->count_share++;
+        $quote->update();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => null
+        ], 200);
+    }
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9d267080-8b63-4b83-a4d5-d8ab40858990",
+		"_postman_id": "9be59d7c-33fa-4726-be93-4e8cfaebdbfb",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -484,6 +484,42 @@
 							]
 						},
 						"description": "pagination :\n\ndefautnya 1\n\n/api/v1/quote?length={int}\n\nuntuk detail notif saat di klik\n\nbody notif={id}\n\n/api/v1/quote?length={int}¬if={id}"
+					},
+					"response": []
+				},
+				{
+					"name": "share",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3948|SHKel0utFelmxL5JM3SUJSqGDhl9Dy0pdYes5EXx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/quote/share/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"quote",
+								"share",
+								"1"
+							]
+						},
+						"description": "/api/v1/quote/share/{id_quote}"
 					},
 					"response": []
 				}
