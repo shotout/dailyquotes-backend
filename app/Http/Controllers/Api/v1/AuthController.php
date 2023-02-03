@@ -86,6 +86,21 @@ class AuthController extends Controller
                 if ($request->has('purchasely_id')) {
                     $user->purchasely_id = $request->purchasely_id;
                 }
+
+                if ($request->has('specific_goal')) {
+                    if ($request->specific_goal == 'yes') {
+                        $user->specific_goal = 1;
+                    }
+                }
+                if ($request->has('important_change')) {
+                    if ($request->important_change == 'yes') {
+                        $user->important_change = 1;
+                    }
+                }
+                if ($request->has('commit_goal')) {
+                    $user->commit_goal = $request->commit_goal;
+                }
+                
                 // $user->remember_token = Str::random(16);
                 $user->save();
             // ------------------------------

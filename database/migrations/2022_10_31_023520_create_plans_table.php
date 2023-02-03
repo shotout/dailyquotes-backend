@@ -34,7 +34,7 @@ class CreatePlansTable extends Migration
         DB::table('plans')->insert([
             [
                 'type' => 1,
-                'sequence' => '',
+                'sequence' => null,
                 'title' => '',
                 'sub_title' => '',
                 'name' => 'free trial',
@@ -92,7 +92,7 @@ class CreatePlansTable extends Migration
 
             [
                 'type' => 5,
-                'sequence' => '',
+                'sequence' => null,
                 'title' => '',
                 'sub_title' => '',
                 'name' => '1-month free subscription',

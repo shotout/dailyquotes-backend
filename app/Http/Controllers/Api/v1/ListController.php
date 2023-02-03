@@ -12,6 +12,7 @@ use App\Models\Theme;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 use App\Models\UserCategory;
 
 class ListController extends Controller
@@ -182,6 +183,31 @@ class ListController extends Controller
         }
 
         $data = $query->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ], 200);
+    }
+
+    public function fonts()
+    {
+        $data = Theme::select('id','font_family')
+            ->where('id','!=',6)
+            ->where('status', 2)
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ], 200);
+    }
+
+    public function backgrounds()
+    {
+        $data = Media::select('id','url')
+            ->where('type', 'theme')
+            ->get();
 
         return response()->json([
             'status' => 'success',

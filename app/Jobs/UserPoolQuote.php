@@ -63,7 +63,7 @@ class UserPoolQuote implements ShouldQueue
             }
             $pool->save();
 
-            $quotes = Quote::orderBy('id', 'desc')
+            $quotes = Quote::orderBy('order', 'asc')
                 ->where('category_id', $pool->category_id)
                 ->whereNotIn('id', $pastQuotes)
                 ->take($pool->quote)

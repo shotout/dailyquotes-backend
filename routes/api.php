@@ -4,12 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
-use App\Http\Controllers\Api\v1\PurchaselyController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\QuoteController;
 use App\Http\Controllers\Api\v1\StripeController;
-use App\Http\Controllers\Api\v1\SubscriptionsController;
+use App\Http\Controllers\Api\v1\SettingController;
 use App\Http\Controllers\Api\v1\UserLikeController;
+use App\Http\Controllers\Api\v1\PurchaselyController;
+use App\Http\Controllers\Api\v1\SubscriptionsController;
 use App\Http\Controllers\Api\v1\UserPastQuoteController;
 use App\Http\Controllers\Api\v1\UserCollectionController;
 
@@ -49,6 +50,8 @@ Route::group(
         Route::get('/groups', [ListController::class, 'groups'])->name('groups');
         Route::get('/categories', [ListController::class, 'categories'])->name('categories');
         Route::get('/links', [ListController::class, 'links'])->name('links');
+        Route::get('/fonts', [ListController::class, 'fonts'])->name('fonts');
+        Route::get('/backgrounds', [ListController::class, 'backgrounds'])->name('backgrounds');
     }
 );
 
@@ -60,6 +63,7 @@ Route::group(
     ],
     function() {
         Route::get('/', [QuoteController::class, 'index'])->name('index');
+        Route::post('/share/{id}', [QuoteController::class, 'share'])->name('share');
     }
 );
 
@@ -96,6 +100,20 @@ Route::group(
         Route::delete('/like-quote/{id}', [UserLikeController::class, 'destroy'])->name('like.destroy');
 
         Route::get('/notif', [UserController::class, 'notif'])->name('notif.show');
+
+        Route::post('/custome-theme', [UserController::class, 'storeCustomeTheme'])->name('customeTheme.store');
+        Route::patch('/custome-theme/{id}', [UserController::class, 'updateCustomeTheme'])->name('customeTheme.update');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => 'auth:sanctum',
+        'prefix' => 'v1/setting',
+        'name' => 'setting.'
+    ],
+    function() {
+        Route::get('/paywall', [SettingController::class, 'paywall'])->name('paywall');
     }
 );
 

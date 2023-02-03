@@ -11,6 +11,8 @@ use App\Models\Schedule;
 use App\Jobs\GenerateTimer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CustomeTheme;
+use App\Models\Media;
 use App\Models\UserNotif;
 
 class UserController extends Controller
@@ -52,6 +54,11 @@ class UserController extends Controller
 
         if ($request->has('purchasely_id')) {
             $user->purchasely_id = $request->purchasely_id;
+            $user->update();
+        }
+
+        if ($request->has('commit_goal') && $request->commit_goal != '') {
+            $user->commit_goal = $request->commit_goal;
             $user->update();
         }
 
@@ -179,5 +186,83 @@ class UserController extends Controller
             'status' => 'success',
             'data' => $data
         ], 200);
+    }
+
+    public function storeCustomeTheme(Request $request)
+    {
+        $customeTheme = new CustomeTheme;
+        $customeTheme->user_id = auth('sanctum')->user()->id;
+
+        if ($request->has('background_color') && $request->background_color != '') {
+            $customeTheme->bg_image_color = $request->background_color;
+        }
+        if ($request->has('font_family') && $request->font_family != '') {
+            $customeTheme->font_family = $request->font_family;
+        }
+        if ($request->has('text_color') && $request->text_color != '') {
+            $customeTheme->text_color = $request->text_color;
+        }
+
+        if ($customeTheme->save()) {
+            if ($request->has('background_image') && $request->background_image != '') {
+                $bg = new Media;
+                $bg->owner_id = $customeTheme->id;
+                $bg->type = "custome_theme";
+                $bg->url = $request->background_image;
+                $bg->save();
+            }
+
+            $data = CustomeTheme::with('background')->find($customeTheme->id);
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $data
+            ], 200);
+        }
+    }
+
+    public function updateCustomeTheme(Request $request, $id)
+    {
+        $customeTheme = CustomeTheme::where('id', $id)
+            ->where('user_id', auth('sanctum')->user()->id)
+            ->first();
+        if (!$customeTheme) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Custome theme not found'
+            ], 404);
+        }
+
+        if ($request->has('background_color') && $request->background_color != '') {
+            $customeTheme->bg_image_color = $request->background_color;
+        }
+        if ($request->has('font_family') && $request->font_family != '') {
+            $customeTheme->font_family = $request->font_family;
+        }
+        if ($request->has('text_color') && $request->text_color != '') {
+            $customeTheme->text_color = $request->text_color;
+        }
+
+        if ($customeTheme->update()) {
+            if ($request->has('background_image') && $request->background_image != '') {
+                $bg = Media::where('type', 'custome_theme')->where('owner_id', $id)->first();
+                
+                if (!$bg) {
+                    $bg = new Media;
+                }
+
+                $bg->owner_id = $customeTheme->id;
+                $bg->type = "custome_theme";
+                $bg->url = $request->background_image;
+                $bg->save();
+            }
+
+            $data = CustomeTheme::with('background')->find($customeTheme->id);
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $data
+            ], 200);
+        }
     }
 }
