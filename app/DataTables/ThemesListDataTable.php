@@ -17,27 +17,38 @@ class ThemesListDataTable extends DataTable
         $categories = $this->query();
         return datatables()
             ->of($categories)
-            ->addColumn('total_users', function ($categories) {
-               $total_users = UserTheme::where('theme_id', $categories->id)->count();
+            ->addColumn('free_users', function ($categories) {
+                $total_users = UserTheme::join('subscriptions', 'subscriptions.user_id', '=', 'user_themes.user_id')
+                ->where('subscriptions.plan_id', '1')
+                ->where('theme_id', $categories->id)->count();
+                return $total_users;
+            })
+            ->addColumn('paid_users', function ($categories) {
+                $total_users = UserTheme::join('subscriptions', 'subscriptions.user_id', '=', 'user_themes.user_id')
+                ->where('subscriptions.plan_id', '!=', '1')
+                ->where('theme_id', $categories->id)->count();
                 return $total_users;
             })
             ->addColumn('url', function ($categories) {
-
+                $img = '';
                 $data = Media::where('owner_id', $categories->id)->where('type', 'theme')->first();
-                $img = '<img src="' . env('APP_URL') . $data->url . '" alt="icon" width="100" height="100">';
+                if ($data) {
+                    $img = '<img src="' . env('APP_URL') . $data->url . '" alt="icon" width="100" height="100">';
+                    return $img;
+                }
+
 
                 return $img;
             })
-            ->rawColumns(['name','url','total_users','action'])
+            ->rawColumns(['name', 'url', 'free_users','paid_users', 'action'])
             ->make(true);
     }
 
 
     public function query()
     {
-        $categories = Theme::join('media', 'media.owner_id', '=', 'themes.id')
-            ->select('themes.id','themes.name')
-            ->where('themes.name', '!=', 'Random')
+        $categories = Theme::select('themes.id', 'themes.name')
+            ->orderBy('id', 'desc')
             ->groupBy('themes.id')
             ->get();
 
@@ -49,11 +60,12 @@ class ThemesListDataTable extends DataTable
         return $this->builder()
             ->addColumn(['data' => 'id', 'name' => 'id', "visible" => false])
             ->addColumn(['data' => 'name', 'name' => 'name', 'title' => __('Theme Name')])
-            ->addColumn(['data' => 'url', 'name' => 'url', 'title' => __('Image')])
-            ->addColumn(['data' => 'total_users', 'name' => 'total_users', 'title' => __('Total Users')])
+            ->addColumn(['data' => 'url', 'name' => 'url', 'title' => __('Theme Image')])
+            ->addColumn(['data' => 'free_users', 'name' => 'free_users', 'title' => __('Free Users')])
+            ->addColumn(['data' => 'paid_users', 'name' => 'paid_users', 'title' => __('Paid Users')])
             ->parameters([
                 'pageLength' => $this->row_per_page,
-                'order' => [0, 'ASC']
+                'order' => [1, 'ASC']
             ]);
     }
 
