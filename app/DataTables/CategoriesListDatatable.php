@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Admins;
 use App\Models\Category;
+use App\Models\UserCategory;
 use Illuminate\Support\Env;
 use Yajra\DataTables\Services\DataTable;
 
@@ -25,24 +26,36 @@ class CategoriesListDatatable extends DataTable
 
                 return $img;
             })
-            ->addColumn('is_free', function ($categories) {
-                if ($categories->is_free == 1) {
-                    return '<span class="badge badge-success">Free</span>';
-                } else {
-                    return '<span class="badge badge-danger">Paid</span>';
-                }
+            // ->addColumn('is_free', function ($categories) {
+            //     if ($categories->is_free == 1) {
+            //         return '<span class="badge badge-success">Free</span>';
+            //     } else {
+            //         return '<span class="badge badge-danger">Paid</span>';
+            //     }
+            // })
+            // ->addColumn('action', function ($categories) {
+            //     $delete = '<form method="POST" action="' . url("categories/delete/" . $categories->id) . '"accept-charset="UTF-8" class="display_inline" id="delete-item-' . $categories->id . '">
+            //     ' . csrf_field() . '
+            //         <input type="hidden" name="id" value="' . $categories->id . '">
+            //         <button title="' . __('Delete') . '" class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-id="' . $categories->id . '" data-target="#confirmDelete" data-label = "Delete" data-title="' . __('Delete item') . '" data-message="' . __('Are you sure to delete this item?') . '">
+            //             <i class="feather icon-trash-2"></i> 
+            //         </button>
+            //     </form>';
+            //     return $delete;
+            // })
+            ->addColumn('free_users', function ($categories) {
+                $total_users = UserCategory::join('subscriptions', 'subscriptions.user_id', '=', 'user_category.user_id')
+                ->where('subscriptions.plan_id', '1')
+                ->where('category_id', $categories->id)->count();
+                return $total_users;
             })
-            ->addColumn('action', function ($categories) {
-                $delete = '<form method="POST" action="' . url("categories/delete/" . $categories->id) . '"accept-charset="UTF-8" class="display_inline" id="delete-item-' . $categories->id . '">
-                ' . csrf_field() . '
-                    <input type="hidden" name="id" value="' . $categories->id . '">
-                    <button title="' . __('Delete') . '" class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-id="' . $categories->id . '" data-target="#confirmDelete" data-label = "Delete" data-title="' . __('Delete item') . '" data-message="' . __('Are you sure to delete this item?') . '">
-                        <i class="feather icon-trash-2"></i> 
-                    </button>
-                </form>';
-                return $delete;
+            ->addColumn('paid_users', function ($categories) {
+                $total_users = UserCategory::join('subscriptions', 'subscriptions.user_id', '=', 'user_category.user_id')
+                ->where('subscriptions.plan_id', '!=', '1')
+                ->where('category_id', $categories->id)->count();
+                return $total_users;
             })
-            ->rawColumns(['name', 'group_name','is_free', 'url','action'])
+            ->rawColumns(['name', 'group_name','free_users','paid_users','url'])
             ->make(true);
     }
 
@@ -65,12 +78,14 @@ class CategoriesListDatatable extends DataTable
             ->addColumn(['data' => 'id', 'name' => 'id', "visible" => false])
             ->addColumn(['data' => 'group_name', 'name' => 'group_name', 'title' => __('Group Name')])
             ->addColumn(['data' => 'name', 'name' => 'name', 'title' => __('Category Name')])
-            ->addColumn(['data' => 'is_free', 'name' => 'is_free', 'title' => __('Available on Subscription Type')])
+            // ->addColumn(['data' => 'is_free', 'name' => 'is_free', 'title' => __('Available on Subscription Type')])
+            // ->addColumn(['data' => 'action', 'name' => 'action', 'title' => __('Action'), 'searchable' => false, 'orderable' => false])
+            ->addColumn(['data' => 'free_users', 'name' => 'free_users', 'title' => __('Free Users')])
+            ->addColumn(['data' => 'paid_users', 'name' => 'paid_users', 'title' => __('Paid Users')])
             ->addColumn(['data' => 'url', 'name' => 'url', 'title' => __('Icon'), 'searchable' => false, 'orderable' => false])
-            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => __('Action'), 'searchable' => false, 'orderable' => false])
             ->parameters([
                 'pageLength' => $this->row_per_page,
-                'order' => [0, 'DESC']
+                'order' => [0, 'ASC']
             ]);
     }
 
