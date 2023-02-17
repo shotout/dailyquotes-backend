@@ -85,7 +85,7 @@ class CategoriesListDatatable extends DataTable
             ->addColumn(['data' => 'url', 'name' => 'url', 'title' => __('Icon'), 'searchable' => false, 'orderable' => false])
             ->parameters([
                 'pageLength' => $this->row_per_page,
-                'order' => [0, 'ASC']
+                'order' => [4, 'DESC']
             ]);
     }
 
