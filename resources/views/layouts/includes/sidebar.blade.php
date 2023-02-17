@@ -21,7 +21,7 @@
                     <ul class="pcoded-submenu">
                         <li class="{{ isset($sub_menu) && $sub_menu == 'groupcategory' ? 'active' : '' }}"><a href="{{ url('group/list') }}" class="">{{ __('Group Quotes Category') }}</a></li>
                         <li class="{{ isset($sub_menu) && $sub_menu == 'categories' ? 'active' : '' }}"><a href="{{ url('categories/list') }}" class="">{{ __('Quotes Category') }}</a></li>
-                        <li class="{{ isset($sub_menu) && $sub_menu == 'quotes' ? 'active' : '' }}"><a href="{{ url('quotes/list') }}" class="">{{ __('Quotes') }}</a></li>
+                        <li class="{{ isset($sub_menu) && $sub_menu == 'quotes' ? 'active' : '' }}"><a href="{{ url('quotes/list') }}" class="">{{ __('Quotes Tracking') }}</a></li>
                     </ul>
                 </li>
                 <li data-username="setting" class="nav-item pcoded-hasmenu {{ $menu == 'setting' ? 'pcoded-trigger active' : '' }}">
