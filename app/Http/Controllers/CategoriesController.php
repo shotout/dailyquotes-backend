@@ -27,7 +27,7 @@ class CategoriesController extends Controller
         $data['menu'] = 'app';
         $data['sub_menu'] = 'categories';
         $data['page_title'] = __('Create Category');
-        $data['groups'] = Group::get();
+        $data['groups'] = Group::where('flag', 1)->get();
         return view('apps.categories.category_add', $data);
     }
 
@@ -69,7 +69,7 @@ class CategoriesController extends Controller
         $data['sub_menu'] = 'categories';
         $data['page_title'] = __('Edit Category');
         $data['category'] = Category::find($id);
-        $data['group_names'] = Group::get();
+        $data['group_names'] = Group::where('flag', 1)->get();
         return view('apps.categories.category_edit', $data);
     }
 
