@@ -98,5 +98,22 @@ class SubscriptionsController extends Controller
                 'data' => $subscriptions
             ], 200);
         }
+
+        if ($request->subscription_type == 5) {
+            $user = User::where('id', auth()->user()->id)->first();
+            $user->purchasely_id = $request->purchasely_id;
+            $user->save();
+
+            $subscriptions = Subscription::where('user_id', auth()->user()->id)->first();
+            if ($subscriptions) {
+                $subscriptions->type = $request->subscription_type;
+                $subscriptions->plan_id = 5;
+                $subscriptions->save();
+            } 
+            return response()->json([
+                'status' => 'ok',
+                'data' => $subscriptions
+            ], 200);
+        }
     }
 }

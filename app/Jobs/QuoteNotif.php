@@ -43,7 +43,7 @@ class QuoteNotif implements ShouldQueue
 
         if ($quote) {
             // User::whereNotNull('fcm_token')->increment('notif_count', 1);
-            $users = User::with('schedule')->whereNotNull('fcm_token')->get();
+            $users = User::with('schedule','subscription')->whereNotNull('fcm_token')->get();
           
             $SERVER_API_KEY = env('FIREBASE_SERVER_API_KEY');
 
