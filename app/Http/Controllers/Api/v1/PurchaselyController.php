@@ -16,10 +16,12 @@ class PurchaselyController extends Controller
         $data = $request->all();
         Log::info($data);
         $user = User::where('purchasely_id', $data['anonymous_user_id'])->first();
-        $user->is_member = 1;
-        $user->save();
+        if ($user) {
+            $user->is_member = 1;
+            $user->save();
+        }
         Log::info($data);
-        
+
         $subscription = Subscription::where('user_id', $user->id)->first();
 
         if ($data['event_name'] == 'ACTIVATE') {
@@ -28,7 +30,7 @@ class PurchaselyController extends Controller
             } else {
                 $type = 3;
             }
-       
+
             // update the subscription end
             $subscription->type = $type;
             $subscription->started = date('Y-m-d', strtotime($data['purchased_at']));
