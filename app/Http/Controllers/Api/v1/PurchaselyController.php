@@ -18,6 +18,7 @@ class PurchaselyController extends Controller
         $user = User::where('purchasely_id', $data['anonymous_user_id'])->first();
         $user->is_member = 1;
         $user->save();
+        Log::info($data);
         
         $subscription = Subscription::where('user_id', $user->id)->first();
 
