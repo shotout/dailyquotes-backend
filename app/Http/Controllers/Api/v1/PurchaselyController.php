@@ -22,6 +22,7 @@ class PurchaselyController extends Controller
         }
         Log::info($data);
 
+        $user = User::where('purchasely_id', $data['anonymous_user_id'])->first();
         $subscription = Subscription::where('user_id', $user->id)->first();
 
         if ($data['event_name'] == 'ACTIVATE') {
