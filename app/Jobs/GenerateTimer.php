@@ -67,6 +67,7 @@ class GenerateTimer implements ShouldQueue
             Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => $timer]);
         }
 
+        GenerateTimerAds::dispatch($this->user->id)->onQueue(env('SUPERVISOR'));
         Log::info('Job GenerateTimer Success ...');
     }
 }

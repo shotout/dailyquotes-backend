@@ -21,13 +21,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    // return view('auth.login');
     // return view('stripe');
     // \App\Jobs\QuoteNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // \App\Jobs\ResetNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // \App\Jobs\UpdatePool::dispatch('area', 1)->onQueue(env('SUPERVISOR'));
     // \App\Jobs\RandomQuote::dispatch()->onQueue(env('SUPERVISOR'));
-    // return 'success ...';
+    // \App\Jobs\GenerateTimerAds::dispatch(1)->onQueue(env('SUPERVISOR'));
+    \App\Jobs\AdsNotif::dispatch()->onQueue(env('SUPERVISOR'));
+    return 'success ...';
 });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
