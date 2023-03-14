@@ -16,6 +16,7 @@ class AddThemes4ToThemesTable extends Migration
     {
         DB::table('themes')->insert([
             [
+                "group_id" => 8,
                 "name" => "Theme 41",
                 "is_free" => false,
                 "font_family" => "Palatino",
@@ -28,6 +29,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 8,
                 "name" => "Theme 42",
                 "is_free" => false,
                 "font_family" => "Montserrat-SemiBold",
@@ -40,6 +42,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 10,
                 "name" => "Theme 43",
                 "is_free" => false,
                 "font_family" => "Rowdies-Regular",
@@ -52,6 +55,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 11,
                 "name" => "Theme 44",
                 "is_free" => false,
                 "font_family" => "Optima",
@@ -64,6 +68,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 11,
                 "name" => "Theme 45",
                 "is_free" => false,
                 "font_family" => "FjallaOne-Regular",
@@ -76,6 +81,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 13,
                 "name" => "Theme 46",
                 "is_free" => false,
                 "font_family" => "Calistoga-Regular",
@@ -88,6 +94,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 13,
                 "name" => "Theme 47",
                 "is_free" => false,
                 "font_family" => "FjallaOne-Regular",
@@ -100,6 +107,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 14,
                 "name" => "Theme 48",
                 "is_free" => false,
                 "font_family" => "Montserrat-SemiBold",
@@ -112,6 +120,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 15,
                 "name" => "Theme 49",
                 "is_free" => false,
                 "font_family" => "Rowdies-Regular",
@@ -124,6 +133,7 @@ class AddThemes4ToThemesTable extends Migration
                 "created_at" => now()
             ],
             [
+                "group_id" => 15,
                 "name" => "Theme 50",
                 "is_free" => false,
                 "font_family" => "Koulen-Regular",
