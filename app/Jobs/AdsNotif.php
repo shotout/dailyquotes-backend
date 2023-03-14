@@ -51,29 +51,30 @@ class AdsNotif implements ShouldQueue
                     
                     $boxs = [
                         "name" => $user->name,
-                        "selected_goal" => null
+                        "selected_goal" => $user->areas[0]->name
                     ];
 
-                    $arr = array();
-                    foreach ($user->areas as $area) {
-                        $arr[] = $area->name;
-                    }
-                    $list = implode(',', $arr);
-                    $boxs['selected_goal'] = $list;
+                    // $arr = array();
+                    // foreach ($user->areas as $area) {
+                    //     $arr[] = $area->name;
+                    // }
+                    // $list = implode(',', $arr);
+                    // $boxs['selected_goal'] = $list;
 
-                    Log::info($boxs);
+                    // Log::info($boxs);
 
                     foreach ($boxs as $key => $val) {
-                        // Log::info($key);
-                        // Log::info($val);
                         $descShort = str_replace('['.$key.']', $val, $message->push_text);
                     }
+                    $descShort = str_replace('[name]', $user->name, $descShort);
+
+                    Log::info($descShort);
 
                     $data = [
                         "to" => $user->fcm_token,
                         "data" => (object) array(
                             "type" => "paywall",
-                            "placement" => "placement-type"
+                            "placement" => "offer_no_purchase_after_onboarding_paywall"
                         ),
                         "notification" => [
                             "title" => "Mooti App",
