@@ -34,7 +34,7 @@ class AdsNotif implements ShouldQueue
      */
     public function handle()
     {
-        $users = User::with('schedule')->where('status', 2)->get();
+        $users = User::with('schedule','areas')->where('status', 2)->get();
 
         foreach ($users as $user) {
             $time = now()->setTimezone($user->schedule->timezone);
@@ -49,12 +49,23 @@ class AdsNotif implements ShouldQueue
                 $message = Message::find($um->message_id);
                 if ($message) {
                     
-                    $datas = array(
-                        "user_name" => $user->name,
-                        "selected_goal" => "area1, area2, area3"
-                    );
+                    $boxs = [
+                        "name" => $user->name,
+                        "selected_goal" => null
+                    ];
 
-                    foreach ($datas as $key => $val) {
+                    $arr = array();
+                    foreach ($user->areas as $area) {
+                        $arr[] = $area->name;
+                    }
+                    $list = implode(',', $arr);
+                    $boxs['selected_goal'] = $list;
+
+                    Log::info($boxs);
+
+                    foreach ($boxs as $key => $val) {
+                        // Log::info($key);
+                        // Log::info($val);
                         $descShort = str_replace('['.$key.']', $val, $message->push_text);
                     }
 
