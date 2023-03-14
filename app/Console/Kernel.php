@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
         $schedule->job((new \App\Jobs\QuoteNotif)->onQueue(env('SUPERVISOR')))->everyTwoMinutes();
 
         // broadcast notif ads
-        $schedule->job((new \App\Jobs\AdsNotif)->onQueue(env('SUPERVISOR')))->everyTenMinutes()
+        $schedule->job((new \App\Jobs\AdsNotif)->onQueue(env('SUPERVISOR')))->everyTenMinutes();
 
         // reset counter notif
         // $schedule->job((new \App\Jobs\ResetNotif)->onQueue(env('SUPERVISOR')))->dailyAt('00:00');
