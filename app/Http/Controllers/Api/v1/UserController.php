@@ -84,7 +84,7 @@ class UserController extends Controller
             
             $schedule->save();
 
-            if ($request->has('often') || $request->has('anytime') || $request->has('timezone')) {
+            if ($request->has('often') && $request->often != '' || $request->has('anytime') && $request->anytime != '') {
                 GenerateTimer::dispatch($user->id)->onQueue(env('SUPERVISOR'));
             }
         // -------------------------
