@@ -39,13 +39,13 @@ class AdsNotif implements ShouldQueue
         foreach ($users as $user) {
             $time = now()->setTimezone($user->schedule->timezone);
 
-            $ums = UserMessage::where('user_id', $user->id)
+            $um = UserMessage::where('user_id', $user->id)
                 ->where('has_notif', false)
                 ->whereDate('time', $time)
                 ->whereTime('time', '<=', $time)
-                ->get();
+                ->first();
 
-            foreach ($ums as $um) {
+            if ($um) {
                 $message = Message::find($um->message_id);
                 if ($message) {
                     
@@ -54,21 +54,10 @@ class AdsNotif implements ShouldQueue
                         "selected_goal" => $user->areas[0]->name
                     ];
 
-                    // $arr = array();
-                    // foreach ($user->areas as $area) {
-                    //     $arr[] = $area->name;
-                    // }
-                    // $list = implode(',', $arr);
-                    // $boxs['selected_goal'] = $list;
-
-                    // Log::info($boxs);
-
                     foreach ($boxs as $key => $val) {
                         $descShort = str_replace('['.$key.']', $val, $message->push_text);
                     }
                     $descShort = str_replace('[name]', $user->name, $descShort);
-
-                    Log::info($descShort);
 
                     $data = [
                         "to" => $user->fcm_token,
