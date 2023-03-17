@@ -59,7 +59,8 @@ class ListController extends Controller
 
     public function themes()
     {
-        $data = Theme::with('background')->where('status', 2)->get();
+        // $data = Theme::with('background')->where('status', 2)->get();
+        $data = Group::with('themes')->where('flag', 2)->where('status', 2)->get();
 
         return response()->json([
             'status' => 'success',
@@ -82,9 +83,11 @@ class ListController extends Controller
 
             $query = Group::with(['categories' => function($q) use($request) {
                 $q->where('name', 'like', '%' . $request->input('search') . '%');
-            }])->where('status', 2);
+            }])
+            ->where('flag', 1)
+            ->where('status', 2);
         } else {
-            $query = Group::with('categories')->where('status', 2);
+            $query = Group::with('categories')->where('flag', 1)->where('status', 2);
         }
 
         $groups = $query->get();
@@ -116,6 +119,7 @@ class ListController extends Controller
                     $alternatives = Group::with(['categories' => function($q) use($myCategory) {
                         $q->whereNotIn('id', $myCategory);
                     }])
+                        ->where('flag', 1)
                         ->where('status', 2)
                         ->get();
 

@@ -27,6 +27,8 @@ Route::get('/', function () {
     // \App\Jobs\ResetNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // \App\Jobs\UpdatePool::dispatch('area', 1)->onQueue(env('SUPERVISOR'));
     // \App\Jobs\RandomQuote::dispatch()->onQueue(env('SUPERVISOR'));
+    // \App\Jobs\GenerateTimerAds::dispatch(1)->onQueue(env('SUPERVISOR'));
+    // \App\Jobs\AdsNotif::dispatch()->onQueue(env('SUPERVISOR'));
     // return 'success ...';
 });
 

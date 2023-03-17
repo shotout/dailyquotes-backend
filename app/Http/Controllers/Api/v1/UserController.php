@@ -83,7 +83,10 @@ class UserController extends Controller
             }
             
             $schedule->save();
-            GenerateTimer::dispatch($user->id)->onQueue(env('SUPERVISOR'));
+
+            if ($request->has('often') && $request->often != '' || $request->has('anytime') && $request->anytime != '') {
+                GenerateTimer::dispatch($user->id)->onQueue(env('SUPERVISOR'));
+            }
         // -------------------------
 
         // reset user notif counter

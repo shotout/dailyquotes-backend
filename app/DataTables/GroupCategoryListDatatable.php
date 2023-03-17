@@ -34,7 +34,7 @@ class GroupCategoryListDatatable extends DataTable
 
     public function query()
     {
-        $categories = Group::all();
+        $categories = Group::where('flag', 1)->get();
         return $this->applyScopes($categories);
     }
 
