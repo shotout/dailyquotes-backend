@@ -37,11 +37,7 @@ class AdsNotif implements ShouldQueue
         $users = User::with('schedule','areas')->where('status', 2)->get();
 
         foreach ($users as $user) {
-<<<<<<< HEAD
-            if ($user->subscription->type == 5) {
-=======
             if ($user->is_member == 0) {
->>>>>>> 62c06c1ad31a42ae5604e764613abd28cda43b9f
                 $time = now()->setTimezone($user->schedule->timezone);
 
                 $um = UserMessage::where('user_id', $user->id)
