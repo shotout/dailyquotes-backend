@@ -95,6 +95,12 @@ class UserController extends Controller
             $user->update();
         }
 
+        // reset user quote counter
+        if ($request->has('quote_count')) {
+            $user->quote_count = 0;
+            $user->update();
+        }
+
         return response()->json([
             'status' => 'success',
             'data' => $user

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Models\User;
 use App\Models\Quote;
 use App\Models\PastQuote;
 use Illuminate\Http\Request;
@@ -94,6 +95,12 @@ class UserPastQuoteController extends Controller
             $pq->user_id = auth('sanctum')->user()->id;
             $pq->quote_id = $id;
             $pq->save();
+
+            $user = User::find(auth('sanctum')->user()->id);
+            if ($user) {
+                $user->quote_count++;
+                $user->update();
+            }
         }
 
         return response()->json([

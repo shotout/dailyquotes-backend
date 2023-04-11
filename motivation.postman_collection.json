@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9be59d7c-33fa-4726-be93-4e8cfaebdbfb",
+		"_postman_id": "3b0690e3-d1a9-4ae0-a2b8-a9af74917cd5",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -812,7 +812,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|9GdvM84Rvo5idxCZkl3gbZpLLR831gtJBIFEtnex",
+									"value": "2|AwVj4u4lZBlgNU43EBLDmwHXUaeayANYp3ggI8Kj",
 									"type": "string"
 								}
 							]
@@ -884,12 +884,20 @@
 								{
 									"key": "timezone",
 									"value": "Asia/Bangkok",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "commit_goal",
 									"value": "6",
-									"type": "text"
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "quote_count",
+									"value": "0",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
