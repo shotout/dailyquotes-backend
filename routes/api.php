@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\ListController;
 use App\Http\Controllers\Api\v1\UserController;
+use App\Http\Controllers\Api\v1\AdmobController;
 use App\Http\Controllers\Api\v1\QuoteController;
 use App\Http\Controllers\Api\v1\StripeController;
 use App\Http\Controllers\Api\v1\SettingController;
@@ -175,5 +176,15 @@ Route::group(
     ],
     function() {
         Route::post('/', [PurchaselyController::class, 'index'])->name('purchasely');
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'v1/admob',
+        'name' => 'admob.'
+    ],
+    function() {
+        Route::post('/', [AdmobController::class, 'callback'])->name('callback');
     }
 );

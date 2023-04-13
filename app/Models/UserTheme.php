@@ -10,4 +10,5 @@ class UserTheme extends Model
     use HasFactory;
 
     protected $table = 'user_themes';
+    public $timestamps = false;
 }
