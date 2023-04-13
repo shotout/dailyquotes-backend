@@ -15,9 +15,9 @@ use Casperlaitw\LaravelAdmobSsv\AdMob;
 class AdmobController extends Controller
 {
     public function callback(Request $request) {
-        // $adMob = new AdMob($request);
+        $adMob = new AdMob($request);
 
-        // if ($adMob->validate()) {
+        if ($adMob->validate()) {
             // success
             $user = User::find($request->user_id);
 
@@ -27,7 +27,8 @@ class AdmobController extends Controller
                 $custom_id = $custom_data[1];
 
                 if ($flag == "quote") {
-
+                    $user->limit = 0;
+                    $user->update();
                 }
 
                 if ($flag == "theme") {
@@ -53,9 +54,9 @@ class AdmobController extends Controller
                     }
                 }
             }
-        // } else {
-        //     // failed
-        // }
+        } else {
+            // failed
+        }
 
         // return response
         return response()->json([

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Models\User;
 use App\Models\Quote;
 use App\Models\MyQuote;
 use App\Models\PastQuote;
@@ -20,6 +21,11 @@ class QuoteController extends Controller
             $length = $request->input('length');
         } else {
             $length = 1;
+        }
+
+        // free user limit
+        if (auth('sanctum')->user()->is_member == 0) {
+            $length = 10;
         }
 
         // order by field
@@ -325,6 +331,23 @@ class QuoteController extends Controller
             $month_free = true;
         } else {
             $month_free = false;
+        }
+
+        // free user limit
+        if (auth('sanctum')->user()->is_member == 0 && auth('sanctum')->user()->limit == 1) {
+            return response()->json([
+                'status' => 'success',
+                'data' => null,
+                'flag' => (object) array(
+                    'month_free' => $month_free
+                )
+            ], 200);
+        } else {
+            $user = User::find(auth('sanctum')->user()->id);
+            if ($user) {
+                $user->limit = 1;
+                $user->update();
+            }
         }
 
         // retun response
