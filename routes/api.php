@@ -185,6 +185,6 @@ Route::group(
         'name' => 'admob.'
     ],
     function() {
-        Route::post('/', [AdmobController::class, 'callback'])->name('callback');
+        Route::get('/', [AdmobController::class, 'callback'])->name('callback');
     }
 );
