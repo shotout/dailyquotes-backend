@@ -136,8 +136,8 @@ class QuoteNotif implements ShouldQueue
                                                 "id" => $quote->id,
                                             ],
                                             "notification" => [
-                                                "title" => "A new Affirmation is waiting for you",
-                                                "body" => "Click here to get inspired All additional pushes open full screen rewarded ad",  
+                                                "title" => "A new Affirmation is waiting for you ✨",
+                                                "body" => "Click here to get inspired and discover your new Quote. Don’t lose your progress. 🌟💪",
                                                 "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
                                                 // "image" => 'https://backend.nftdaily.app/image.png',
                                                 "sound" => "circle.mp3",
