@@ -24,9 +24,9 @@ class QuoteController extends Controller
         }
 
         // free user limit
-        if (auth('sanctum')->user()->is_member == 0) {
-            $length = 10;
-        }
+        // if (auth('sanctum')->user()->is_member == 0) {
+        //     $length = 10;
+        // }
 
         // order by field
         if ($request->has('column') && $request->input('column') != '') {
@@ -334,21 +334,21 @@ class QuoteController extends Controller
         }
 
         // free user limit
-        if (auth('sanctum')->user()->is_member == 0 && auth('sanctum')->user()->limit == 1) {
-            return response()->json([
-                'status' => 'success',
-                'data' => null,
-                'flag' => (object) array(
-                    'month_free' => $month_free
-                )
-            ], 200);
-        } else {
-            $user = User::find(auth('sanctum')->user()->id);
-            if ($user) {
-                $user->limit = 1;
-                $user->update();
-            }
-        }
+        // if (auth('sanctum')->user()->is_member == 0 && auth('sanctum')->user()->limit == 1) {
+        //     return response()->json([
+        //         'status' => 'success',
+        //         'data' => null,
+        //         'flag' => (object) array(
+        //             'month_free' => $month_free
+        //         )
+        //     ], 200);
+        // } else {
+        //     $user = User::find(auth('sanctum')->user()->id);
+        //     if ($user) {
+        //         $user->limit = 1;
+        //         $user->update();
+        //     }
+        // }
 
         // retun response
         return response()->json([
