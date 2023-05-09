@@ -349,6 +349,13 @@ class QuoteController extends Controller
         //         $user->update();
         //     }
         // }
+        if (auth('sanctum')->user()->is_member == 0) {
+            $user = User::find(auth('sanctum')->user()->id);
+            if ($user) {
+                $user->limit = 1;
+                $user->update();
+            }
+        }
 
         // retun response
         return response()->json([
