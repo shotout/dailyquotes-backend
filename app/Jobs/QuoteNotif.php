@@ -52,7 +52,7 @@ class QuoteNotif implements ShouldQueue
             $descShort = substr($filterDesc, 0, 100);
 
             foreach ($users as $user) {
-                if ($user->subscription->plan_id != 5 || $user->subscription->type != 5) {
+                // if ($user->subscription->plan_id != 5 || $user->subscription->type != 5) {
                     if ($user->schedule->counter_notif < $user->schedule->often) {
                         if ($user->schedule->timezone && now()->setTimezone($user->schedule->timezone)->format('H:i:s') >= $user->schedule->start && now()->setTimezone($user->schedule->timezone)->format('H:i:s') <= Carbon::parse($user->schedule->end)->addMinute(10)->format('H:i:s')) {
                             if ($user->schedule->timer) {
@@ -121,7 +121,7 @@ class QuoteNotif implements ShouldQueue
                             }
                         }
                     }
-                }
+                // }
             }
 
             // update status
