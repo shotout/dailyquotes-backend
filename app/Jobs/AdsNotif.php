@@ -76,10 +76,10 @@ class AdsNotif implements ShouldQueue
                                 "message_count" => $message->id
                             ),
                             "notification" => [
-                                // "title" => "Mooti App",
-                                // "body" => $descShort,  
-                                "title" => "A new Affirmation is waiting for you ✨",
-                                "body" => "Click here to get inspired and discover your new Quote. Don’t lose your progress. 🌟💪",  
+                                "title" => "Mooti App",
+                                "body" => $descShort,  
+                                // "title" => "A new Affirmation is waiting for you ✨",
+                                // "body" => "Click here to get inspired and discover your new Quote. Don’t lose your progress. 🌟💪",  
                                 "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
                                 "sound" => "circle.mp3",
                                 "badge" => $user->notif_count + 1
