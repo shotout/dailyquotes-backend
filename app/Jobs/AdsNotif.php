@@ -71,8 +71,8 @@ class AdsNotif implements ShouldQueue
                             "to" => $user->fcm_token,
                             "data" => (object) array(
                                 "type" => "paywall",
-                                // "placement" => "offer_no_purchase_after_onboarding_paywall"
-                                "placement" => $placement,
+                                "placement" => "offer_no_purchase_after_onboarding_paywall",
+                                // "placement" => $placement,
                                 "message_count" => $message->id
                             ),
                             "notification" => [
