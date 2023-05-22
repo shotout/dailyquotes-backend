@@ -109,6 +109,9 @@ class AdsNotif implements ShouldQueue
 
                         $um->has_notif = true;
                         $um->update();
+
+                        $user->notif_ads_count++;
+                        $user->update();
                     }
                 }
             // }
