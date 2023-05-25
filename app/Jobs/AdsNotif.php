@@ -34,10 +34,10 @@ class AdsNotif implements ShouldQueue
      */
     public function handle()
     {
-        $users = User::with('schedule','areas')->where('status', 2)->get();
+        $users = User::with('schedule','areas')->where('is_member', 0)->where('status', 2)->get();
 
         foreach ($users as $user) {
-            if ($user->is_member == 0) {
+            // if ($user->is_member == 0) {
                 $time = now()->setTimezone($user->schedule->timezone);
 
                 $um = UserMessage::where('user_id', $user->id)
@@ -60,15 +60,26 @@ class AdsNotif implements ShouldQueue
                         }
                         $descShort = str_replace('[name]', $user->name, $descShort);
 
+                        $placement = null;
+                        if (in_array($message->id, array(1,2))) {
+                            $placement = "offer_no_purchase_after_onboarding_paywall";
+                        } else {
+                            $placement = "offer_no_purchase_after_onboarding_paywall_2nd";
+                        }
+
                         $data = [
                             "to" => $user->fcm_token,
                             "data" => (object) array(
                                 "type" => "paywall",
-                                "placement" => "offer_no_purchase_after_onboarding_paywall"
+                                // "placement" => "offer_no_purchase_after_onboarding_paywall",
+                                "placement" => $placement,
+                                "message_count" => $message->id
                             ),
                             "notification" => [
                                 "title" => "Mooti App",
                                 "body" => $descShort,  
+                                // "title" => "A new Affirmation is waiting for you ✨",
+                                // "body" => "Click here to get inspired and discover your new Quote. Don’t lose your progress. 🌟💪",  
                                 "icon" => 'https://backend-mooti.walletads.io/assets/logos/logo.jpg',
                                 "sound" => "circle.mp3",
                                 "badge" => $user->notif_count + 1
@@ -98,9 +109,12 @@ class AdsNotif implements ShouldQueue
 
                         $um->has_notif = true;
                         $um->update();
+
+                        $user->notif_ads_count++;
+                        $user->update();
                     }
                 }
-            }
+            // }
         }
 
         Log::info('Job AdsNotif Success ...');

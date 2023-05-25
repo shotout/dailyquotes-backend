@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a70e8b308fe013e09fcca5726fa98a8f",
+    "content-hash": "afc1f7c02dff108eff2a64cdb242238e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -117,6 +117,62 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "casperlaitw/laravel-admob-ssv",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CasperLaiTW/laravel-admob-ssv.git",
+                "reference": "2cd6eae803ea87db80af39c5c2ea5f87e68bd5c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CasperLaiTW/laravel-admob-ssv/zipball/2cd6eae803ea87db80af39c5c2ea5f87e68bd5c0",
+                "reference": "2cd6eae803ea87db80af39c5c2ea5f87e68bd5c0",
+                "shasum": ""
+            },
+            "require": {
+                "eastwest/json": "^3.0",
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "illuminate/http": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "~5.6|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "kevinrob/guzzle-cache-middleware": "^3.3|^4.0",
+                "php": ">=7.0",
+                "starkbank/ecdsa": "^0.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Casperlaitw\\LaravelAdmobSsv\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Casper Lai",
+                    "email": "casper.lai@sleepingdesign.com"
+                }
+            ],
+            "description": "Google Admob server-side verification php library",
+            "homepage": "https://github.com/CasperLaiTW/laravel-admob-ssv",
+            "keywords": [
+                "ad",
+                "admob",
+                "firebase",
+                "google",
+                "laravel",
+                "server-side verification",
+                "ssv"
+            ],
+            "support": {
+                "issues": "https://github.com/CasperLaiTW/laravel-admob-ssv/issues",
+                "source": "https://github.com/CasperLaiTW/laravel-admob-ssv/tree/v1.3.0"
+            },
+            "time": "2023-02-20T08:42:13+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -482,6 +538,49 @@
                 }
             ],
             "time": "2022-09-10T18:51:20+00:00"
+        },
+        {
+            "name": "eastwest/json",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jannejava/json.git",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jannejava/json/zipball/d08982d1849b1e6f5e67768484a703bcd3c463b9",
+                "reference": "d08982d1849b1e6f5e67768484a703bcd3c463b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Eastwest\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Östlund",
+                    "email": "janne@eastwest.se"
+                }
+            ],
+            "description": "Wrap JSON encoding/decoding errors in exception",
+            "support": {
+                "issues": "https://github.com/jannejava/json/issues",
+                "source": "https://github.com/jannejava/json/tree/master"
+            },
+            "time": "2018-06-14T10:10:59+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -1083,6 +1182,90 @@
                 }
             ],
             "time": "2022-10-26T14:07:24+00:00"
+        },
+        {
+            "name": "kevinrob/guzzle-cache-middleware",
+            "version": "v4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kevinrob/guzzle-cache-middleware.git",
+                "reference": "24b93edc942f2eaaeb17f7ae0d6db0f77f4ed4ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/24b93edc942f2eaaeb17f7ae0d6db0f77f4ed4ea",
+                "reference": "24b93edc942f2eaaeb17f7ae0d6db0f77f4ed4ea",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0 || ^7.0",
+                "guzzlehttp/psr7": "^1.7.0 || ^2.0.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "cache/array-adapter": "^0.4 || ^0.5 || ^1.0",
+                "cache/simple-cache-bridge": "^0.1 || ^1.0",
+                "doctrine/cache": "^1.10",
+                "illuminate/cache": "^5.0",
+                "league/flysystem": "^1.0",
+                "phpunit/phpunit": "^8.5.15 || ^9.5",
+                "psr/cache": "^1.0",
+                "symfony/cache": "^4.4 || ^5.0",
+                "symfony/phpunit-bridge": "^4.4 || ^5.0"
+            },
+            "suggest": {
+                "doctrine/cache": "This library has a lot of ready-to-use cache storage (to be used with Kevinrob\\GuzzleCache\\Storage\\DoctrineCacheStorage). Use only versions >=1.4.0 < 2.0.0",
+                "guzzlehttp/guzzle": "For using this library. It was created for Guzzle6 (but you can use it with any PSR-7 HTTP client).",
+                "laravel/framework": "To be used with Kevinrob\\GuzzleCache\\Storage\\LaravelCacheStorage",
+                "league/flysystem": "To be used with Kevinrob\\GuzzleCache\\Storage\\FlysystemStorage",
+                "psr/cache": "To be used with Kevinrob\\GuzzleCache\\Storage\\Psr6CacheStorage",
+                "psr/simple-cache": "To be used with Kevinrob\\GuzzleCache\\Storage\\Psr16CacheStorage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kevinrob\\GuzzleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Robatel",
+                    "email": "kevinrob2@gmail.com",
+                    "homepage": "https://github.com/Kevinrob"
+                }
+            ],
+            "description": "A HTTP/1.1 Cache for Guzzle 6. It's a simple Middleware to be added in the HandlerStack. (RFC 7234)",
+            "homepage": "https://github.com/Kevinrob/guzzle-cache-middleware",
+            "keywords": [
+                "Etag",
+                "Flysystem",
+                "Guzzle",
+                "cache",
+                "cache-control",
+                "doctrine",
+                "expiration",
+                "guzzle6",
+                "handler",
+                "http",
+                "http 1.1",
+                "middleware",
+                "performance",
+                "php",
+                "promise",
+                "psr6",
+                "psr7",
+                "rfc7234",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/Kevinrob/guzzle-cache-middleware/issues",
+                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/v4.0.2"
+            },
+            "time": "2022-10-02T13:13:18+00:00"
         },
         {
             "name": "laravel/cashier",
@@ -3867,6 +4050,49 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
             "time": "2021-12-11T13:40:54+00:00"
+        },
+        {
+            "name": "starkbank/ecdsa",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/starkbank/ecdsa-php.git",
+                "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/starkbank/ecdsa-php/zipball/9369d35ed9019321adb4eb9fd3be21357d527c74",
+                "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/ellipticcurve.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "StarkBank",
+                    "email": "developers@starkbank.com",
+                    "homepage": "https://starkbank.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "fast openSSL-compatible implementation of the Elliptic Curve Digital Signature Algorithm (ECDSA)",
+            "homepage": "https://github.com/starkbank/ecdsa-php",
+            "support": {
+                "issues": "https://github.com/starkbank/ecdsa-php/issues",
+                "source": "https://github.com/starkbank/ecdsa-php/tree/v0.0.4"
+            },
+            "time": "2020-05-15T15:46:20+00:00"
         },
         {
             "name": "stripe/stripe-php",
