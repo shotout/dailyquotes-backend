@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\User;
+use App\Models\Media;
 use App\Models\Quote;
 use App\Models\Theme;
 use App\Models\Rating;
 use App\Models\Category;
 use App\Models\Schedule;
-use App\Jobs\GenerateTimer;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\CustomeTheme;
-use App\Models\Media;
 use App\Models\UserNotif;
+use App\Jobs\GenerateTimer;
+use App\Models\CustomeTheme;
+use Illuminate\Http\Request;
+use App\Jobs\GenerateTimerAds;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -99,6 +100,14 @@ class UserController extends Controller
         if ($request->has('quote_count')) {
             $user->quote_count = 0;
             $user->update();
+        }
+
+        // reset notif ads count
+        if ($request->has('notif_ads_count')) {
+            $user->notif_ads_count = 0;
+            $user->update();
+
+            GenerateTimerAds::dispatch($user->id)->onQueue(env('SUPERVISOR'));
         }
 
         return response()->json([
