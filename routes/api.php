@@ -33,7 +33,9 @@ Route::group(
     ],
     function() {
         Route::post('/check-device', [AuthController::class, 'checkDevice'])->name('checkDevice');
-        Route::post('/register', [AuthController::class, 'register'])->name('register');
+        Route::post('/register', [AuthController::class, 'register'])
+            ->middleware(['throttle:register'])
+            ->name('register');
     }
 );
 
