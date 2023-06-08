@@ -54,12 +54,21 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
+            'register_token' => 'required',
             'device_id' => 'required',
             'style' => 'required',
             // 'feel' => 'required',
             // 'ways' => 'required',
             'areas' => 'required',
         ]);
+
+        // check register token
+        if ($request->register_token != "$2y$10PDvHjXbGxyaUjKwPpWPlH.14YLG3JPQRoAk/H2rSEtg/ax5FtIjcm") {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'register token not valid'
+            ], 400); 
+        }
 
         $isRegister = User::where('device_id', $request->device_id)->first();
         if ($isRegister) {

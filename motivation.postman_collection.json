@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "228c0aee-7f92-452b-b806-37052274abab",
+		"_postman_id": "2f44cfb5-82f7-40fc-b748-d767d4d56fdf",
 		"name": "motivation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12074833"
@@ -192,6 +192,11 @@
 								{
 									"key": "important_change",
 									"value": "no",
+									"type": "text"
+								},
+								{
+									"key": "register_token",
+									"value": "$2y$10PDvHjXbGxyaUjKwPpWPlH.14YLG3JPQRoAk/H2rSEtg/ax5FtIjcm",
 									"type": "text"
 								}
 							]
