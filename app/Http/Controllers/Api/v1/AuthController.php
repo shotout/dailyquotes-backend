@@ -52,9 +52,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request)
-    {
-        return "ok";
-        
+    {       
         $request->validate([
             // 'register_token' => 'required',
             'device_id' => 'required',
