@@ -37,6 +37,7 @@ class AdsNotif implements ShouldQueue
         $users = User::with('schedule','areas')->where('is_member', 0)->where('status', 2)->get();
 
         foreach ($users as $user) {
+            if ($user->schedule) {
             // if ($user->is_member == 0) {
                 $time = now()->setTimezone($user->schedule->timezone);
 
@@ -115,6 +116,7 @@ class AdsNotif implements ShouldQueue
                     }
                 }
             // }
+            }
         }
 
         Log::info('Job AdsNotif Success ...');
