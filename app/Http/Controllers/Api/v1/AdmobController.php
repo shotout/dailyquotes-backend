@@ -15,6 +15,11 @@ use Casperlaitw\LaravelAdmobSsv\AdMob;
 class AdmobController extends Controller
 {
     public function callback(Request $request) {
+        return response()->json([
+            'status' => 'ok',
+            'data' => null
+        ], 200); 
+        
         // $adMob = new AdMob($request);
 
         // if ($adMob->validate()) {
