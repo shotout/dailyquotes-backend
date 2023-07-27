@@ -18,13 +18,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         // broadcast notif quote
-        $schedule->job((new \App\Jobs\QuoteNotif)->onQueue(env('SUPERVISOR')))->everyTwoMinutes();
+        $schedule->job((new \App\Jobs\QuoteNotif)->onQueue(env('SUPERVISOR')))->cron('*/6 * * * *');
 
         // broadcast notif ads
-        $schedule->job((new \App\Jobs\AdsNotif)->onQueue(env('SUPERVISOR')))->everyTwoMinutes();
-
-        // reset counter notif
-        // $schedule->job((new \App\Jobs\ResetNotif)->onQueue(env('SUPERVISOR')))->dailyAt('00:00');
+        $schedule->job((new \App\Jobs\AdsNotif)->onQueue(env('SUPERVISOR')))->everyTenMinutes();
     }
 
     /**
