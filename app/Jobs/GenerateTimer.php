@@ -60,11 +60,11 @@ class GenerateTimer implements ShouldQueue
         }
     
         if ($interval >= 6) {
-            Schedule::where('id', $this->user->schedule->id)->update(['timer' => $timer]);
-            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => null]);
+            Schedule::where('id', $this->user->schedule->id)->update(['counter_notif' => 0, 'timer' => $timer]);
+            Schedule::where('id', $this->user->schedule->id)->update(['counter_notif' => 0, 'timer_local' => null]);
         } else {
-            Schedule::where('id', $this->user->schedule->id)->update(['timer' => null]);
-            Schedule::where('id', $this->user->schedule->id)->update(['timer_local' => $timer]);
+            Schedule::where('id', $this->user->schedule->id)->update(['counter_notif' => 0, 'timer' => null]);
+            Schedule::where('id', $this->user->schedule->id)->update(['counter_notif' => 0, 'timer_local' => $timer]);
         }
 
         GenerateTimerAds::dispatch($this->user->id)->onQueue(env('SUPERVISOR'));
